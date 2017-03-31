@@ -1,8 +1,7 @@
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
-
-module.exports = function() {
+module.exports = function(app) {
   'use strict';
   app.use(morgan('dev'));
   app.use(bodyParser.json());
