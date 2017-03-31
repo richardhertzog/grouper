@@ -1,22 +1,23 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const path = require('path');
-const morgan = require('morgan');
+const apiRouter = require(path.join(__dirname, './routers/apirouter.js'));
 
 const app = express();
+module.exports = app;
 
-const PORT = process.env.PORT || 3000;
+// middleware
+require('./middleware.js')(app);
 
-app.use(morgan('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// static files
 app.use(express.static(path.join(__dirname, '../public')));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
-app.get('/', (req, res) => {
-  res.send('sup');
-});
+// Routers
+app.use('/api', apiRouter);
 
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log('server listening on port:', PORT);
 });
+
+
