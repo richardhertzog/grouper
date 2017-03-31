@@ -1,12 +1,12 @@
-# Project Name
+# Grüper
 
-> Pithy project description
+> Makes choosing a restaurant with a group of people easy.
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - Product Owner: Erik Thompson
+  - Scrum Master: Anirvan Awatramani
+  - Development Team Members: Aidan Bane, Richard Hertzog
 
 ## Table of Contents
 
@@ -20,15 +20,15 @@
 
 ## Usage
 
-> Some usage instructions
+>npm run build
+>npm start
 
 ## Requirements
 
-- Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- Node 7.7.3
+- Express: 4.15.2
+- Mongoose: 4.9.2
+- React: 15.4.2
 
 ## Development
 
@@ -37,14 +37,12 @@
 From within the root directory:
 
 ```sh
-sudo npm install -g bower
 npm install
-bower install
 ```
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://waffle.io/commandQ/grouper)
 
 
 ## Contributing
