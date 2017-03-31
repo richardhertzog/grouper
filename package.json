@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node /server/index.js",
+    "start": "node ./server/index.js",
     "build": "webpack",
     "build:watch": "webpack --watch",
-    "start_dev": "nodemon /server/index.js",
+    "start_dev": "nodemon ./server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,7 +28,9 @@
     "mongoose": "^4.9.2",
     "morgan": "^1.8.1",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-router": "^4.0.0",
+    "react-router-dom": "^4.0.0"
   },
   "devDependencies": {
     "babel": "^6.23.0",
