@@ -29,9 +29,3 @@ const groupSchema = mongoose.Schema({
 var Group = mongoose.model('Group', groupSchema);
 
 module.exports = Group;
-
-// {
-//   "groupName": "test",
-//   "location": "611 Mission St. San Francisco, CA",
-//   "eventType": "restaurant"
-// }
