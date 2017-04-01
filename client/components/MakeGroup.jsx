@@ -19,15 +19,13 @@ class MakeGroup extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // console.log(`submitting yelp api params: groupName: ${this.state.groupName}, businessType: ${this.state.businessType}, location: ${this.state.location}`);
     axios.post('http://localhost:3000/api/groups',
       { groupName: this.state.groupName,
         location: this.state.location,
         eventType: this.state.businessType,
 
       })
-    .then((response) => {
-      // console.log(response);
+    .then(() => {
       this.setState({ renderVote: true });
     });
   }
