@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 const Group = require(path.join(__dirname, './../db/models/groupModel.js'))
 const yelpAPI = require(path.join(__dirname, './../controllers/yelpController.js'))
 
@@ -31,7 +31,7 @@ function createGroup (req, res) {
 }
 
 function getOneGroup (req, res) {
-  let groupName = req.params.groupName;
+  let groupName = req.params.groupName
   Group.find({groupName: groupName})
   .then(function (data) {
     res.status(200).json(data)
@@ -42,6 +42,6 @@ function getOneGroup (req, res) {
   })
 }
 
-module.exports.getGroups = getGroups;
-module.exports.createGroup = createGroup;
-module.exports.getOneGroup = getOneGroup;
+module.exports.getGroups = getGroups
+module.exports.createGroup = createGroup
+module.exports.getOneGroup = getOneGroup

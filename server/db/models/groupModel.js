@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
-const path = require('path');
-const db = require(path.join(__dirname, '../index.js'));
-
+const mongoose = require('mongoose')
+const path = require('path')
+const db = require(path.join(__dirname, '../index.js'))
 
 const groupSchema = mongoose.Schema({
   groupName: {
@@ -24,8 +23,8 @@ const groupSchema = mongoose.Schema({
     default: true
   },
   winner: Object
-});
+})
 
-var Group = mongoose.model('Group', groupSchema);
+var Group = mongoose.model('Group', groupSchema)
 
-module.exports = Group;
+module.exports = Group
