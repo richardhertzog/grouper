@@ -5,7 +5,9 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Link to="/makeGroup" className="makeGroupButton">Make Group</Link>
+        <Link to="/makeGroup">Make Group Will Become Button</Link>
+        <br></br>
+        <Link to="/voting">Votes Page Test Link</Link>
       </div>
     );
   }
