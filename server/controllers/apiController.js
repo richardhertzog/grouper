@@ -34,7 +34,7 @@ function getOneGroup (req, res) {
   let groupName = req.params.groupName
   Group.find({groupName: groupName})
   .then(function (data) {
-    res.status(200).json(data)
+    res.status(200).json(data[0])
   })
   .catch((err) => {
     console.error('Error fetching group')

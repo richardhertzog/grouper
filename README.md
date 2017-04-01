@@ -37,6 +37,7 @@
 From within the root directory:
 
 ```sh
+npm install mocha -g
 npm install
 ```
 
