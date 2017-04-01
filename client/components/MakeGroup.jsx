@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import axios from 'axios';
 
 class MakeGroup extends Component {
   constructor(props) {
@@ -17,7 +18,15 @@ class MakeGroup extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(`submitting yelp api params: groupName: ${this.state.groupName}, businessType: ${this.state.businessType}, location: ${this.state.location}`);
+    // console.log(`submitting yelp api params: groupName: ${this.state.groupName}, businessType: ${this.state.businessType}, location: ${this.state.location}`);
+    axios.post('http://localhost:3000/api/groups', 
+    {groupName: this.state.groupName, 
+      location: this.state.location, 
+      eventType: this.state.businessType
+    })
+    .then(function(response){
+      console.log(response);
+    })
   }
 
   handleChange(event) {
