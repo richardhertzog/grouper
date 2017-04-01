@@ -1,8 +1,10 @@
 const router = require('express').Router();
 const path = require('path');
 const Group = require(path.join(__dirname, './../db/models/groupModel.js'));
+
 require(path.join(__dirname, './../config.js'))();
 const yelp = require('yelp-fusion');
+
 // require(path.join(__dirname, './../config.js'))();
 // const yelp = require('yelp-fusion');
 
