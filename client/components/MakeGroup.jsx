@@ -7,17 +7,17 @@ class MakeGroup extends Component {
     this.state = {
       groupName: '',
       businessType: '',
-      location: ''
-    }
+      location: '',
+    };
 
-    this.handleSubmit  = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.businessClick = this.businessClick.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(`submitting yelp api params: groupName: ${this.state.groupName}, businessType: ${this.state.businessType}, location: ${this.state.location}`)
+    console.log(`submitting yelp api params: groupName: ${this.state.groupName}, businessType: ${this.state.businessType}, location: ${this.state.location}`);
   }
 
   handleChange(event) {
@@ -25,7 +25,7 @@ class MakeGroup extends Component {
   }
 
   businessClick(event) {
-    this.setState({ businessType: event.target.id })
+    this.setState({ businessType: event.target.id });
   }
 
   render() {
