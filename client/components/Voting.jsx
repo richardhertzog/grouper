@@ -38,10 +38,10 @@ class Voting extends Component {
             <a href="#" className="btn btn-primary mr-2">NO</a>
           </div>
         </div>*/}
-        <img src={this.state.curBusiness.img_url} >
+        {/*<img src={this.state.curBusiness.img_url} >
         <div>{this.state.curBusiness.name}</div>
         <div>{this.state.curBusiness.price}</div>
-        <div>{this.state.curBusiness.name}</div>
+        <div>{this.state.curBusiness.name}</div>*/}
       </div>
     );
   }
