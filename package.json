@@ -42,6 +42,12 @@
     "babel-preset-react": "^6.23.0",
     "eslint": "^3.18.0",
     "nodemon": "^1.11.0",
+    "standard": "^9.0.2",
     "webpack": "^2.3.2"
+  },
+  "standard": {
+    "ignore": [
+      "webpack.config.js"
+    ]
   }
 }
