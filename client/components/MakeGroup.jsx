@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 class MakeGroup extends Component {
@@ -9,6 +9,7 @@ class MakeGroup extends Component {
       groupName: '',
       businessType: '',
       location: '',
+      renderVote: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,9 +24,11 @@ class MakeGroup extends Component {
       { groupName: this.state.groupName,
         location: this.state.location,
         eventType: this.state.businessType,
+
       })
     .then((response) => {
-      console.log(response);
+      // console.log(response);
+      this.setState({ renderVote: true });
     });
   }
 
@@ -38,6 +41,10 @@ class MakeGroup extends Component {
   }
 
   render() {
+    if (this.state.renderVote) {
+      return (<Redirect to="/voting/groupName" groupName={this.state.groupName} />);
+    }
+
     return (
       <div className="card">
         <div className="card-block mx-auto">
