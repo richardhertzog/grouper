@@ -36,10 +36,10 @@ class MakeGroup extends Component {
             Group Name:
             <input name="groupName" type="text" value={this.state.groupName} onChange={this.handleChange} />
           </label>
-          <div className="businessTypeButtons">
-            <a href="#" id="bars" onClick={this.businessClick}>Booze</a>
-            <a href="#" id="restaurants" onClick={this.businessClick}>Foods</a>
-            <a href="#" id="parks" onClick={this.businessClick}>Parks</a>
+          <div className="btn-group.btn-group-justified">
+            <a className="btn" href="#" id="bars" onClick={this.businessClick}>Booze</a>
+            <a className="btn" href="#" id="restaurants" onClick={this.businessClick}>Foods</a>
+            <a className="btn" href="#" id="parks" onClick={this.businessClick}>Parks</a>
           </div>
           <label>
             Location:
