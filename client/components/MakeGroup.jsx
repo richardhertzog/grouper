@@ -30,15 +30,16 @@ class MakeGroup extends Component {
 
   render() {
     return (
-      <div>
+      <div className="makeGroup">
         <form onSubmit={this.handleSubmit}>
           <label>
             Group Name:
             <input name="groupName" type="text" value={this.state.groupName} onChange={this.handleChange} />
           </label>
-          <div>
-            <div className="businessTypeButtons" id="bars" onClick={this.businessClick}>Booze</div>
-            <div className="businessTypeButtons" id="restaurants" onClick={this.businessClick}>Foods</div>
+          <div className="businessTypeButtons">
+            <a href="#" id="bars" onClick={this.businessClick}>Booze</a>
+            <a href="#" id="restaurants" onClick={this.businessClick}>Foods</a>
+            <a href="#" id="parks" onClick={this.businessClick}>Parks</a>
           </div>
           <label>
             Location:

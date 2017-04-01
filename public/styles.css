@@ -1,7 +1,33 @@
+.makeGroup {
+  display: flex;
+  justify-content: center;
+}
+
 .makeGroupButton {
 
 }
 
 .businessTypeButtons {
-
+  margin: 10px auto;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  max-width: 90%;
+  a {
+   background: #999;
+    padding: 1em;
+    font-size: .9em;
+    margin: .3em;
+    color: white;
+    text-decoration: none;
+    flex-grow: 1;
+    text-align: center;
+  }
 }
