@@ -19,14 +19,14 @@ class MakeGroup extends Component {
   handleSubmit(event) {
     event.preventDefault();
     // console.log(`submitting yelp api params: groupName: ${this.state.groupName}, businessType: ${this.state.businessType}, location: ${this.state.location}`);
-    axios.post('http://localhost:3000/api/groups', 
-    {groupName: this.state.groupName, 
-      location: this.state.location, 
-      eventType: this.state.businessType
-    })
-    .then(function(response){
+    axios.post('http://localhost:3000/api/groups',
+      { groupName: this.state.groupName,
+        location: this.state.location,
+        eventType: this.state.businessType,
+      })
+    .then((response) => {
       console.log(response);
-    })
+    });
   }
 
   handleChange(event) {
@@ -44,10 +44,10 @@ class MakeGroup extends Component {
           <h4 className="card-title">Set up a group!</h4>
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <input className="form-control" placeholder="Group Name" name="groupName" type="text" value={this.state.groupName} onChange={this.handleChange} />
+              <input className="form-control" placeholder="Group Name" name="groupName" type="text" value={this.state.groupName} onChange={this.handleChange} required />
             </div>
             <div className="form-group">
-              <input className="form-control" placeholder="Neighborhood" name="location" type="text" value={this.state.location} onChange={this.handleChange} />
+              <input className="form-control" placeholder="Neighborhood" name="location" type="text" value={this.state.location} onChange={this.handleChange} required />
             </div>
             <div className="form-group row mx-auto">
               <div className="btn-group btn-group-md mr-2">
