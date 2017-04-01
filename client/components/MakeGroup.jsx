@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 class MakeGroup extends Component {
@@ -9,6 +9,7 @@ class MakeGroup extends Component {
       groupName: '',
       businessType: '',
       location: '',
+      renderVote: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,15 +19,15 @@ class MakeGroup extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // console.log(`submitting yelp api params: groupName: ${this.state.groupName}, businessType: ${this.state.businessType}, location: ${this.state.location}`);
-    axios.post('http://localhost:3000/api/groups', 
-    {groupName: this.state.groupName, 
-      location: this.state.location, 
-      eventType: this.state.businessType
-    })
-    .then(function(response){
-      console.log(response);
-    })
+    axios.post('http://localhost:3000/api/groups',
+      { groupName: this.state.groupName,
+        location: this.state.location,
+        eventType: this.state.businessType,
+
+      })
+    .then(() => {
+      this.setState({ renderVote: true });
+    });
   }
 
   handleChange(event) {
@@ -38,16 +39,20 @@ class MakeGroup extends Component {
   }
 
   render() {
+    if (this.state.renderVote) {
+      return (<Redirect to="/voting/groupName" groupName={this.state.groupName} />);
+    }
+
     return (
       <div className="card">
         <div className="card-block mx-auto">
           <h4 className="card-title">Set up a group!</h4>
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
-              <input className="form-control" placeholder="Group Name" name="groupName" type="text" value={this.state.groupName} onChange={this.handleChange} />
+              <input className="form-control" placeholder="Group Name" name="groupName" type="text" value={this.state.groupName} onChange={this.handleChange} required />
             </div>
             <div className="form-group">
-              <input className="form-control" placeholder="Neighborhood" name="location" type="text" value={this.state.location} onChange={this.handleChange} />
+              <input className="form-control" placeholder="Neighborhood" name="location" type="text" value={this.state.location} onChange={this.handleChange} required />
             </div>
             <div className="form-group row mx-auto">
               <div className="btn-group btn-group-md mr-2">

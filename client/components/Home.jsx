@@ -6,7 +6,7 @@ class Home extends Component {
     return (
       <div>
         <Link to="/makeGroup">Make Group Will Become Button</Link>
-        <br></br>
+        <br />
         <Link to="/voting">Votes Page Test Link</Link>
       </div>
     );
