@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const path = require('path');
 const Group = require(path.join(__dirname, './../db/models/groupModel.js'));
-require(path.join(__dirname, './../config.js'))();
-const yelp = require('yelp-fusion');
+// require(path.join(__dirname, './../config.js'))();
+// const yelp = require('yelp-fusion');
 
 router.get('/groups', function(req, res) {
   Group.find().then(function(data) {
@@ -15,10 +15,10 @@ router.get('/groups', function(req, res) {
 });
 
 router.post('/groups', (req, res) => {
-  
+
   const clientId = process.env.YELP_APP_ID;
   const clientSecret = process.env.YELP_APP_SECRET;
-  
+
   const searchRequest = {
     term: req.body.eventType,
     location: req.body.location
