@@ -12,13 +12,13 @@ function getGroups (req, res) {
   })
 }
 
-function createGroup(req, res) {
+function createGroup (req, res) {
   yelpAPI(req, res)
     .then((group) => {
       new Group(group)
       .save()
       .then((data) => {
-        res.status(201).json(data)
+        res.status(201).json({groupName: group.groupName})
       })
       .catch((err) => {
         console.error('Error POSTing new client group')
@@ -30,5 +30,18 @@ function createGroup(req, res) {
     })
 }
 
+function getOneGroup (req, res) {
+  let groupName = req.params.groupName;
+  Group.find({groupName: groupName})
+  .then(function (data) {
+    res.status(200).json(data)
+  })
+  .catch((err) => {
+    console.error('Error fetching group')
+    res.status(501).send(err)
+  })
+}
+
 module.exports.getGroups = getGroups;
 module.exports.createGroup = createGroup;
+module.exports.getOneGroup = getOneGroup;
