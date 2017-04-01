@@ -10,19 +10,19 @@ module.exports = (req, res) => {
   }
 
   return yelp.accessToken(clientId, clientSecret)
-          .then(response => {
-            const client = yelp.client(response.jsonBody.access_token)
-            return client.search(searchRequest)
-          })
-          .then(response => {
-            return response.jsonBody.businesses
-          })
-          .then((response) => {
-            return {
-              groupName: req.body.groupName,
-              location: req.body.location,
-              eventType: req.body.eventType,
-              yelpApiContent: response
-            }
-          })
+    .then(response => {
+      const client = yelp.client(response.jsonBody.access_token)
+      return client.search(searchRequest)
+    })
+    .then(response => {
+      return response.jsonBody.businesses
+    })
+    .then((response) => {
+      return {
+        groupName: req.body.groupName,
+        location: req.body.location,
+        eventType: req.body.eventType,
+        yelpApiContent: response
+      }
+    })
 }
