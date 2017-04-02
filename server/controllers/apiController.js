@@ -14,20 +14,20 @@ function getGroups (req, res) {
 
 function createGroup (req, res) {
   yelpAPI(req, res)
-    .then((group) => {
-      new Group(group)
-      .save()
-      .then((data) => {
-        res.status(201).json({groupName: group.groupName})
-      })
-      .catch((err) => {
-        console.error('Error POSTing new client group')
-        res.status(501).send(err)
-      })
+  .then((group) => {
+    new Group(group)
+    .save()
+    .then((data) => {
+      res.status(201).json({groupName: group.groupName})
     })
     .catch((err) => {
-      console.log(err)
+      console.error('Error POSTing new client group')
+      res.status(501).send(err)
     })
+  })
+  .catch((err) => {
+    console.log(err)
+  })
 }
 
 function getOneGroup (req, res) {
@@ -43,30 +43,24 @@ function getOneGroup (req, res) {
 }
 
 function addVote (req, res) {
-  // find the group
-  console.log('req.params.groupName', req.params.groupName)
   let groupName = req.params.groupName
   Group.findOne({ groupName: groupName })
-      .then(function (group) {
-        console.log('group in then', group)
-        group.votes.push({
-          yelpApiId: req.body.yelpApiId,
-          vote: req.body.vote
-        })
-        group.save()
-        .then(() => {
-          res.status(201).send('Votes saved to db')
-        })
-        .catch((err) => {
-          console.error('[Error saving vote to DB]')
-          res.status(501).send('[Error saving vote to DB]', err)
-        })
-      })
-      .catch((err) => {
-        console.error('[Error fetching group]')
-        res.status(501).send('[Error fetching group]', err)
-      })
-  // push vote to group
+  .then(function (group) {
+    group.votes.push({
+      yelpApiId: req.body.yelpApiId,
+      vote: req.body.vote
+    })
+    return group
+  }).then((group) => {
+    group.save()
+    .then(() => {
+      res.status(201).send('Votes saved to db')
+    })
+  })
+  .catch((err) => {
+    console.error('[Error fetching group]')
+    res.status(501).send('[Error fetching group]', err)
+  })
 }
 
 module.exports.getGroups = getGroups
