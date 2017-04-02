@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const path = require('path')
-const db = require(path.join(__dirname, '../index.js'))
+require(path.join(__dirname, '../index.js'))
 
 const voteSchema = mongoose.Schema({
   groupId: String,
