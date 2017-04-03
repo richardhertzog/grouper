@@ -23,6 +23,7 @@ class MakeGroup extends Component {
       { groupName: this.state.groupName,
         location: this.state.location,
         eventType: this.state.businessType,
+
       })
     .then(() => {
       this.setState({ renderVote: true });
@@ -42,6 +43,9 @@ class MakeGroup extends Component {
   render() {
     if (this.state.renderVote) {
       return (<Redirect to={`/voting/${this.state.groupName}`} components={this.state.groupName} />);
+      // return (<Redirect to="/voting/groupName" groupName={this.state.groupName} />);
+      // console.log(this.state.groupName);
+      // return (<Redirect to={`/voting/${this.state.groupName}`} params={this.state.groupName} />);
     }
 
     return (
