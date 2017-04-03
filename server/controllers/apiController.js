@@ -64,17 +64,28 @@ function addVote (req, res) {
   })
 }
 
-function getVotes (req, res) {
+function calculateWinner (req, res) {
   let groupName = req.params.groupName
   Group.findOne({ groupName: groupName })
     .then((group) => {
       let votesArray = group.votes
       let votesResult = _(votesArray).groupBy('yelpApiId')
-      var output = _(votesResult).map((elem, key) => {
+      let output = _(votesResult).map((elem, key) => {
         return { yelpApiId: key,
           vote: _(elem).reduce((a, b) => { return a + b.vote }, 0)}
       })
-      res.json(output)
+      let result = _.max(output, function (item) { return item.vote })
+      group.winner = result.yelpApiId
+      group.isVoting = false
+      group.save()
+        .then((group) => {
+          console.log(group.winner)
+          res.status(201).json(group)
+        })
+        .catch((err) => {
+          console.error('[Error Calculating Winner]')
+          res.status(501).send('[Error Calculating Winner]', err)
+        })
     })
 }
 
@@ -82,4 +93,4 @@ module.exports.getGroups = getGroups
 module.exports.createGroup = createGroup
 module.exports.getOneGroup = getOneGroup
 module.exports.addVote = addVote
-module.exports.getVotes = getVotes
+module.exports.calculateWinner = calculateWinner
