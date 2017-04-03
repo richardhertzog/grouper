@@ -44,7 +44,6 @@ class MakeGroup extends Component {
     if (this.state.renderVote) {
       return (<Redirect to={`/voting/${this.state.groupName}`} components={this.state.groupName} />);
       // return (<Redirect to="/voting/groupName" groupName={this.state.groupName} />);
-      // console.log(this.state.groupName);
       // return (<Redirect to={`/voting/${this.state.groupName}`} params={this.state.groupName} />);
     }
 
