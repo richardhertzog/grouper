@@ -22,27 +22,21 @@ class Voting extends Component {
   populateState () {
     let name = this.props.location.pathname.slice(8)
     this.setState({ name: name })
-    axios.get('/api/groups', {
-      params: {
-        groupName: name
-      }
-    })
-    .then(function (response) {
-      return response.data.pop()
-    })
+    axios.get('/api/groups/' + name)
     .then((res) => {
       console.log(res)
-      let result = res.yelpApiContent
-      this.setState({curBusiness: result[0]})
+      let result = res.data.yelpApiContent
+      let current = result.shift()
+      this.setState({curBusiness: current})
       this.setState({businesses: result})
-      this.setState({yelpApiId: result[0].id})
+      this.setState({yelpApiId: current.id})
     })
   }
 
   yesButton (event) {
     event.preventDefault()
-    this.setState({vote: 1})
-    this.nextBusinessStateChange()
+    this.setState({vote: event.target.value})
+    this.nextBusinessStateChange(event.target.value)
   }
 
   noButton (event) {
@@ -51,18 +45,17 @@ class Voting extends Component {
     this.nextBusinessStateChange()
   }
 
-  nextBusinessStateChange () {
-    let biz = this.state.businesses.pop()
+  nextBusinessStateChange (vote) {
+    let biz = this.state.businesses.shift()
     this.setState({curBusiness: biz})
     this.setState({yelpApiId: this.state.curBusiness.id})
-    this.sendVotesServer()
+    this.sendVotesServer(vote)
   }
 
-  sendVotesServer () {
-    console.log(this.props.location.pathname.slice(8))
+  sendVotesServer (vote) {
     axios.post('/api/groups/' + this.props.location.pathname.slice(8) + '/votes', {
       yelpApiId: this.state.yelpApiId,
-      vote: this.state.vote
+      vote: vote
     })
     .then((response) => {
       console.log(response)
@@ -81,8 +74,8 @@ class Voting extends Component {
             <a href="#" className="btn btn-primary mr-2">NO</a> */}
           </div>
         </div>
-        <button onClick={this.yesButton}>Yes</button>
-        <button onClick={this.noButton}>No</button>
+        <button value={1} onClick={this.yesButton}>Yes</button>
+        <button value={-1} onClick={this.noButton}>No</button>
       </div>
     )
   }
