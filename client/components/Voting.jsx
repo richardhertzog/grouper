@@ -14,6 +14,7 @@ class Voting extends Component {
     }
     this.populateState = this.populateState.bind(this)
     this.yesButton = this.yesButton.bind(this)
+    this.noButton = this.noButton.bind(this)
     this.populateState();
   }
 
@@ -39,19 +40,22 @@ class Voting extends Component {
   yesButton(event) {
     let biz = this.state.businesses.pop()
     this.setState({curBusiness: biz})
-    this.setState({vote: 1})
     this.setState({yelpApiId: this.state.curBusiness.id})
+    this.setState({vote: 1})
     this.sendVotesServer()
   }
 
   noButton(event) {
     let biz = this.state.businesses.pop()
     this.setState({curBusiness: biz})
+    this.setState({yelpApiId: this.state.curBusiness.id})
     this.setState({vote: -1})
-    this.setState({yelpApiId: this.setState.curBusiness.id})
     this.sendVotesServer()
   }
-  
+
+  nextBusinessStateChange() {
+    
+  }
 
   sendVotesServer() {
     axios.post(`http://localhost:3000/api/groups/:${this.props.location.pathname.slice(8)}/votes`, {
