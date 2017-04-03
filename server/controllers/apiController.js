@@ -1,6 +1,7 @@
 const path = require('path')
 const Group = require(path.join(__dirname, './../db/models/groupModel.js'))
 const yelpAPI = require(path.join(__dirname, './../controllers/yelpController.js'))
+const _ = require('underscore')
 
 function getGroups (req, res) {
   Group.find().then(function (data) {
@@ -45,7 +46,7 @@ function getOneGroup (req, res) {
 function addVote (req, res) {
   let groupName = req.params.groupName
   Group.findOne({ groupName: groupName })
-  .then(function (group) {
+  .then((group) => {
     group.votes.push({
       yelpApiId: req.body.yelpApiId,
       vote: req.body.vote
@@ -63,7 +64,22 @@ function addVote (req, res) {
   })
 }
 
+function getVotes (req, res) {
+  let groupName = req.params.groupName
+  Group.findOne({ groupName: groupName })
+    .then((group) => {
+      let votesArray = group.votes
+      let votesResult = _(votesArray).groupBy('yelpApiId')
+      var output = _(votesResult).map((elem, key) => {
+        return { yelpApiId: key,
+          vote: _(elem).reduce((a, b) => { return a + b.vote }, 0)}
+      })
+      res.json(output)
+    })
+}
+
 module.exports.getGroups = getGroups
 module.exports.createGroup = createGroup
 module.exports.getOneGroup = getOneGroup
 module.exports.addVote = addVote
+module.exports.getVotes = getVotes
