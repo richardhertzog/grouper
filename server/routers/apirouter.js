@@ -5,6 +5,5 @@ router.get('/groups', apiController.getGroups)
 router.get('/groups/:groupName', apiController.getOneGroup)
 router.post('/groups/:groupName/votes', apiController.addVote)
 router.post('/groups', apiController.createGroup)
-router.get('/groups/:groupName/votes', apiController.calculateWinner)
 
 module.exports = router
