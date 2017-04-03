@@ -15,6 +15,7 @@ class Voting extends Component {
     this.populateState = this.populateState.bind(this)
     this.yesButton = this.yesButton.bind(this)
     this.noButton = this.noButton.bind(this)
+    this.sendVotesServer = this.sendVotesServer.bind(this)
     this.populateState();
   }
 
@@ -38,23 +39,20 @@ class Voting extends Component {
   }
 
   yesButton(event) {
-    let biz = this.state.businesses.pop()
-    this.setState({curBusiness: biz})
-    this.setState({yelpApiId: this.state.curBusiness.id})
     this.setState({vote: 1})
-    this.sendVotesServer()
+    this.nextBusinessStateChange()
   }
 
   noButton(event) {
-    let biz = this.state.businesses.pop()
-    this.setState({curBusiness: biz})
-    this.setState({yelpApiId: this.state.curBusiness.id})
     this.setState({vote: -1})
-    this.sendVotesServer()
+    this.nextBusinessStateChange()
   }
 
   nextBusinessStateChange() {
-    
+    let biz = this.state.businesses.pop()
+    this.setState({curBusiness: biz})
+    this.setState({yelpApiId: this.state.curBusiness.id})
+    this.sendVotesServer()
   }
 
   sendVotesServer() {
