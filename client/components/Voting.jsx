@@ -75,7 +75,7 @@ class Voting extends Component {
           </div>
         </div>
         <button value={1} onClick={this.yesButton}>Yes</button>
-        <button value={-1} onClick={this.noButton}>No</button>
+        <button value={0} onClick={this.noButton}>No</button>
       </div>
     )
   }
