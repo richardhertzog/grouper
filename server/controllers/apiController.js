@@ -1,6 +1,7 @@
 const path = require('path')
 const Group = require(path.join(__dirname, './../db/models/groupModel.js'))
 const yelpAPI = require(path.join(__dirname, './../controllers/yelpController.js'))
+const calculateWinner = require('../utils/calculateWinner.js')
 
 function getGroups (req, res) {
   Group.find().then(function (data) {
@@ -32,9 +33,25 @@ function createGroup (req, res) {
 
 function getOneGroup (req, res) {
   let groupName = req.params.groupName
-  Group.find({groupName: groupName})
-  .then(function (data) {
-    res.status(200).json(data[0])
+  Group.findOne({groupName: groupName})
+  .then((group) => {
+    if (group.isVoting === false) {
+      return group
+    } else if (group.votes.length > 2) {
+      let temp = calculateWinner.calculateWinner(group)
+      Group.update({_id: temp._id}, {
+        winner: temp.winner,
+        isVoting: temp.isVoting
+      }, function (err, data) {
+        if (err) { console.log(err) }
+        return data
+      })
+    } else {
+      return group
+    }
+  })
+  .then((group) => {
+    res.status(200).json(group)
   })
   .catch((err) => {
     console.error('[Error fetching group]')
@@ -45,7 +62,7 @@ function getOneGroup (req, res) {
 function addVote (req, res) {
   let groupName = req.params.groupName
   Group.findOne({ groupName: groupName })
-  .then(function (group) {
+  .then((group) => {
     group.votes.push({
       yelpApiId: req.body.yelpApiId,
       vote: req.body.vote
