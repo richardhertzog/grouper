@@ -2,27 +2,28 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import axios from 'axios'
 
-
 class Voting extends Component {
   constructor (props) {
-    super (props);
+    super(props)
     this.state = {
       curBusiness: {},
       businesses: [],
       vote: 0,
-      yelpApiId: ''
+      yelpApiId: '',
+      name: ''
     }
     this.populateState = this.populateState.bind(this)
     this.yesButton = this.yesButton.bind(this)
     this.noButton = this.noButton.bind(this)
     this.sendVotesServer = this.sendVotesServer.bind(this)
-    this.populateState();
+    this.populateState()
   }
 
-  populateState() {
-    let name = this.props.location.pathname.slice(8);
-    axios.get('http://localhost:3000/api/groups', {
-      params:{
+  populateState () {
+    let name = this.props.location.pathname.slice(8)
+    this.setState({ name: name })
+    axios.get('/api/groups', {
+      params: {
         groupName: name
       }
     })
@@ -38,26 +39,29 @@ class Voting extends Component {
     })
   }
 
-  yesButton(event) {
+  yesButton (event) {
+    event.preventDefault()
     this.setState({vote: 1})
     this.nextBusinessStateChange()
   }
 
-  noButton(event) {
+  noButton (event) {
+    event.preventDefault()
     this.setState({vote: -1})
     this.nextBusinessStateChange()
   }
 
-  nextBusinessStateChange() {
+  nextBusinessStateChange () {
     let biz = this.state.businesses.pop()
     this.setState({curBusiness: biz})
     this.setState({yelpApiId: this.state.curBusiness.id})
     this.sendVotesServer()
   }
 
-  sendVotesServer() {
-    axios.post(`http://localhost:3000/api/groups/:${this.props.location.pathname.slice(8)}/votes`, {
-      yelpApiId : this.state.yelpApiId,
+  sendVotesServer () {
+    console.log(this.props.location.pathname.slice(8))
+    axios.post('/api/groups/' + this.props.location.pathname.slice(8) + '/votes', {
+      yelpApiId: this.state.yelpApiId,
       vote: this.state.vote
     })
     .then((response) => {
@@ -65,23 +69,23 @@ class Voting extends Component {
     })
   }
 
-  render() {
+  render () {
     return (
       <div>
-        <div className="card" style={{'width': '400'}}>
-          <img className="card-img-top img-thumbnail" src={this.state.curBusiness.image_url} alt="Business Image" />
-          <div className="card-block">
-            <h4 className="card-title">{this.state.curBusiness.name}</h4>
-            <p className="card-text">{this.state.curBusiness.price}</p>
-            {/*<a href="#" className="btn btn-primary mr-2" onClick={this.yesButton}>YES</a>
-            <a href="#" className="btn btn-primary mr-2">NO</a>*/}
+        <div className='card' style={{'width': '400'}}>
+          <img className='card-img-top img-thumbnail' src={this.state.curBusiness.image_url} alt='Business Image' />
+          <div className='card-block'>
+            <h4 className='card-title'>{this.state.curBusiness.name}</h4>
+            <p className='card-text'>{this.state.curBusiness.price}</p>
+            {/* <a href="#" className="btn btn-primary mr-2" onClick={this.yesButton}>YES</a>
+            <a href="#" className="btn btn-primary mr-2">NO</a> */}
           </div>
         </div>
         <button onClick={this.yesButton}>Yes</button>
         <button onClick={this.noButton}>No</button>
       </div>
-    );
+    )
   }
 }
 
-export default Voting;
+export default Voting
