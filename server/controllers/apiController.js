@@ -37,7 +37,7 @@ function getOneGroup (req, res) {
   .then((group) => {
     if (group.isVoting === false) {
       return group
-    } else if (group.votes.length > 2) {
+    } else if (group.votes.length > 20) {
       let temp = calculateWinner.calculateWinner(group)
       Group.update({_id: temp._id}, {
         winner: temp.winner,
