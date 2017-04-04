@@ -1,3 +1,4 @@
+process.env.NODE_ENV = 'testing'
 const app = require('./index.js')
 const request = require('supertest')
 const chai = require('chai').expect
@@ -15,7 +16,7 @@ describe('[apiRouter]', function () {
     })
   })
 
-  it('should GET one group', function (done) {
+  xit('should GET one group', function (done) {
     request(app)
     .get('/api/groups/testyasdf')
     .set('Accept', 'application/json')

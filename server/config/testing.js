@@ -1,4 +1,3 @@
-
 let testingEnv = {
   mongoUrl: 'mongodb://localhost/grouper-main-test'
 }
