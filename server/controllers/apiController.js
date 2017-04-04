@@ -63,7 +63,7 @@ function addVote (req, res) {
   let groupName = req.params.groupName
   Group.findOne({ groupName: groupName })
   .then((group) => {
-    console.log('Group inside then', group)
+    // console.log('Group inside then', group)
     group.votes.push({
       yelpApiId: req.body.yelpApiId,
       vote: req.body.vote

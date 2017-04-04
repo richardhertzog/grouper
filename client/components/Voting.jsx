@@ -59,6 +59,7 @@ class Voting extends Component {
       curBusiness: biz,
       yelpApiId: biz.id})
     this.sendVotesServer(vote, id)
+    // this works sometimes. Needs refactoring
     this.sendWinner()
   }
 
