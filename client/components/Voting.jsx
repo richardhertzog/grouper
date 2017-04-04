@@ -10,12 +10,15 @@ class Voting extends Component {
       businesses: [],
       vote: 0,
       yelpApiId: '',
-      name: ''
+      name: '',
+      winBusiness: {},
+      voting: true
     }
     this.populateState = this.populateState.bind(this)
     this.yesButton = this.yesButton.bind(this)
     this.noButton = this.noButton.bind(this)
     this.sendVotesServer = this.sendVotesServer.bind(this)
+    this.sendWinner = this.sendWinner.bind(this)
     this.populateState()
   }
 
@@ -33,23 +36,41 @@ class Voting extends Component {
     })
   }
 
-  yesButton (event) {
+  yesButton (num) {
     event.preventDefault()
-    this.setState({vote: event.target.value})
-    this.nextBusinessStateChange(event.target.value)
+    this.setState({vote: num})
+    this.nextBusinessStateChange(num)
   }
 
-  noButton (event) {
+  noButton (num) {
     event.preventDefault()
-    this.setState({vote: -1})
-    this.nextBusinessStateChange()
+    this.setState({vote: num})
+    this.nextBusinessStateChange(num)
   }
 
   nextBusinessStateChange (vote) {
     let biz = this.state.businesses.shift()
     this.setState({curBusiness: biz})
     this.setState({yelpApiId: this.state.curBusiness.id})
+    this.sendWinner()
     this.sendVotesServer(vote)
+  }
+
+  sendWinner() {
+    if (this.state.businesses.length === 1) {
+      this.setState({voting: false})
+      axios.get('/api/groups/' + this.props.location.pathname.slice(8))
+      .then((res) => {
+        console.log(res);
+        console.log(res.data.winner);
+        res.data.yelpApiContent.filter((biz) => {
+          if (biz.id === res.data.winner) {
+            this.setState({winBusiness: biz})
+          }
+        })
+        .then(() => console.log('hey'))
+      })
+    }
   }
 
   sendVotesServer (vote) {
@@ -63,6 +84,18 @@ class Voting extends Component {
   }
 
   render () {
+    if (!this.state.voting) {
+      return (
+        <div className='card' style={{'width': '400'}}>
+          WINNER
+          <img className='card-img-top img-thumbnail' src={this.state.winBusiness.image_url} alt='Business Image' />
+          <div className='card-block'>
+            <h4 className='card-title'>{this.state.winBusiness.name}</h4>
+            <p className='card-text'>{this.state.winBusiness.price}</p>
+          </div>
+        </div>
+      )
+    }
     return (
       <div>
         <div className='card' style={{'width': '400'}}>
@@ -70,12 +103,12 @@ class Voting extends Component {
           <div className='card-block'>
             <h4 className='card-title'>{this.state.curBusiness.name}</h4>
             <p className='card-text'>{this.state.curBusiness.price}</p>
-            {/* <a href="#" className="btn btn-primary mr-2" onClick={this.yesButton}>YES</a>
-            <a href="#" className="btn btn-primary mr-2">NO</a> */}
+             <a href="#" value={1} className="btn btn-primary mr-2" onClick={(event) => {event.preventDefault(); this.yesButton(1)}}>YES</a>
+            <a href="#" value={0} className="btn btn-primary mr-2" onClick={(event) => {event.preventDefault(); this.noButton(0)}}>NO</a> 
           </div>
         </div>
-        <button value={1} onClick={this.yesButton}>Yes</button>
-        <button value={0} onClick={this.noButton}>No</button>
+        {/*<button value={1} onClick={this.yesButton}>Yes</button>
+        <button value={0} onClick={this.noButton}>No</button>*/}
       </div>
     )
   }
