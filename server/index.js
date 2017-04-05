@@ -1,7 +1,7 @@
-const express = require('express')
 const path = require('path')
+require(path.join(__dirname, './config/config.js'))()
+const express = require('express')
 const apiRouter = require(path.join(__dirname, './routers/apirouter.js'))
-require(path.join(__dirname, './config.js'))()
 
 const app = express()
 module.exports = app
