@@ -28,5 +28,6 @@ dist/
 node_modules/
 bower_components/
 server/config.js
-
+server/config/config.js
 .idea/
+.vscode
