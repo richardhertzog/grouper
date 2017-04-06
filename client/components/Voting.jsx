@@ -26,6 +26,7 @@ class Voting extends Component {
   }
 
   populateState () {
+    console.log(this.props.location.pathname)
     axios.get('/api/groups/' + this.props.location.pathname.slice(8))
     .then((res) => {
       if (!res.data.isVoting) {

@@ -5,21 +5,14 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom'
 // import App from './App.jsx'
 import Home from './components/Home.jsx'
 import MakeGroup from './components/MakeGroup.jsx'
-import Voting from './components/Voting.jsx'
-import Waiting from './components/Waiting.jsx'
+// import Voting from './components/Voting.jsx'
+// import Waiting from './components/Waiting.jsx'
+import RootVoting from './components/RootVoting.jsx'
 
 class App extends Component {
   constructor (props) {
     super(props)
     this.state = {}
-  }
-
-  componentDidMount () {
-
-    // axios.get('/api/groups/' + this.props.location.pathname.slice(8))
-    // .then((res) => {
-    //   this.setState({ yelpApiData: res.data })
-    // }
   }
 
   render () {
@@ -29,8 +22,7 @@ class App extends Component {
           <div>
             <Route exact path='/' component={Home} />
             <Route path='/makeGroup' component={MakeGroup} />
-            <Route path='/voting' component={Voting} />
-            <Route path='/waiting' render={() => { return <Waiting name='ZergRUSH!!' /> }} />
+            <Route path='/voting' component={RootVoting} />
           </div>
         </Router>
       </div>
