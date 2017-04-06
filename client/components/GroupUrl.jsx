@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 class GroupUrl extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
   }
 
-  render() {
+  render () {
     return (
       <div>
         <a href={this.props.votingUrl}>Go here to vote!</a>
       </div>
-    );
+    )
   }
 }
 
-export default GroupUrl;
+export default GroupUrl

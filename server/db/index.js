@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+const path = require('path')
 mongoose.connect(process.env.MONGO_URL)
 
 const db = mongoose.connection
