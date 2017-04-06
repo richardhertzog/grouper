@@ -26,8 +26,7 @@ class Voting extends Component {
   }
 
   populateState () {
-    console.log(this.props.location.pathname)
-    axios.get('/api/groups/' + this.props.location.pathname.slice(8))
+    axios.get('/api/groups/' + this.props.groupName)
     .then((res) => {
       if (!res.data.isVoting) {
         this.setState({voting: false})
@@ -74,7 +73,7 @@ class Voting extends Component {
   }
 
   sendVotesServer (vote, id) {
-    axios.post('/api/groups/' + this.props.location.pathname.slice(8) + '/votes', {
+    axios.post('/api/groups/' + this.props.groupName + '/votes', {
       yelpApiId: id,
       vote: vote
     })
@@ -92,21 +91,19 @@ class Voting extends Component {
         <div>
           <CopyToClipboard text={window.location.href}
             onCopy={() => this.setState({copied: true})}>
-            <button>{this.props.location.pathname}</button>
+            <button>{this.props.groupName}</button>
           </CopyToClipboard>
 
           {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
         </div>
         <div className='card text-center' style={{'width': '400px'}}>
-          <h3 className='card-header'>{this.props.location.pathname.slice(8)}</h3>
+          <h3 className='card-header'>{this.props.groupName}</h3>
           <img className='card-img-top img-thumbnail' src={this.state.curBusiness.image_url} alt='Business Image' style={{'width': '400px', 'height': '400px', 'hidden': 'scroll'}} />
           <div className='card-block'>
             <h4 className='card-title'>{this.state.curBusiness.name}</h4>
             <p className='card-text'>{this.state.curBusiness.price}</p>
             <span className='octicon-x' aria-hidden='true' />
             <p className='card-text'>{this.state.curBusiness.display_phone}</p>
-            {/* <p className='card-text'>{this.state.curBusiness</p> */}
-            {/* <p>{this.state.curBusiness.categories.map((obj) => {return <p className='card-text'>{obj}</p>})}</p> */}
             <a href='#' className='btn btn-primary mr-2 rounded-circle btn-circle' onClick={(event) => { event.preventDefault(); this.yesButton(1, this.state.curBusiness.id) }}>YES</a>
             <a href='#' className='btn btn-primary mr-2 rounded-circle btn-circle ' onClick={(event) => { event.preventDefault(); this.noButton(0, this.state.curBusiness.id) }}>NO</a>
           </div>
