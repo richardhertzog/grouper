@@ -20,6 +20,7 @@
     "mongoose": "^4.9.2",
     "morgan": "^1.8.1",
     "react": "^15.4.2",
+    "react-copy-to-clipboard": "^4.2.3",
     "react-dom": "^15.4.2",
     "react-router": "^4.0.0",
     "react-router-dom": "^4.0.0",
@@ -36,6 +37,7 @@
     "nodemon": "^1.11.0",
     "standard": "^9.0.2",
     "supertest": "^3.0.0",
+    "svg-react-loader": "^0.3.7",
     "webpack": "^2.3.2"
   },
   "standard": {
