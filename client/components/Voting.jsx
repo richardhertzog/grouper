@@ -21,7 +21,7 @@ class Voting extends Component {
     this.yesButton = this.yesButton.bind(this)
     this.noButton = this.noButton.bind(this)
     this.sendVotesServer = this.sendVotesServer.bind(this)
-    this.sendWinner = this.sendWinner.bind(this)
+    this.checkClientVotingStatus = this.checkClientVotingStatus.bind(this)
     this.populateState()
   }
 
@@ -63,22 +63,12 @@ class Voting extends Component {
       yelpApiId: biz.id})
     this.sendVotesServer(vote, id)
     // this works sometimes. Needs refactoring
-    this.sendWinner()
+    this.checkClientVotingStatus()
   }
 
-  sendWinner () {
+  checkClientVotingStatus () {
     if (this.state.businesses.length === 0) {
       this.setState({ isClientVoting: false })
-      // axios.get('/api/groups/' + this.props.location.pathname.slice(8))
-      // .then((res) => {
-      //   console.log(res, 'res 70 Voting')
-      //   res.data.yelpApiContent.filter((biz) => {
-      //     if (biz.id === res.data.winner) {
-      //       this.setState({winBusiness: biz})
-      //     }
-      //   })
-      // })
-      // .then(() => console.log('hey'))
     }
   }
 
@@ -88,24 +78,13 @@ class Voting extends Component {
       vote: vote
     })
     .then((response) => {
-      this.sendWinner()
+      this.checkClientVotingStatus()
     })
   }
 
   render () {
-    if (!this.state.voting) {
-      return (
-        <div className='card' style={{'width': '400px'}}>
-          <img className='card-img-top img-thumbnail' src={this.state.winBusiness.image_url} alt='Business Image' />
-          <div className='card-block'>
-            <h4 className='card-title'>{this.state.winBusiness.name}</h4>
-            <p className='card-text'>{this.state.winBusiness.price}</p>
-          </div>
-        </div>
-      )
-    }
     if (!this.state.isClientVoting) {
-      return (<Redirect to={`/waiting`} components={this.state.winner} />)
+      return (<Redirect to={`/waiting`} />)
     }
     return (
       <div>
