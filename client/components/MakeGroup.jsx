@@ -37,21 +37,20 @@ class MakeGroup extends Component {
   }
 
   businessClick (event) {
+    event.preventDefault()
     this.setState({ businessType: event.target.id })
   }
 
   render () {
     if (this.state.renderVote) {
       return (<Redirect to={`/voting/${this.state.groupName}`} components={this.state.groupName} />)
-      // return (<Redirect to="/voting/groupName" groupName={this.state.groupName} />);
-      // return (<Redirect to={`/voting/${this.state.groupName}`} params={this.state.groupName} />);
     }
 
     return (
       <div className='card'>
         <div className='card-block mx-auto'>
-          <h4 className='card-title'>Set up a group!</h4>
-          <form onSubmit={this.handleSubmit}>
+          <h4 className='card-title'>Create a group!</h4>
+          <form>
             <div className='form-group'>
               <input className='form-control' placeholder='Group Name' name='groupName' type='text' value={this.state.groupName} onChange={this.handleChange} required />
             </div>
@@ -65,8 +64,13 @@ class MakeGroup extends Component {
               <div className='btn-group btn-group-md mr-2'>
                 <button className='btn btn-primary' id='restaurants' onClick={this.businessClick}>Foods</button>
               </div>
-              <div className='btn-group btn-group-md mr-2'>
+              <div className='btn-group btn-group-md'>
                 <button className='btn btn-primary' id='parks' onClick={this.businessClick}>Parks</button>
+              </div>
+            </div>
+            <div className='form-group row mx-auto'>
+              <div className='btn-block btn-md'>
+                <button className='btn btn-primary btn-md btn-block' id='submit' onClick={this.handleSubmit}>Submit</button>
               </div>
             </div>
           </form>
