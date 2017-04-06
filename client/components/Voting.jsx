@@ -17,34 +17,34 @@ class Voting extends Component {
       copied: false,
       isClientVoting: true
     }
-    this.populateState = this.populateState.bind(this)
+    // this.populateState = this.populateState.bind(this)
     this.yesButton = this.yesButton.bind(this)
     this.noButton = this.noButton.bind(this)
     this.sendVotesServer = this.sendVotesServer.bind(this)
     this.checkClientVotingStatus = this.checkClientVotingStatus.bind(this)
-    this.populateState()
+    // this.populateState()
   }
 
-  populateState () {
-    axios.get('/api/groups/' + this.props.groupName)
-    .then((res) => {
-      if (!res.data.isVoting) {
-        this.setState({voting: false})
-        res.data.yelpApiContent.filter((biz) => {
-          if (biz.id === res.data.winner) {
-            this.setState({winBusiness: biz})
-          }
-        })
-      }
-      let result = res.data.yelpApiContent
-      let current = result.pop()
-      this.setState({
-        curBusiness: current,
-        businesses: result,
-        yelpApiId: current.id
-      })
-    })
-  }
+  // populateState () {
+  //   axios.get('/api/groups/' + this.props.groupName)
+  //   .then((res) => {
+  //     if (!res.data.isVoting) {
+  //       this.setState({voting: false})
+  //       res.data.yelpApiContent.filter((biz) => {
+  //         if (biz.id === res.data.winner) {
+  //           this.setState({winBusiness: biz})
+  //         }
+  //       })
+  //     }
+  //     let result = res.data.yelpApiContent
+  //     let current = result.pop()
+  //     this.setState({
+  //       curBusiness: current,
+  //       businesses: result,
+  //       yelpApiId: current.id
+  //     })
+  //   })
+  // }
 
   yesButton (num, id) {
     event.preventDefault()
