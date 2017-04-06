@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import CopyToClipboard from 'react-copy-to-clipboard'
 import axios from 'axios'
 
 class Voting extends Component {
@@ -12,7 +12,8 @@ class Voting extends Component {
       yelpApiId: '',
       name: '',
       winBusiness: {},
-      voting: true
+      voting: true,
+      copied: false
     }
     this.populateState = this.populateState.bind(this)
     this.yesButton = this.yesButton.bind(this)
@@ -103,7 +104,14 @@ class Voting extends Component {
     }
     return (
       <div>
-        VOTE NOW
+        <div>
+          <CopyToClipboard text={this.props.location.pathname}
+            onCopy={() => this.setState({copied: true})}>
+            <button>{this.props.location.pathname.slice(8)}</button>
+          </CopyToClipboard>
+
+          {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
+        </div>
         <div className='card' style={{'width': '400'}}>
           <img className='card-img-top img-thumbnail' src={this.state.curBusiness.image_url} alt='Business Image' />
           <div className='card-block'>

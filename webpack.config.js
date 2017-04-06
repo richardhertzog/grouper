@@ -1,16 +1,20 @@
-const path = require('path');
+const path = require('path')
 module.exports = {
   entry: path.join(__dirname, './client/index.jsx'),
   output: {
     path: path.join(`${__dirname}/dist`),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   module: {
     loaders: [{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      loader: 'babel-loader',
-    }],
+      loader: 'babel-loader'
+    },
+    {
+      test: /\.css$/,
+      loader: 'style!css!'
+    }]
   },
-  devtool: 'source-map',
-};
+  devtool: 'source-map'
+}
