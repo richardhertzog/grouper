@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import axios from 'axios'
 
@@ -13,7 +14,8 @@ class Voting extends Component {
       name: '',
       winBusiness: {},
       voting: true,
-      copied: false
+      copied: false,
+      isClientVoting: true
     }
     this.populateState = this.populateState.bind(this)
     this.yesButton = this.yesButton.bind(this)
@@ -66,17 +68,17 @@ class Voting extends Component {
 
   sendWinner () {
     if (this.state.businesses.length === 0) {
-      this.setState({voting: false})
-      axios.get('/api/groups/' + this.props.location.pathname.slice(8))
-      .then((res) => {
-        console.log(res, 'res 70 Voting')
-        res.data.yelpApiContent.filter((biz) => {
-          if (biz.id === res.data.winner) {
-            this.setState({winBusiness: biz})
-          }
-        })
-      })
-      .then(() => console.log('hey'))
+      this.setState({ isClientVoting: false })
+      // axios.get('/api/groups/' + this.props.location.pathname.slice(8))
+      // .then((res) => {
+      //   console.log(res, 'res 70 Voting')
+      //   res.data.yelpApiContent.filter((biz) => {
+      //     if (biz.id === res.data.winner) {
+      //       this.setState({winBusiness: biz})
+      //     }
+      //   })
+      // })
+      // .then(() => console.log('hey'))
     }
   }
 
@@ -102,6 +104,9 @@ class Voting extends Component {
         </div>
       )
     }
+    if (!this.state.isClientVoting) {
+      return (<Redirect to={`/waiting`} components={this.state.winner} />)
+    }
     return (
       <div>
         <div>
@@ -120,8 +125,8 @@ class Voting extends Component {
             <p className='card-text'>{this.state.curBusiness.price}</p>
             <span className='octicon-x' aria-hidden='true' />
             <p className='card-text'>{this.state.curBusiness.display_phone}</p>
-            {/* <p className='card-text'>{this.state.curBusiness</p>*/}
-            {/*<p>{this.state.curBusiness.categories.map((obj) => {return <p className='card-text'>{obj}</p>})}</p> */}
+            {/* <p className='card-text'>{this.state.curBusiness</p> */}
+            {/* <p>{this.state.curBusiness.categories.map((obj) => {return <p className='card-text'>{obj}</p>})}</p> */}
             <a href='#' className='btn btn-primary mr-2 rounded-circle btn-circle' onClick={(event) => { event.preventDefault(); this.yesButton(1, this.state.curBusiness.id) }}>YES</a>
             <a href='#' className='btn btn-primary mr-2 rounded-circle btn-circle ' onClick={(event) => { event.preventDefault(); this.noButton(0, this.state.curBusiness.id) }}>NO</a>
           </div>

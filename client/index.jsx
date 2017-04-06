@@ -6,6 +6,7 @@ import App from './App.jsx'
 import Home from './components/Home.jsx'
 import MakeGroup from './components/MakeGroup.jsx'
 import Voting from './components/Voting.jsx'
+import Waiting from './components/Waiting.jsx'
 
 ReactDOM.render(
   <Router>
@@ -13,6 +14,7 @@ ReactDOM.render(
       <Route exact path='/' component={Home} />
       <Route path='/makeGroup' component={MakeGroup} />
       <Route path='/voting' component={Voting} />
+      <Route path='/waiting' component={Waiting} />
     </div>
   </Router>, document.getElementById('app'),
 )
