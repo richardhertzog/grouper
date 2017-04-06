@@ -14,14 +14,14 @@ class componentName extends Component {
   componentWillMount () {
     axios.get('/api/groups/' + this.props.location.pathname.slice(8))
     .then((res) => {
-      console.log(res.data)
+      res.data.index = 0
+      console.log('res.data saved to ', res.data)
       sessionStorage.setItem('yelpData', JSON.stringify(res.data))
+      this.setState({ groupName: res.data.groupName})
     })
     .catch((err) => {
       console.error('axios get error', err)
     })
-
-    this.setState({ groupName: this.props.location.pathname })
   }
 
   render () {
