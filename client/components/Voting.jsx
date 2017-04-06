@@ -69,6 +69,7 @@ class Voting extends Component {
       this.setState({voting: false})
       axios.get('/api/groups/' + this.props.location.pathname.slice(8))
       .then((res) => {
+        console.log(res, "res 70 Voting")
         res.data.yelpApiContent.filter((biz) => {
           if (biz.id === res.data.winner) {
             this.setState({winBusiness: biz})
@@ -92,8 +93,7 @@ class Voting extends Component {
   render () {
     if (!this.state.voting) {
       return (
-        <div className='card' style={{'width': '400'}}>
-          WINNER
+        <div className='card' style={{'width': '400px'}}>
           <img className='card-img-top img-thumbnail' src={this.state.winBusiness.image_url} alt='Business Image' />
           <div className='card-block'>
             <h4 className='card-title'>{this.state.winBusiness.name}</h4>
@@ -105,24 +105,27 @@ class Voting extends Component {
     return (
       <div>
         <div>
-          <CopyToClipboard text={this.props.location.pathname}
+          <CopyToClipboard text={window.location.href}
             onCopy={() => this.setState({copied: true})}>
-            <button>{this.props.location.pathname.slice(8)}</button>
+            <button>{this.props.location.pathname}</button>
           </CopyToClipboard>
 
           {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
         </div>
-        <div className='card' style={{'width': '400'}}>
-          <img className='card-img-top img-thumbnail' src={this.state.curBusiness.image_url} alt='Business Image' />
+        <div className='card text-center' style={{'width': '400px'}}>
+          <h3 className='card-header'>{this.props.location.pathname.slice(8)}</h3>
+          <img className='card-img-top img-thumbnail' src={this.state.curBusiness.image_url} alt='Business Image' style={{'width': '400px', 'height': '400px', 'hidden': 'scroll'}}/>
           <div className='card-block'>
             <h4 className='card-title'>{this.state.curBusiness.name}</h4>
             <p className='card-text'>{this.state.curBusiness.price}</p>
-            <a href='#' className='btn btn-primary mr-2' onClick={(event) => { event.preventDefault(); this.yesButton(1, this.state.curBusiness.id) }}>YES</a>
-            <a href='#' className='btn btn-primary mr-2' onClick={(event) => { event.preventDefault(); this.noButton(0, this.state.curBusiness.id) }}>NO</a>
+            <span className="octicon-x" aria-hidden="true"></span>
+            <p className='card-text'>{this.state.curBusiness.display_phone}</p>
+            {/*<p className='card-text'>{this.state.curBusiness</p>*/}
+            {/*<p>{this.state.curBusiness.categories.map((obj) => {return <p className='card-text'>{obj}</p>})}</p>*/}
+            <a href='#' className='btn btn-primary mr-2 rounded-circle btn-circle' onClick={(event) => { event.preventDefault(); this.yesButton(1, this.state.curBusiness.id) }}>YES</a>
+            <a href='#' className='btn btn-primary mr-2 rounded-circle btn-circle ' onClick={(event) => { event.preventDefault(); this.noButton(0, this.state.curBusiness.id) }}>NO</a>
           </div>
         </div>
-        {/* <button value={1} onClick={this.yesButton}>Yes</button>
-        <button value={0} onClick={this.noButton}>No</button> */}
       </div>
     )
   }
