@@ -19,7 +19,7 @@ class MakeGroup extends Component {
 
   handleSubmit (event) {
     event.preventDefault()
-    axios.post('http://localhost:3000/api/groups',
+    axios.post('/api/groups',
       { groupName: this.state.groupName,
         location: this.state.location,
         eventType: this.state.businessType
