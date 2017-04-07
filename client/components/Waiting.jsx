@@ -11,28 +11,20 @@ class Waiting extends Component {
       winnerReady: false,
       notReady: false
     }
-    // this.quickChange = this.quickChange.bind(this)
     this.populateState = this.populateState.bind(this)
   }
 
   populateState () {
-    console.log('popState called')
     axios.get('/api/groups/' + this.props.name)
     .then((res) => {
-      console.log(res, 'res object popState')
       if(res.data.winner){
-        console.log('seting state of winner')
         this.setState({winnerReady: !this.state.winnerReady})
       } else {
-        console.log('setting state of not ready')
         this.setState({notReady: true})
       }
     })
   }
 
-  // quickChange() {
-  //   this.setState({winnerReady: !this.state.winnerReady})
-  // }
 
   render () {
     if (this.state.winnerReady) {

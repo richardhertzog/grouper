@@ -21,12 +21,10 @@ class componentName extends Component {
       axios.get('/api/groups/' + groupName)
       .then((res) => {
         res.data.index = 0
-        console.log('res.data saved to ', res.data)
         sessionStorage.setItem(groupName, JSON.stringify(res.data))
         return res
       })
       .then((res) => {
-        console.log('state set')
         this.setState({group: JSON.parse(sessionStorage.getItem(groupName))})
       })
       .catch((err) => {
