@@ -48,7 +48,7 @@ class componentName extends Component {
           <Router>
             <div>
               <Route path='/voting' render={() => { return <Voting groupName={this.state.groupName} yelpData={this.state.group} /> }} />
-              <Route path='/voting/waiting' render={() => { return <Waiting name='ZergRUSH!!' /> }} />
+              <Route path='/voting/waiting' render={() => { return <Waiting name={this.state.groupName} /> }} />
               <Route path='/voting/winner' render={() => { return <Winner name={this.state.groupName} />}} />
             </div>
           </Router>
