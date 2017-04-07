@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import Voting from './Voting.jsx'
+import Waiting from './Waiting.jsx'
 import axios from 'axios'
 
 class componentName extends Component {
@@ -25,11 +26,13 @@ class componentName extends Component {
       })
       .then((res) => {
         console.log('state set')
-        this.setState({group: sessionStorage.getItem(groupName)})
+        this.setState({group: JSON.parse(sessionStorage.getItem(groupName))})
       })
       .catch((err) => {
         console.error('axios get error', err)
       })
+    } else {
+      this.setState({group: JSON.parse(sessionStorage.getItem(groupName))})
     }
   }
 
