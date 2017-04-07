@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import Voting from './Voting.jsx'
 import Waiting from './Waiting.jsx'
+import Winner from './Winner.jsx'
 import axios from 'axios'
 
 class componentName extends Component {
@@ -46,8 +47,9 @@ class componentName extends Component {
         <div>
           <Router>
             <div>
-              <Route path='/waiting' render={() => { return <Waiting name='ZergRUSH!!' /> }} />
               <Route path='/voting' render={() => { return <Voting groupName={this.state.groupName} yelpData={this.state.group} /> }} />
+              <Route path='/voting/waiting' render={() => { return <Waiting name='ZergRUSH!!' /> }} />
+              <Route path='/voting/winner' render={() => { return <Winner name='Nutter Butter' />}} />
             </div>
           </Router>
         </div>
