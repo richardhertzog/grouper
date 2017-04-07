@@ -88,7 +88,7 @@ class Voting extends Component {
 
   render () {
     if (!this.state.isClientVoting) {
-      return (<Redirect to={`/waiting`} />)
+      return (<Redirect to={`/voting/waiting`} />)
     }
     return (
       <div>
