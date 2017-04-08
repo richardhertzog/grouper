@@ -26,7 +26,8 @@ class MakeGroup extends Component {
       })
     .then(() => {
       this.setState({ renderVote: true })
-    }).catch((err) => {
+    })
+    .catch((err) => {
       console.error(err)
     })
   }

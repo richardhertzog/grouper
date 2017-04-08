@@ -18,16 +18,19 @@ function createGroup (req, res) {
   .then((group) => {
     new Group(group)
     .save()
-    .then((data) => {
-      res.status(201).json({groupName: group.groupName})
-    })
-    .catch((err) => {
-      console.error('Error POSTing new client group')
-      res.status(501).send(err)
-    })
+    .then(
+      (data) => {
+        res.status(201).json({groupName: group.groupName})
+      },
+      (err) => {
+        console.error('Error POSTing new client group')
+        res.status(501).send(err)
+      }
+    )
   })
   .catch((err) => {
     console.log(err)
+    res.status(400).send(err)
   })
 }
 
