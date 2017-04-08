@@ -3,8 +3,6 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import CopyToClipboard from 'react-copy-to-clipboard'
 
-
-
 class Waiting extends Component {
   constructor (props) {
     super(props)
@@ -17,21 +15,18 @@ class Waiting extends Component {
     this.checkTime()
   }
 
-  checkTime(){
-    console.log('checkTime called', this.props.endTime, Date.now())
-    if(this.props.endTime < Date.now()) {
+  checkTime () {
+    if (this.props.endTime < Date.now()) {
       this.populateState()
-    }
-    else {
-      setTimeout(this.checkTime, this.props.endTime - Date.now() + 5000)
+    } else {
+      setTimeout(this.checkTime, this.props.endTime - Date.now() + 1000)
     }
   }
 
   populateState () {
     axios.get('/api/groups/' + this.props.name)
     .then((res) => {
-    console.log(res.data.winner)
-      if(res.data.winner){
+      if (res.data.winner) {
         this.setState({winnerReady: !this.state.winnerReady})
       } else {
         this.setState({notReady: true})
@@ -41,22 +36,21 @@ class Waiting extends Component {
 
   render () {
     if (this.state.winnerReady) {
-     return <Redirect to={`/voting/winner`} />
+      return <Redirect to={`/voting/winner`} />
     } else if (this.state.notReady) {
       return (
         <div>
           <div>{this.props.link}</div>
           <div>
-          <CopyToClipboard text={this.props.link}
-            onCopy={() => this.setState({copied: true})}>
-            <button>{this.props.name}</button>
-          </CopyToClipboard>
+            <CopyToClipboard text={this.props.link}
+              onCopy={() => this.setState({copied: true})}>
+              <button>{this.props.name}</button>
+            </CopyToClipboard>
 
-          {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
-        </div>
+            {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
+          </div>
           <div>Not Ready Yet!</div>
           <p>Waiting.jsx Waiting for other users etc ......</p>
-          <div onClick={this.populateState}>Quick Route</div>
         </div>
       )
     }
@@ -72,14 +66,9 @@ class Waiting extends Component {
         </div>
         <p>Waiting.jsx Waiting for other users etc ......</p>
         {this.props.name}
-        <div onClick={this.populateState}>Quick Route</div>
       </div>
     )
   }
-}
-
-Waiting.propTypes = {
-
 }
 
 export default Waiting

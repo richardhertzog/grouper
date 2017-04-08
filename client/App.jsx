@@ -1,12 +1,8 @@
 import React, { Component, PropTypes } from 'react'
-// import ReactDOM from 'react-dom'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 
-// import App from './App.jsx'
 import Home from './components/Home.jsx'
 import MakeGroup from './components/MakeGroup.jsx'
-// import Voting from './components/Voting.jsx'
-// import Waiting from './components/Waiting.jsx'
 import RootVoting from './components/RootVoting.jsx'
 
 class App extends Component {
@@ -28,10 +24,6 @@ class App extends Component {
       </div>
     )
   }
-}
-
-App.propTypes = {
-
 }
 
 export default App
