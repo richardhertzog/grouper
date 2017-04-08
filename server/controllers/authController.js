@@ -4,17 +4,6 @@ const path = require('path')
 
 const User = require(path.join(__dirname, '../db/models/userModel.js'))
 
-function createToken (user) {
-  const timeStamp = new Date().getTime()
-  const payload = {
-    jti: 'onetime',
-    iat: timeStamp,
-    exp: timeStamp + 1000000
-  }
-  console.log(jwt.encode(payload, process.env.AUTH_SECRET))
-  return jwt.encode(payload, process.env.AUTH_SECRET)
-}
-
 exports.signUp = (req, res) => {
   const { username, password } = req.body
   User.findOne({ username })
@@ -29,7 +18,7 @@ exports.signUp = (req, res) => {
         new User(newUser)
         .save()
         .then((data) => {
-          res.status(200).json({ 'user': data })
+          res.status(200).json({ token: createToken(data) })
         })
       })
     } else {
@@ -41,13 +30,6 @@ exports.signUp = (req, res) => {
   })
 }
 
-// const comparePassword = function (password, userPassword, cb) {
-//   bcrypt.compare(password, userPassword, (err, match) => {
-//     if (err) return cb(err)
-//     cb(null, match)
-//   })
-// }
-
 exports.signIn = (req, res) => {
   const { username, password } = req.body
   User.findOne({ username })
@@ -56,7 +38,8 @@ exports.signIn = (req, res) => {
       bcrypt.compare(password, user.password, (err, match) => {
         if (err) { console.error(err) }
         if (match) {
-          res.status(200).json({ 'user': match })
+          console.log('user', user)
+          res.status(200).json({ token: createToken(user) })
         } else {
           res.status(404).send('invalid credentials')
         }
@@ -68,4 +51,18 @@ exports.signIn = (req, res) => {
   .catch((err) => {
     console.error('[Error looking up user]', err)
   })
+}
+
+function createToken (user) {
+  const timeStamp = new Date().getTime()
+  const payload = {
+    jti: 'onetime',
+    iat: timeStamp,
+    exp: timeStamp + 10000000,
+    userId: user._id,
+    admin: false
+  }
+
+  console.log(jwt.encode(payload, process.env.AUTH_SECRET))
+  return jwt.encode(payload, process.env.AUTH_SECRET)
 }
