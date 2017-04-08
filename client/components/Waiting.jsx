@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+import CopyToClipboard from 'react-copy-to-clipboard'
 
 
 
@@ -25,13 +26,21 @@ class Waiting extends Component {
     })
   }
 
-
   render () {
     if (this.state.winnerReady) {
      return <Redirect to={`/voting/winner`} />
     } else if (this.state.notReady) {
       return (
         <div>
+          <div>{this.props.link}</div>
+          <div>
+          <CopyToClipboard text={this.props.link}
+            onCopy={() => this.setState({copied: true})}>
+            <button>{this.props.name}</button>
+          </CopyToClipboard>
+
+          {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
+        </div>
           <div>Not Ready Yet!</div>
           <p>Waiting.jsx Waiting for other users etc ......</p>
           <div onClick={this.populateState}>Quick Route</div>
@@ -40,6 +49,14 @@ class Waiting extends Component {
     }
     return (
       <div>
+        <div>
+          <CopyToClipboard text={this.props.link}
+            onCopy={() => this.setState({copied: true})}>
+            <button>{this.props.name}</button>
+          </CopyToClipboard>
+
+          {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
+        </div>
         <p>Waiting.jsx Waiting for other users etc ......</p>
         {this.props.name}
         <div onClick={this.populateState}>Quick Route</div>
