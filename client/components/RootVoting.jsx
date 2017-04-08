@@ -21,6 +21,7 @@ class componentName extends Component {
     if (sessionStorage.getItem(groupName) === null) {
       axios.get('/api/groups/' + groupName)
       .then((res) => {
+        console.log(res.data)
         res.data.index = 0
         sessionStorage.setItem(groupName, JSON.stringify(res.data))
         return res
@@ -47,7 +48,7 @@ class componentName extends Component {
           <Router>
             <div>
               <Route path='/voting' render={() => { return <Voting groupName={this.state.groupName} yelpData={this.state.group} /> }} />
-              <Route path='/voting/waiting' render={() => { return <Waiting name={this.state.groupName} link={this.state.link} /> }} />
+              <Route path='/voting/waiting' render={() => { return <Waiting name={this.state.groupName} link={this.state.link} endTime={this.state.group.endTime} /> }} />
               <Route path='/voting/winner' render={() => { return <Winner name={this.state.groupName} />}} />
             </div>
           </Router>

@@ -13,11 +13,24 @@ class Waiting extends Component {
       notReady: false
     }
     this.populateState = this.populateState.bind(this)
+    this.checkTime = this.checkTime.bind(this)
+    this.checkTime()
+  }
+
+  checkTime(){
+    console.log('checkTime called', this.props.endTime, Date.now())
+    if(this.props.endTime < Date.now()) {
+      this.populateState()
+    }
+    else {
+      setTimeout(this.checkTime, this.props.endTime - Date.now() + 5000)
+    }
   }
 
   populateState () {
     axios.get('/api/groups/' + this.props.name)
     .then((res) => {
+    console.log(res.data.winner)
       if(res.data.winner){
         this.setState({winnerReady: !this.state.winnerReady})
       } else {
