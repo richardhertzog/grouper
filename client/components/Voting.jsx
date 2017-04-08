@@ -106,8 +106,13 @@ class Voting extends Component {
           <div className='card-block'>
             <h4 className='card-title'>{this.props.yelpData.yelpApiContent[this.state.index].name}</h4>
             <p className='card-text'>{this.props.yelpData.yelpApiContent[this.state.index].price}</p>
+            <div>
+              {this.props.yelpData.yelpApiContent[this.state.index].categories ? this.props.yelpData.yelpApiContent[this.state.index].categories.map((catogs) => {
+                return <div key={catogs.title}>{catogs.title}</div>
+              }) : null}
+            </div>
             {/*<span className='octicon-x' aria-hidden='true' />*/}
-            <p className='card-text'>{this.props.yelpData.yelpApiContent[this.state.index].display_phone}</p>
+            {/*<p className='card-text'>{this.props.yelpData.yelpApiContent[this.state.index].display_phone ? this.props.yelpData.yelpApiContent[this.state.index].display_phone : 'Number Not Available'}</p>*/}
             <a href='#' className='btn btn-primary mr-2 rounded-circle btn-circle' onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(1, this.props.yelpData.yelpApiContent[this.state.index].id) }}>YES</a>
             <a href='#' className='btn btn-primary mr-2 rounded-circle btn-circle' onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(0, this.props.yelpData.yelpApiContent[this.state.index].id) }}>NO</a>
           </div>

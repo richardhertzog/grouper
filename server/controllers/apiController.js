@@ -20,6 +20,7 @@ function createGroup (req, res) {
     .save()
     .then(
       (data) => {
+        console.log(data)
         res.status(201).json({groupName: group.groupName})
       },
       (err) => {
@@ -38,9 +39,7 @@ function getOneGroup (req, res) {
   let groupName = req.params.groupName
   Group.findOne({groupName: groupName})
   .then((group) => {
-    if (group.isVoting === false) {
-      return group
-    } else if (group.votes.length > 20) {
+    if (group.votes.length > 20 || group.endTime < Date.now()) {
       let temp = calculateWinner.calculateWinner(group)
       Group.update({_id: temp._id}, {
         winner: temp.winner,
@@ -49,6 +48,9 @@ function getOneGroup (req, res) {
         if (err) { console.log(err) }
         return data
       })
+    }
+    if (group.isVoting === false) {
+      return group
     } else {
       return group
     }
