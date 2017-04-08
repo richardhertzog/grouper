@@ -20,7 +20,6 @@ function createGroup (req, res) {
     .save()
     .then(
       (data) => {
-        console.log(data)
         res.status(201).json({groupName: group.groupName})
       },
       (err) => {
@@ -68,7 +67,6 @@ function addVote (req, res) {
   let groupName = req.params.groupName
   Group.findOne({ groupName: groupName })
   .then((group) => {
-    // console.log('Group inside then', group)
     group.votes.push({
       yelpApiId: req.body.yelpApiId,
       vote: req.body.vote
