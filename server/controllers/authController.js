@@ -1,4 +1,3 @@
-console.log('in auth controller')
 const jwt = require('jwt-simple')
 const bcrypt = require('bcrypt-nodejs')
 const path = require('path')
@@ -17,7 +16,6 @@ function createToken (user) {
 }
 
 exports.signUp = (req, res) => {
-  console.log('in signup')
   const { username, password } = req.body
   User.findOne({ username })
   .then((user) => {
@@ -43,27 +41,31 @@ exports.signUp = (req, res) => {
   })
 }
 
-const comparePassword = function (password, userPassword, cb) {
-  bcrypt.compare(password, userPassword, (err, match) => {
-    if (err) return cb(err)
-    cb(null, match)
-  })
-}
+// const comparePassword = function (password, userPassword, cb) {
+//   bcrypt.compare(password, userPassword, (err, match) => {
+//     if (err) return cb(err)
+//     cb(null, match)
+//   })
+// }
 
 exports.signIn = (req, res) => {
-  console.log('in signin')
   const { username, password } = req.body
-  User.find({ username }).then(([result]) => {
-    console.log('result:', result)
-    if (!result) {
-      res.status(400).json({ 'error_message': 'username does not exist' })
+  User.findOne({ username })
+  .then((user) => {
+    if (user) {
+      bcrypt.compare(password, user.password, (err, match) => {
+        if (err) { console.error(err) }
+        if (match) {
+          res.status(200).json({ 'user': match })
+        } else {
+          res.status(404).send('invalid credentials')
+        }
+      })
+    } else {
+      res.status(400).json({ 'message': 'username does not exist' })
     }
-    bcrypt.compare(password, result.password, (err, match) => {
-      if (err) { console.error(err) }
-      if (match) {
-        return res.status(200).json({ token: createToken(result) })
-      }
-      return res.status(400).json({ 'error_message': 'incorrect password' })
-    })
+  })
+  .catch((err) => {
+    console.error('[Error looking up user]', err)
   })
 }
