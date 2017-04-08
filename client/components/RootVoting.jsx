@@ -57,8 +57,4 @@ class componentName extends Component {
   }
 }
 
-componentName.propTypes = {
-
-}
-
 export default componentName

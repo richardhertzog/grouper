@@ -29,7 +29,6 @@ class Winner extends Component {
   }
 
   render () {
-    console.log(this.state.winBusiness.location)
     return (
       <div className='card' style={{'width': '400px'}}>
         {this.props.name}
