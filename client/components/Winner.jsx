@@ -13,25 +13,13 @@ class Winner extends Component {
   }
 
   populateState () {
-    console.log('16 winner, populate state called')
     axios.get('/api/groups/' + this.props.name)
     .then((res) => {
-      console.log('19 res object', res)
       res.data.yelpApiContent.filter((biz) => {
-        console.log(biz, '21 Winner biz')
-        console.log(biz.id, res.data.winner)
         if (biz.id === res.data.winner) {
-          console.log('23, Winner, biz,', biz)
           this.setState({winBusiness: biz})
         }
       })
-      // let result = res.data.yelpApiContent
-      // let current = result.pop()
-      // this.setState({
-      //   curBusiness: current,
-      //   businesses: result,
-      //   yelpApiId: current.id
-      // })
     })
   }
 

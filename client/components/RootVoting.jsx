@@ -21,12 +21,10 @@ class componentName extends Component {
       axios.get('/api/groups/' + groupName)
       .then((res) => {
         res.data.index = 0
-        console.log('res.data saved to ', res.data)
         sessionStorage.setItem(groupName, JSON.stringify(res.data))
         return res
       })
       .then((res) => {
-        console.log('state set')
         this.setState({group: JSON.parse(sessionStorage.getItem(groupName))})
       })
       .catch((err) => {
@@ -48,7 +46,7 @@ class componentName extends Component {
           <Router>
             <div>
               <Route path='/voting' render={() => { return <Voting groupName={this.state.groupName} yelpData={this.state.group} /> }} />
-              <Route path='/voting/waiting' render={() => { return <Waiting name='ZergRUSH!!' /> }} />
+              <Route path='/voting/waiting' render={() => { return <Waiting name={this.state.groupName} /> }} />
               <Route path='/voting/winner' render={() => { return <Winner name={this.state.groupName} />}} />
             </div>
           </Router>
