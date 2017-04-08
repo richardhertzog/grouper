@@ -22,16 +22,17 @@ exports.signUp = (req, res) => {
   User.findOne({ username })
   .then((user) => {
     if (!user) {
-      let newUser = {
-        'username': username,
-        'password': password
-      }
-
-      new User(newUser)
-      .save()
-      .then((data) => {
-        console.log('after save response', data)
-        res.status(200).json({ 'user': data })
+      bcrypt.hash(password, null, null, (err, hash) => {
+        if (err) { console.error(err) }
+        let newUser = {
+          'username': username,
+          'password': hash
+        }
+        new User(newUser)
+        .save()
+        .then((data) => {
+          res.status(200).json({ 'user': data })
+        })
       })
     } else {
       res.status(400).json({ 'message': 'username taken' })
@@ -40,19 +41,6 @@ exports.signUp = (req, res) => {
   .catch((err) => {
     console.error('[Error looking up user]', err)
   })
-
-  // .then((result) => {
-  //   if (!result[0]) {
-  //     res.status(400).json({ 'error_message': 'username taken' })
-  //   }
-  //   bcrypt.hash(password, null, null, (err, hash) => {
-  //     if (err) { console.error(err) }
-  //     const user = new User({ username, password: hash })
-  //     user.save().then(() => {
-  //       res.status(200).json({ token: createToken(user) })
-  //     })
-  //   })
-  // })
 }
 
 const comparePassword = function (password, userPassword, cb) {
