@@ -23,7 +23,6 @@ class SignUp extends Component {
 
   handleSubmit (event) {
     event.preventDefault()
-    console.log(this.state, 'this.state')
     axios.post('/auth/signup', this.state)
     .then((res) => {
       localStorage.setItem('token', res.data.token)
@@ -31,7 +30,7 @@ class SignUp extends Component {
       this.setState({signedIn: true})
     })
     .catch((err) => {
-      console.err('error submitting signup:', err)
+      console.error('error submitting signup:', err)
     })
   }
 
