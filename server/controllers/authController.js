@@ -18,7 +18,7 @@ exports.signUp = (req, res) => {
         new User(newUser)
         .save()
         .then((data) => {
-          res.status(200).json({ token: createToken(data) })
+          res.status(200).json({ token: createToken(data), username: username })
         })
       })
     } else {
