@@ -18,7 +18,7 @@ exports.signUp = (req, res) => {
         new User(newUser)
         .save()
         .then((data) => {
-          res.status(200).json({ token: createToken(data) })
+          res.status(200).json({ token: createToken(data), username: username })
         })
       })
     } else {
@@ -39,7 +39,7 @@ exports.signIn = (req, res) => {
         if (err) { console.error(err) }
         if (match) {
           console.log('user', user)
-          res.status(200).json({ token: createToken(user) })
+          res.status(200).json({ token: createToken(user), username: username })
         } else {
           res.status(404).send('invalid credentials')
         }

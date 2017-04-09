@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react'
-import { HashRouter as Router, Route, Link } from 'react-router-dom'
+import React, { Component } from 'react'
+import { HashRouter as Router, Route } from 'react-router-dom'
 
 import Home from './components/Home.jsx'
 import MakeGroup from './components/MakeGroup.jsx'
