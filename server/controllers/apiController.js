@@ -38,7 +38,7 @@ function getOneGroup (req, res) {
   let groupName = req.params.groupName
   Group.findOne({groupName: groupName})
   .then((group) => {
-    if (group.votes.length > 20 || group.endTime < Date.now()) {
+    if (group.votes.length > 40 || group.endTime < Date.now()) {
       let temp = calculateWinner.calculateWinner(group)
       Group.update({_id: temp._id}, {
         winner: temp.winner,

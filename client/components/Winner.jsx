@@ -10,13 +10,11 @@ class Winner extends Component {
     }
     this.populateState = this.populateState.bind(this)
   }
+
   componentWillMount () {
-    console.log('hello')
     this.populateState()
   }
-  componentWillUpdate () {
-    console.log('boop')
-  }
+
   populateState () {
     axios.get('/api/groups/' + this.props.name)
     .then((res) => {
@@ -36,6 +34,7 @@ class Winner extends Component {
           <img className='card-img-top img-thumbnail' src={this.state.winBusiness.image_url} alt='Business Image' />
         <div className='card-block'>
           <div>
+
             {this.state.winBusiness.categories ? this.state.winBusiness.categories.map((catogs) => {
               return <div key={catogs.title}>{catogs.title}</div>
             }) : null }

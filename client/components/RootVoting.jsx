@@ -16,23 +16,27 @@ class componentName extends Component {
   }
 
   componentDidMount () {
-    this.setState({ groupName: this.props.location.pathname.slice(8)})
-    let groupName = this.props.location.pathname.slice(8)
-    if (sessionStorage.getItem(groupName) === null) {
+    if (localStorage.getItem('voted') === null) {
+      let groupName = this.props.location.pathname.slice(14)
+      localStorage.setItem('groupName', groupName)
+      this.setState({ groupName: groupName })
       axios.get('/api/groups/' + groupName)
       .then((res) => {
         res.data.index = 0
-        sessionStorage.setItem(groupName, JSON.stringify(res.data))
+        localStorage.setItem(groupName, JSON.stringify(res.data))
         return res
       })
       .then((res) => {
-        this.setState({group: JSON.parse(sessionStorage.getItem(groupName))})
+        this.setState({group: JSON.parse(localStorage.getItem(groupName))})
       })
       .catch((err) => {
         console.error('axios get error', err)
       })
     } else {
-      this.setState({group: JSON.parse(sessionStorage.getItem(groupName))})
+      this.setState({
+        group: JSON.parse(localStorage.getItem(localStorage.getItem('groupName'))),
+        groupName: localStorage.getItem('groupName')
+      })
     }
   }
 
@@ -44,13 +48,9 @@ class componentName extends Component {
     } else {
       return (
         <div>
-          <Router>
-            <div>
-              <Route path='/voting' render={() => { return <Voting groupName={this.state.groupName} yelpData={this.state.group} /> }} />
-              <Route path='/voting/waiting' render={() => { return <Waiting name={this.state.groupName} link={this.state.link} endTime={this.state.group.endTime} /> }} />
-              <Route path='/voting/winner' render={() => { return <Winner name={this.state.groupName} /> }} />
-            </div>
-          </Router>
+          <Route exact path='/voting/waiting' render={() => { return <Waiting name={this.state.groupName} link={this.state.link} endTime={this.state.group.endTime} /> }} />
+          <Route exact path='/voting/winner' render={() => { return <Winner name={this.state.groupName} /> }} />
+          <Route path='/voting/group/:groupname' render={() => { return <Voting groupName={this.state.groupName} yelpData={this.state.group} /> }} />
         </div>
       )
     }

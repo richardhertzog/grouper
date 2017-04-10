@@ -41,6 +41,7 @@ class Voting extends Component {
 
   render () {
     if (!this.state.isClientVoting) {
+      localStorage.setItem('voted', true)
       return (<Redirect to={`/voting/waiting`} />)
     }
     return (
