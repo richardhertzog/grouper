@@ -18,16 +18,19 @@ function createGroup (req, res) {
   .then((group) => {
     new Group(group)
     .save()
-    .then((data) => {
-      res.status(201).json({groupName: group.groupName})
-    })
-    .catch((err) => {
-      console.error('Error POSTing new client group')
-      res.status(501).send(err)
-    })
+    .then(
+      (data) => {
+        res.status(201).json({groupName: group.groupName})
+      },
+      (err) => {
+        console.error('Error POSTing new client group')
+        res.status(501).send(err)
+      }
+    )
   })
   .catch((err) => {
     console.log(err)
+    res.status(400).send(err)
   })
 }
 
@@ -35,9 +38,7 @@ function getOneGroup (req, res) {
   let groupName = req.params.groupName
   Group.findOne({groupName: groupName})
   .then((group) => {
-    if (group.isVoting === false) {
-      return group
-    } else if (group.votes.length > 20) {
+    if (group.votes.length > 40 || group.endTime < Date.now()) {
       let temp = calculateWinner.calculateWinner(group)
       Group.update({_id: temp._id}, {
         winner: temp.winner,
@@ -46,6 +47,9 @@ function getOneGroup (req, res) {
         if (err) { console.log(err) }
         return data
       })
+    }
+    if (group.isVoting === false) {
+      return group
     } else {
       return group
     }
@@ -63,7 +67,6 @@ function addVote (req, res) {
   let groupName = req.params.groupName
   Group.findOne({ groupName: groupName })
   .then((group) => {
-    // console.log('Group inside then', group)
     group.votes.push({
       yelpApiId: req.body.yelpApiId,
       vote: req.body.vote

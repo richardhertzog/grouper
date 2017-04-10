@@ -34,7 +34,11 @@ const groupSchema = mongoose.Schema({
     type: Boolean,
     default: true
   },
-  winner: Object
+  winner: Object,
+  endTime: {
+    type: Number,
+    default: Date.now() + 120000
+  }
 })
 
 var Group = mongoose.model('Group', groupSchema)
