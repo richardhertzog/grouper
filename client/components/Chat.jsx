@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PubNub from 'pubnub'
+import config from '../config'
 
 class Chat extends Component {
   constructor () {
