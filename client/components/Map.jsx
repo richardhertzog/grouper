@@ -5,26 +5,32 @@ class Map extends Component {
   constructor (props) {
     super(props)
   }
-  componentDidMount () {
-    loadJS('https://maps.googleapis.com/maps/api/js?key=AIzaSyAsBbke-ms3Uj72gc8scu6r5wmMV9hJDDk', {
+  componentWillMount () {
+    loadJS('https://maps.googleapis.com/maps/api/js?key=AIzaSyDgJ0jNERdCkiei405COL2yLiezQtAUu_Y', {
       success: () => {
-        this.map = new window.google.maps.Map(document.getElementById('map'), {
-          center: { lat: this.props.location.latitude, lng: this.props.location.longitude },
-          zoom: 12
+        this.map = new window.google.maps.Map(document.getElementById('showmap'), {
+          center: { lat: this.props.lat, lng: this.props.long },
+          zoom: 14
         })
-        this.bounds = new window.google.maps.LatLngBounds()
+
+        this.marker = new google.maps.Marker({
+          position: { lat: this.props.lat, lng: this.props.long },
+          map: this.map,
+          animation: window.google.maps.Animation.DROP
+        })
+      },
+      error: () => {
+        console.log('Map Is Fooked!')
       }
     })
   }
-
   componentWillUnmount () {
     window.google = null
   }
   render () {
-    console.log(this.props.location.latitude)
     return (
-      <div className='map' style={{height: '100%', width: '100%', position: 'relative'}}>
-        <div id='map' />
+      <div>
+        <div id='showmap' style={{height: '400px', width: '400px', position: 'absolute'}} />
       </div>
     )
   }

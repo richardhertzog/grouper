@@ -48,7 +48,9 @@ class Winner extends Component {
           <h4 className='card-title'>{this.state.winBusiness.name}</h4>
           <p className='card-text'>{this.state.winBusiness.price}</p>
         </div>
-        <Map location={this.state.winBusiness.coordinates} />
+        { this.state.winBusiness.coordinates ? <Map lat={this.state.winBusiness.coordinates.latitude} long={this.state.winBusiness.coordinates.longitude} />
+          : null
+        }
       </div>
     )
   }
