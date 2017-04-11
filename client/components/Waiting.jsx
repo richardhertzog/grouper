@@ -63,16 +63,15 @@ class Waiting extends Component {
             <button>{this.props.name}</button>
           </CopyToClipboard>
 
-
           {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
         </div>
         <p>Waiting.jsx Waiting for other users etc ......</p>
         {this.props.name}
-          <ReactCountdownClock seconds={(this.props.endTime - Date.now() + 1000)/1000}
-                     color="#000"
-                     alpha={0.9}
-                     size={100}
-                     onComplete={this.populateState} />
+        <ReactCountdownClock seconds={(this.props.endTime - Date.now() + 1000) / 1000}
+            color='#000'
+            alpha={0.9}
+            size={100}
+            onComplete={this.populateState} />
       </div>
     )
   }
