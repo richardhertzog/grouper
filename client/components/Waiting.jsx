@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import ReactCountdownClock from 'react-countdown-clock'
+import Chat from './Chat.jsx'
 
 class Waiting extends Component {
   constructor (props) {
@@ -72,6 +73,7 @@ class Waiting extends Component {
           alpha={0.9}
           size={100}
           onComplete={this.populateState} />
+        <Chat />
       </div>
     )
   }
