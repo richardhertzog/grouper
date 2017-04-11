@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PubNub from 'pubnub'
+import config from '../config'
 
 class Chat extends Component {
   constructor () {
@@ -10,8 +11,8 @@ class Chat extends Component {
     }
 
     this.pubnub = new PubNub({
-      subscribeKey: process.env.SUBSCRIBE_KEY,
-      publishKey: process.env.PUBLISH_KEY,
+      subscribeKey: config.subscribeKey,
+      publishKey: config.publishKey,
       ssl: true
     })
 
