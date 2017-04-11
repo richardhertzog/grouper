@@ -13,44 +13,41 @@ class Chat extends Component {
     this.pubnub = new PubNub({
       subscribeKey: config.subscribeKey,
       publishKey: config.publishKey,
-      ssl: true
+      ssl: true,
+      uuid: String(Math.random() * 1000)
+    })
+
+    this.pubnub.subscribe({
+      channels: ['waiting_room'],
+      withPresence: true // use this to display typing
+    })
+
+    this.pubnub.addListener({
+      message: (e) => {
+        this.setState({
+          messages: [...this.state.messages, {text: e.message.text, user: this.pubnub.getUUID()}]
+        })
+      }
     })
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.subscribe()
+    this.sendMessage = this.sendMessage.bind(this)
   }
 
-  subscribe () {
-    this.pubnub.subscribe({
-      channels: ['my_channel'],
-      withPresence: true // also subscribe to presence instances.
+  sendMessage () {
+    this.pubnub.publish({
+      channel: ['waiting_room'],
+      message: {
+        user: this.state.user,
+        text: this.state.text
+      }
     })
   }
 
-  publish () {
-    this.pubnub.addListener({
-      status: function (statusEvent) {
-        if (statusEvent.category === 'PNConnectedCategory') {
-          var payload = {
-            my: 'payload'
-          }
-          this.pubnub.publish(
-            {
-              message: payload
-            },
-                function (status) {
-                    // handle publish response
-                }
-            )
-        }
-      },
-      message: function (message) {
-        // handle message
-      },
-      presence: function (presenceEvent) {
-        // handle presence
-      }
+  unsubscribe () {
+    this.pubnub.unsubscribe({
+      channel: 'waiting_room'
     })
   }
 
@@ -63,13 +60,12 @@ class Chat extends Component {
 
   handleSubmit (event) {
     event.preventDefault()
-    let messages = this.state.messages
-    messages.push(this.state.text)
-    this.setState({messages: messages, text: ''})
+    this.sendMessage()
+    this.setState({text: ''})
   }
 
   messages () {
-    return (<ul>{this.state.messages.map((message) => { return <li key={message}>{message}</li> })}</ul>)
+    return (<ul>{this.state.messages.map((message, idx) => { return <li key={idx}>{message.user}: {message.text}</li> })}</ul>)
   }
 
   render () {

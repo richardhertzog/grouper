@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import ReactCountdownClock from 'react-countdown-clock'
+import Chat from './Chat.jsx'
 
 class Waiting extends Component {
   constructor (props) {
@@ -63,16 +64,16 @@ class Waiting extends Component {
             <button>{this.props.name}</button>
           </CopyToClipboard>
 
-
           {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
         </div>
         <p>Waiting.jsx Waiting for other users etc ......</p>
         {this.props.name}
-          <ReactCountdownClock seconds={(this.props.endTime - Date.now() + 1000)/1000}
-                     color="#000"
-                     alpha={0.9}
-                     size={100}
-                     onComplete={this.populateState} />
+        <ReactCountdownClock seconds={(this.props.endTime - Date.now() + 1000) / 1000}
+          color='#000'
+          alpha={0.9}
+          size={100}
+          onComplete={this.populateState} />
+        <Chat />
       </div>
     )
   }
