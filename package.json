@@ -22,6 +22,7 @@
     "loadjs": "^3.5.0",
     "mongoose": "^4.9.2",
     "morgan": "^1.8.1",
+    "pubnub": "^4.8.0",
     "react": "^15.4.2",
     "react-copy-to-clipboard": "^4.2.3",
     "react-countdown-clock": "^1.1.0",
