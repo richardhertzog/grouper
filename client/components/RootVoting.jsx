@@ -1,5 +1,5 @@
-import React, { Component, PropTypes } from 'react'
-import { HashRouter as Router, Route, Link } from 'react-router-dom'
+import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
 import Voting from './Voting.jsx'
 import Waiting from './Waiting.jsx'
 import Winner from './Winner.jsx'
@@ -16,6 +16,9 @@ class componentName extends Component {
   }
 
   componentDidMount () {
+    if (localStorage.getItem('groupName') !== this.props.location.pathname.slice(14)) {
+      localStorage.clear()
+    }
     if (localStorage.getItem('voted') === null) {
       let groupName = this.props.location.pathname.slice(14)
       localStorage.setItem('groupName', groupName)

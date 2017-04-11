@@ -31,3 +31,5 @@ server/config.js
 server/config/config.js
 .idea/
 .vscode
+.DS_Store
+client/config.js
