@@ -7,7 +7,8 @@ class Chat extends Component {
     super()
     this.state = {
       text: '',
-      messages: []
+      messages: [],
+      groupName: localStorage.getItem('groupName')
     }
 
     this.pubnub = new PubNub({
@@ -37,17 +38,11 @@ class Chat extends Component {
 
   sendMessage () {
     this.pubnub.publish({
-      channel: ['waiting_room'],
+      channel: [this.state.groupName],
       message: {
         user: this.state.user,
         text: this.state.text
       }
-    })
-  }
-
-  unsubscribe () {
-    this.pubnub.unsubscribe({
-      channel: 'waiting_room'
     })
   }
 
