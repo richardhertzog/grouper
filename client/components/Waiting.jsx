@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import CopyToClipboard from 'react-copy-to-clipboard'
@@ -21,7 +21,7 @@ class Waiting extends Component {
     if (this.props.endTime < Date.now()) {
       this.populateState()
     } else {
-      // setTimeout(this.checkTime, this.props.endTime - Date.now() + 1000)
+      setTimeout(this.checkTime, this.props.endTime - Date.now() + 1000)
     }
   }
 

@@ -17,8 +17,8 @@ class Chat extends Component {
     })
 
     this.pubnub.subscribe({
-      channels: ['waiting_room'],
-      withPresence: true // use this to display typing
+      channels: [this.state.groupName],
+      withPresence: true // TODO: use this to display people typing
     })
 
     this.pubnub.addListener({

@@ -14,9 +14,6 @@ class Home extends Component {
             <div className='btn-group btn-group-md mr-2'>
               <Link to='/makeGroup' className='btn btn-primary'>New Group</Link>
             </div>
-            <div className='btn-group btn-group-md'>
-              <Link to='/chat' className='btn btn-primary'>Chat</Link>
-            </div>
           </div>
         </div>
       </div>
