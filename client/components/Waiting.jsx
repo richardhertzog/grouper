@@ -68,10 +68,10 @@ class Waiting extends Component {
         <p>Waiting.jsx Waiting for other users etc ......</p>
         {this.props.name}
         <ReactCountdownClock seconds={(this.props.endTime - Date.now() + 1000) / 1000}
-            color='#000'
-            alpha={0.9}
-            size={100}
-            onComplete={this.populateState} />
+          color='#000'
+          alpha={0.9}
+          size={100}
+          onComplete={this.populateState} />
       </div>
     )
   }
