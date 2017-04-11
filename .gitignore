@@ -31,3 +31,4 @@ server/config.js
 server/config/config.js
 .idea/
 .vscode
+client/config.js

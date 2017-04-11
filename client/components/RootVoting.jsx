@@ -18,6 +18,7 @@ class componentName extends Component {
   componentDidMount () {
     if (localStorage.getItem('voted') === null) {
       let groupName = this.props.location.pathname.slice(14)
+      localStorage.clear()
       localStorage.setItem('groupName', groupName)
       this.setState({ groupName: groupName })
       axios.get('/api/groups/' + groupName)
