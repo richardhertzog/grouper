@@ -23,6 +23,7 @@
     "morgan": "^1.8.1",
     "react": "^15.4.2",
     "react-copy-to-clipboard": "^4.2.3",
+    "react-countdown-clock": "^1.1.0",
     "react-dom": "^15.4.2",
     "react-octicon": "^2.0.0",
     "react-router": "^4.0.0",
