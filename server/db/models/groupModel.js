@@ -37,7 +37,7 @@ const groupSchema = mongoose.Schema({
   winner: Object,
   endTime: {
     type: Number,
-    default: Date.now() + 120000
+    default: Date.now() + 60000
   }
 })
 
