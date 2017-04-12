@@ -7,7 +7,7 @@ class Nav extends Component {
     this.state = {
       signedIn: false
     }
-
+    console.log(props, 'props in Nav')
     this.checkCredentials = this.checkCredentials.bind(this)
   }
 
