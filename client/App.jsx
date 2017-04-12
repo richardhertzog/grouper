@@ -19,7 +19,7 @@ class App extends Component {
       <div>
         <Router>
           <div>
-            <Route exact path='/' component={Home} />
+            <Route exact path='/' component={Home} auth={this.props.auth} />
             <Route path='/makeGroup' component={MakeGroup} />
             <Route path='/voting' component={RootVoting} />
             <Route path='/signin' component={SignIn} />

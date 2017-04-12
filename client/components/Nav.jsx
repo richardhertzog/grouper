@@ -7,6 +7,11 @@ class Nav extends Component {
     this.state = {
       signedIn: false
     }
+
+    this.checkCredentials = this.checkCredentials.bind(this)
+  }
+
+  checkCredentials () {
   }
 
   signin () {
