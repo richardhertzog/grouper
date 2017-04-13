@@ -54,7 +54,8 @@ exports.signIn = (req, res) => {
 }
 
 exports.checkAuth = (req, res) => {
-  console.log(req, 'req')
+  let { token, user } = req.body
+  compareToken(token, user)
 }
 
 function createToken (user) {
@@ -63,7 +64,7 @@ function createToken (user) {
     jti: 'onetime',
     iat: timeStamp,
     exp: timeStamp + 10000000,
-    userId: user._id,
+    username: user.username,
     admin: false
   }
 
@@ -71,7 +72,8 @@ function createToken (user) {
   return jwt.encode(payload, process.env.AUTH_SECRET)
 }
 
-function compareToken (token) {
-  var decoded = jwt.decode(token, process.env.AUTH_SECRET)
-  console.log(decoded, 'decoded token')
+function compareToken (token, username) {
+  let decoded = jwt.decode(token, process.env.AUTH_SECRET)
+  console.log(decoded.username === username)
+  // return decoded
 }

@@ -13,7 +13,18 @@ class Nav extends Component {
   }
 
   checkCredentials () {
-    console.log('this.props in nav:', this.props)
+    console.log('this.props in nav:', this.props.auth)
+    let authItems = {
+      token: this.props.auth[0],
+      user: this.props.auth[1]
+    }
+    axios.post('/auth/checkAuth', authItems)
+    .then((res) => {
+      console.log('checkCredentials response', res)
+    })
+    .catch((err) => {
+      console.error('error checking credentials', err)
+    })
   }
 
   signin () {
