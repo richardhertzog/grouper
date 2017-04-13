@@ -13,7 +13,7 @@ class Home extends Component {
         <div className='card-block mx-auto'>
           <div className='form-group row mx-auto'>
             <div className='btn-group btn-group-md'>
-              <Nav auth={this.props.auth} />
+              <Nav />
             </div>
             <div className='btn-group btn-group-md mr-2'>
               <Link to='/makeGroup' className='btn btn-primary'>New Group</Link>

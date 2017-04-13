@@ -80,5 +80,6 @@ function createToken (user) {
 
 function compareToken (token, username) {
   let decoded = jwt.decode(token, process.env.AUTH_SECRET)
+  console.log(decoded.username === username, decoded.username, username)
   return decoded.username === username
 }
