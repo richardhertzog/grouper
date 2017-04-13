@@ -13,7 +13,7 @@ class Nav extends Component {
   }
 
   checkCredentials () {
-
+    console.log('this.props in nav:', this.props)
   }
 
   signin () {
