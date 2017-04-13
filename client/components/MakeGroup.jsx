@@ -49,6 +49,9 @@ class MakeGroup extends Component {
   changeTime (event) {
     event.preventDefault()
     let time = Number(event.target.value) + this.state.endTime
+    if(time < 0){
+      time = 0;
+    }
     this.setState({endTime: time})
   }
 
