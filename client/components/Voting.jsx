@@ -9,10 +9,14 @@ class Voting extends Component {
     this.state = {
       copied: false,
       isClientVoting: true,
-      index: 0
+      index: 0,
+      categories: [],
+      isMounted: false
     }
     this.sendVotesServer = this.sendVotesServer.bind(this)
     this.checkClientVotingStatus = this.checkClientVotingStatus.bind(this)
+    this.createCategories = this.createCategories.bind(this)
+    this.createCategories()
   }
 
   nextBusinessStateChange (vote, id) {
@@ -36,7 +40,23 @@ class Voting extends Component {
     })
     .then((response) => {
       this.checkClientVotingStatus()
+      this.createCategories()
     })
+  }
+
+  createCategories () {
+    let catogs = []
+    let temp = this.props.yelpData.yelpApiContent[this.state.index].categories
+    for (var i = 0; i < 3; i++) {
+      if (temp[i] === undefined) {
+        catogs.push(<div key={Math.random()}>Gibberish</div>)
+      } else {
+        let line = <div key={temp[i].title}>{temp[i].title}</div>
+        catogs.push(line)
+      }
+    }
+    console.log(catogs)
+    this.setState({categories: catogs})
   }
 
   render () {
@@ -61,9 +81,9 @@ class Voting extends Component {
             <h4 className='card-title'>{this.props.yelpData.yelpApiContent[this.state.index].name}</h4>
             <p className='card-text'>{this.props.yelpData.yelpApiContent[this.state.index].price}</p>
             <div>
-              {this.props.yelpData.yelpApiContent[this.state.index].categories ? this.props.yelpData.yelpApiContent[this.state.index].categories.map((catogs) => {
-                return <div key={catogs.title}>{catogs.title}</div>
-              }) : null}
+              {this.state.categories.map((cats) => {
+                return cats
+              })}
             </div>
             <a href='#' className='btn btn-primary mr-2 rounded-circle btn-circle' onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(1, this.props.yelpData.yelpApiContent[this.state.index].id) }}>YES</a>
             <a href='#' className='btn btn-primary mr-2 rounded-circle btn-circle' onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(0, this.props.yelpData.yelpApiContent[this.state.index].id) }}>NO</a>
