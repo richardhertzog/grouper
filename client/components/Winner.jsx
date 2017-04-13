@@ -37,7 +37,7 @@ class Winner extends Component {
   render () {
     if (this.state.isMapShowing === false) {
       return (
-        <div className='card' style={{'width': '400px'}} onClick={this.toggleMap}>
+        <div className='card' style={{'width': '400px'}}>
           {this.props.name}
           WINNER
           <img className='card-img-top img-thumbnail' src={this.state.winBusiness.image_url} alt='Business Image' />
@@ -47,10 +47,11 @@ class Winner extends Component {
               {this.state.winBusiness.categories ? this.state.winBusiness.categories.map((catogs) => {
                 return <div key={catogs.title}>{catogs.title}</div>
               }) : null }
-              {this.state.winBusiness.location ? this.state.winBusiness.location.display_address.map((add) => {
-                return <div key={add}>{add}</div>
-              }) : null}
-
+              <div onClick={this.toggleMap}>
+                {this.state.winBusiness.location ? this.state.winBusiness.location.display_address.map((add) => {
+                  return <div key={add}>{add}</div>
+                }) : null}
+              </div>
             </div>
             <p className='card-text'>{this.state.winBusiness.display_phone ? this.state.winBusiness.display_phone : 'Number Not Available'}</p>
             <h4 className='card-title'>{this.state.winBusiness.name}</h4>
@@ -60,14 +61,14 @@ class Winner extends Component {
       )
     } else {
       return (
-        <div className='card' onClick={this.toggleMap}>
+        <div className='card'>
           <div className='card-block'>
             { this.state.winBusiness.coordinates ? <Map lat={this.state.winBusiness.coordinates.latitude} long={this.state.winBusiness.coordinates.longitude} />
               : null
             }
           </div>
-          <div className='btn btn-primary mr-1 rounded-circle btn-circle'>
-            <p>Hello</p>
+          <div>
+            <button className='btn btn-primary rounded-circle btn-circle' onClick={this.toggleMap}>Back</button>
           </div>
         </div>
       )

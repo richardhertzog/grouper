@@ -30,7 +30,7 @@ class Map extends Component {
   render () {
     return (
       <div>
-        <div id='showmap' style={{height: '700px', width: '400px', position: 'absolute'}} />
+        <div id='showmap' style={{height: '700px', width: '400px', position: 'relative'}} />
       </div>
     )
   }
