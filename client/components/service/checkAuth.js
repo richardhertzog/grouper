@@ -1,5 +1,4 @@
 import axios from 'axios'
-console.log('checkAuth ran')
 
 export default function () {
   let authItems = {
