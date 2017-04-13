@@ -53,6 +53,10 @@ exports.signIn = (req, res) => {
   })
 }
 
+exports.checkAuth = (req, res) => {
+  console.log(req, 'req')
+}
+
 function createToken (user) {
   const timeStamp = new Date().getTime()
   const payload = {
@@ -65,4 +69,9 @@ function createToken (user) {
 
   console.log(jwt.encode(payload, process.env.AUTH_SECRET))
   return jwt.encode(payload, process.env.AUTH_SECRET)
+}
+
+function compareToken (token) {
+  var decoded = jwt.decode(token, process.env.AUTH_SECRET)
+  console.log(decoded, 'decoded token')
 }

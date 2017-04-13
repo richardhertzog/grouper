@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import axios from 'axios'
 
 class Nav extends Component {
   constructor (props) {
@@ -7,11 +8,12 @@ class Nav extends Component {
     this.state = {
       signedIn: false
     }
-    console.log(props, 'props in Nav')
-    this.checkCredentials = this.checkCredentials.bind(this)
+
+    this.checkCredentials()
   }
 
   checkCredentials () {
+
   }
 
   signin () {
