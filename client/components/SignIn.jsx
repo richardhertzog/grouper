@@ -28,7 +28,6 @@ class SignIn extends Component {
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('username', res.data.username)
       this.setState({ signedIn: true })
-      console.log(localStorage)
     })
     .catch((err) => {
       console.error('error submitting signin:', err)

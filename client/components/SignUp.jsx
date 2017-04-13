@@ -25,11 +25,9 @@ class SignUp extends Component {
     event.preventDefault()
     axios.post('/auth/signup', this.state)
     .then((res) => {
-      console.log('user id', res.data)
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('username', res.data.username)
       this.setState({ signedIn: true })
-      console.log(localStorage)
     })
     .catch((err) => {
       console.error('error submitting signup:', err)

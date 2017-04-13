@@ -35,7 +35,6 @@ class Nav extends Component {
   }
 
   render () {
-    console.log(this.state.signedIn)
     return (
       <div>
         {!this.state.signedIn && this.signin()}
