@@ -10,13 +10,11 @@ class Voting extends Component {
       copied: false,
       isClientVoting: true,
       index: 0,
-      categories: [],
-      isMounted: false
+      categories: []
     }
     this.sendVotesServer = this.sendVotesServer.bind(this)
     this.checkClientVotingStatus = this.checkClientVotingStatus.bind(this)
     this.createCategories = this.createCategories.bind(this)
-    this.createCategories()
   }
 
   nextBusinessStateChange (vote, id) {
@@ -55,8 +53,10 @@ class Voting extends Component {
         catogs.push(line)
       }
     }
-    console.log(catogs)
     this.setState({categories: catogs})
+  }
+  componentDidMount () {
+    this.createCategories()
   }
 
   render () {
