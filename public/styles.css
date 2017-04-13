@@ -42,6 +42,22 @@
   border-radius: 15px;
 }
 
+.btn-circle2 {
+  width: 40px;
+  height: 40px;
+  /*text-align: center;*/
+  /*padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.42;*/
+  margin-bottom: 10px;
+  border-radius: 20px;
+  /*text-align: center;*/
+}
+
+.plusMinus-button {
+  margin-left: 30%
+}
+
 .voting-image {width: 400px;
 height: 400px;
 }

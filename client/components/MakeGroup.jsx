@@ -79,10 +79,14 @@ class MakeGroup extends Component {
                 <button className='btn btn-primary' id='parks' onClick={this.businessClick}>Parks</button>
               </div>
             </div>
-              <div className='btn-group btn-group-md'>
-                <button className='btn btn-primary' value={1} id='plus' onClick={this.changeTime}>+</button>
+              <div className='btn-group btn-group-md plusMinus-button'>
+                <div>
+                <button className='btn btn-primary rounded-circle btn-circle2' value={-1} id='minus' onClick={this.changeTime}>-</button>
+                </div>
                 <h3>{this.state.endTime}</h3>
-                <button className='btn btn-primary' value={-1} id='minus' onClick={this.changeTime}>-</button>
+                <div>
+                <button className='btn btn-primary rounded-circle btn-circle2' value={1} id='plus' onClick={this.changeTime}>+</button>
+                </div>
               </div>
             <div className='form-group row mx-auto'>
               <div className='btn-block btn-md'>
