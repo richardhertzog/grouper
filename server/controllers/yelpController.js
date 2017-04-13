@@ -22,6 +22,7 @@ module.exports = (req, res) => {
         groupName: req.body.groupName,
         location: req.body.location,
         eventType: req.body.eventType,
+        endTime: req.body.endTime,
         yelpApiContent: response
       }
     })

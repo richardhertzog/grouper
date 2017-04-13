@@ -38,7 +38,7 @@ class Waiting extends Component {
 
   render () {
     if (this.state.winnerReady) {
-      return <Redirect to={`/voting/winner`} />
+      return <Redirect to={`/voting/winner/` + this.props.name} />
     } else if (this.state.notReady) {
       return (
         <div>

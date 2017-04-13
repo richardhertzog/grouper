@@ -30,7 +30,7 @@ class Voting extends Component {
   }
 
   sendVotesServer (vote, id) {
-    axios.post('/api/groups/' + this.props.groupName + '/votes', {
+    axios.post('/api/groups/' + this.props.name + '/votes', {
       yelpApiId: id,
       vote: vote
     })
@@ -42,14 +42,14 @@ class Voting extends Component {
   render () {
     if (!this.state.isClientVoting) {
       localStorage.setItem('voted', true)
-      return (<Redirect to={`/voting/waiting`} />)
+      return (<Redirect to={`/voting/waiting/` + this.props.name} />)
     }
     return (
       <div>
         <div>
           <CopyToClipboard text={window.location.href}
             onCopy={() => this.setState({copied: true})}>
-            <button>{this.props.groupName}</button>
+            <button>{this.props.name}</button>
           </CopyToClipboard>
 
           {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
