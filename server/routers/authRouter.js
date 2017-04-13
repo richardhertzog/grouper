@@ -4,5 +4,6 @@ const authController = require(path.join(__dirname, '../controllers/authControll
 
 router.post('/signup', authController.signUp)
 router.post('/signin', authController.signIn)
+router.post('/checkAuth', authController.checkAuth)
 
 module.exports = router

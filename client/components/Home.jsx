@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom'
 import Nav from './Nav.jsx'
 
 class Home extends Component {
+  constructor (props) {
+    super(props)
+  }
+
   render () {
     return (
       <div className='card'>
