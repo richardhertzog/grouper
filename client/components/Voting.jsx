@@ -67,7 +67,7 @@ class Voting extends Component {
     return (
       <div>
         <div>
-          <CopyToClipboard text={window.location.href}
+          <CopyToClipboard text={window.location.href.slice(0,31) + 'welcome'}
             onCopy={() => this.setState({copied: true})}>
             <button>{this.props.name}</button>
           </CopyToClipboard>

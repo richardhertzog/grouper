@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import Voting from './Voting.jsx'
 import Waiting from './Waiting.jsx'
 import Winner from './Winner.jsx'
+import VoterLanding from './VoterLanding.jsx'
 import axios from 'axios'
 
 class componentName extends Component {
@@ -55,9 +56,10 @@ class componentName extends Component {
     } else {
       return (
         <div>
+          <Route path='/voting/welcome' render={() => { return <VoterLanding name={this.state.groupName} /> }} />
           <Route path='/voting/waiting' render={() => { return <Waiting name={this.state.groupName} link={this.state.link} endTime={this.state.group.endTime} /> }} />
           <Route path='/voting/winner' render={() => { return <Winner name={this.state.groupName} /> }} />
-          <Route path='/voting/group/:groupname' render={() => { return <Voting name={this.state.groupName} yelpData={this.state.group} /> }} />
+          <Route path='/voting/group/' render={() => { return <Voting name={this.state.groupName} yelpData={this.state.group} /> }} />
         </div>
       )
     }
