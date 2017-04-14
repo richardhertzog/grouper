@@ -7,6 +7,7 @@ import RootVoting from './components/RootVoting.jsx'
 import SignUp from './components/SignUp.jsx'
 import SignIn from './components/SignIn.jsx'
 import Chat from './components/Chat.jsx'
+import Container from './components/Container.jsx'
 
 class App extends Component {
   constructor (props) {
@@ -16,18 +17,16 @@ class App extends Component {
 
   render () {
     return (
-      <div>
-        <Router>
-          <div>
-            <Route exact path='/' component={Home} />
-            <Route path='/makeGroup' component={MakeGroup} />
-            <Route path='/voting' component={RootVoting} />
-            <Route path='/signin' component={SignIn} />
-            <Route path='/signup' component={SignUp} />
-            <Route path='/chat' component={Chat} />
-          </div>
-        </Router>
-      </div>
+      <Router>
+        <Container>
+          <Route exact path='/' component={Home} />
+          <Route path='/makeGroup' component={MakeGroup} />
+          <Route path='/voting' component={RootVoting} />
+          <Route path='/signin' component={SignIn} />
+          <Route path='/signup' component={SignUp} />
+          <Route path='/chat' component={Chat} />
+        </Container>
+      </Router>
     )
   }
 }
