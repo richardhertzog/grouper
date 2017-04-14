@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import axios from 'axios'
+import Card from 'grommet/components/Card'
+import Image from 'grommet/components/Image'
 
 class Voting extends Component {
   constructor (props) {
@@ -65,31 +67,12 @@ class Voting extends Component {
       return (<Redirect to={`/voting/waiting/` + this.props.name} />)
     }
     return (
-      <div>
-        <div>
-          <CopyToClipboard text={window.location.href.slice(0,31) + 'welcome'}
-            onCopy={() => this.setState({copied: true})}>
-            <button>{this.props.name}</button>
-          </CopyToClipboard>
-
-          {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
-        </div>
-        <div className='card text-center' style={{'width': '400px'}}>
-          <h3 className='card-header'>{this.props.groupName}</h3>
-          <img className='card-img-top img-thumbnail' src={this.props.yelpData.yelpApiContent[this.state.index].image_url} alt='Business Image' style={{'width': '400px', 'height': '400px', 'hidden': 'scroll'}} />
-          <div className='card-block'>
-            <h4 className='card-title'>{this.props.yelpData.yelpApiContent[this.state.index].name}</h4>
-            <p className='card-text'>{this.props.yelpData.yelpApiContent[this.state.index].price}</p>
-            <div>
-              {this.state.categories.map((cats) => {
-                return cats
-              })}
-            </div>
-            <a href='#' className='btn btn-primary mr-2 rounded-circle btn-circle' onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(1, this.props.yelpData.yelpApiContent[this.state.index].id) }}>YES</a>
-            <a href='#' className='btn btn-primary mr-2 rounded-circle btn-circle' onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(0, this.props.yelpData.yelpApiContent[this.state.index].id) }}>NO</a>
-          </div>
-        </div>
-      </div>
+      <Card
+        thumbnail='https://s3-media3.fl.yelpcdn.com/bphoto/uweSiOf0XBB4BPk_ibHVyg/o.jpg'
+        heading={this.props.yelpData.yelpApiContent[this.state.index].name}
+        description={this.props.yelpData.yelpApiContent[this.state.index].price}
+        flex
+        reverse={false} />
     )
   }
 }
