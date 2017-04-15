@@ -8,6 +8,10 @@ import Box from 'grommet/components/Box'
 import Article from 'grommet/components/Article'
 import Headline from 'grommet/components/Headline'
 import Section from 'grommet/components/Section'
+import Paragraph from 'grommet/components/Paragraph'
+import Button from 'grommet/components/Button'
+import CheckmarkIcon from 'grommet/components/icons/base/Checkmark'
+import CloseIcon from 'grommet/components/icons/base/Close'
 
 class Voting extends Component {
   constructor (props) {
@@ -85,15 +89,45 @@ class Voting extends Component {
             src={this.props.yelpData.yelpApiContent[this.state.index].image_url}
             fit='cover'
             full
-            size='medium'
+            size='small'
            />
         </Section>
         <Section>
           {this.props.yelpData.yelpApiContent[this.state.index].name}
         </Section>
+        <Section>
+          <Paragraph size='medium'>
+            {this.props.yelpData.yelpApiContent[this.state.index].price}
+            <div>
+              {this.state.categories.map((cats) => {
+                return cats
+              })}
+            </div>
+          </Paragraph>
+        </Section>
+        <Section>
+          <Box justify='start'
+              align='center'
+              wrap
+              direction='row'
+              pad='medium'
+              margin='small'>
+              <Button 
+                icon={<CheckmarkIcon />}
+                type='submit'
+                secondary
+                onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(1, this.props.yelpData.yelpApiContent[this.state.index].id) }} />
+              <Button 
+                icon={<CloseIcon />}
+                type='submit'
+                secondary
+                id={this.pro}
+                onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(1, this.props.yelpData.yelpApiContent[this.state.index].id) }} />
+            </Box>
+        </Section>
         {/* // heading=
         // description={this.props.yelpData.yelpApiContent[this.state.index].price}
-        // flex> */}*/}
+        // flex> */}
       </Article>
     )
   }
