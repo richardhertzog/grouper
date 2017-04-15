@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+import Form from 'grommet/components/Form'
+import TextInput from 'grommet/components/TextInput'
+import Header from 'grommet/components/Header'
+import Heading from 'grommet/components/Heading'
+import Footer from 'grommet/components/Footer'
+import FormField from 'grommet/components/FormField'
+import Button from 'grommet/components/Button'
+import RadioButton from 'grommet/components/RadioButton'
+import NumberInput from 'grommet/components/NumberInput'
 
 class MakeGroup extends Component {
   constructor (props) {
@@ -10,9 +19,12 @@ class MakeGroup extends Component {
       businessType: '',
       location: '',
       endTime: 2,
-      renderVote: false
+      renderVote: false,
+      restaurant: false,
+      bar: false
     }
 
+    this.selectType = this.selectType.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.businessClick = this.businessClick.bind(this)
@@ -47,12 +59,17 @@ class MakeGroup extends Component {
   }
 
   changeTime (event) {
-    event.preventDefault()
-    let time = Number(event.target.value) + this.state.endTime
-    if(time < 0){
-      time = 0;
-    }
+    let time = event.target.value
     this.setState({endTime: time})
+    console.log('state', this.state)
+  }
+
+  selectType (event) {
+    if (event.target.name === 'restaurant') {
+      this.setState({businessType: 'restaurants', restaurant: true, bar: false})
+    } else if (event.target.name === 'bar') {
+      this.setState({businessType: 'bars', restaurant: false, bar: true})
+    }
   }
 
   render () {
@@ -61,46 +78,53 @@ class MakeGroup extends Component {
     }
 
     return (
-      <div className='card'>
-        <div className='card-block mx-auto'>
-          <h4 className='card-title'>Create a group!</h4>
-          <form>
-            <div className='form-group'>
-              <input className='form-control' placeholder='Group Name' name='groupName' type='text' value={this.state.groupName} onChange={this.handleChange} required />
-            </div>
-            <div className='form-group'>
-              <input className='form-control' placeholder='Neighborhood' name='location' type='text' value={this.state.location} onChange={this.handleChange} required />
-            </div>
-            <div className='form-group row mx-auto'>
-              <div className='btn-group btn-group-md mr-2'>
-                <button className='btn btn-primary' id='bars' onClick={this.businessClick}>Booze</button>
-              </div>
-              <div className='btn-group btn-group-md mr-2'>
-                <button className='btn btn-primary' id='restaurants' onClick={this.businessClick}>Foods</button>
-              </div>
-              <div className='btn-group btn-group-md'>
-                <button className='btn btn-primary' id='parks' onClick={this.businessClick}>Parks</button>
-              </div>
-            </div>
-              <div className='btn-group btn-group-md plusMinus-button'>
-                <div>
-                <button className='btn btn-primary rounded-circle btn-circle2' value={-1} id='minus' onClick={this.changeTime}>-</button>
-                </div>
-                <h3>{this.state.endTime}</h3>
-                <div>
-                <button className='btn btn-primary rounded-circle btn-circle2' value={1} id='plus' onClick={this.changeTime}>+</button>
-                </div>
-              </div>
-            <div className='form-group row mx-auto'>
-              <div className='btn-block btn-md'>
-                <button className='btn btn-primary btn-md btn-block' id='submit' onClick={this.handleSubmit}>Submit</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+      <Form>
+        <Header>
+          <Heading>
+            Create A Group
+          </Heading>
+        </Header>
+        <FormField>
+          <TextInput
+            name='groupName'
+            placeHolder='Super Awesome Group Name'
+            onDOMChange={this.handleChange} />
+        </FormField>
+        <FormField>
+          <TextInput
+            name='location'
+            placeHolder='Nob Hill, San Francisco, CA'
+            onDOMChange={this.handleChange} />
+        </FormField>
+        <FormField>
+          <RadioButton id='choice1-1'
+            name='restaurant'
+            label='Food'
+            checked={this.state.restaurant}
+            onChange={this.selectType} />
+          <RadioButton id='choice1-2'
+            name='bar'
+            label='Drinks'
+            checked={this.state.bar}
+            onChange={this.selectType} />
+        </FormField>
+        <NumberInput defaultValue={3}
+          step={1}
+          min={1}
+          onChange={this.changeTime} />
+        <Footer pad={{'vertical': 'medium'}}>
+          <Button label='Submit'
+            type='submit'
+            primary
+            onClick={this.handleSubmit} />
+        </Footer>
+      </Form>
     )
   }
 }
 
 export default MakeGroup
+
+// <button className='btn btn-primary rounded-circle btn-circle2' value={-1} id='minus' onClick={this.changeTime}>-</button>
+// <h3>{this.state.endTime}</h3>
+// <button className='btn btn-primary rounded-circle btn-circle2' value={1} id='plus' onClick={this.changeTime}>+</button>

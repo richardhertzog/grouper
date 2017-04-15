@@ -32,7 +32,8 @@ class SignUp extends Component {
     }
 
     return (
-      <LoginForm onSubmit={this.handleSubmit} />
+      <LoginForm onSubmit={this.handleSubmit}
+        usernameType='text' />
     )
   }
 }
