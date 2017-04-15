@@ -4,6 +4,10 @@ import CopyToClipboard from 'react-copy-to-clipboard'
 import axios from 'axios'
 import Card from 'grommet/components/Card'
 import Image from 'grommet/components/Image'
+import Box from 'grommet/components/Box'
+import Article from 'grommet/components/Article'
+import Headline from 'grommet/components/Headline'
+import Section from 'grommet/components/Section'
 
 class Voting extends Component {
   constructor (props) {
@@ -67,12 +71,30 @@ class Voting extends Component {
       return (<Redirect to={`/voting/waiting/` + this.props.name} />)
     }
     return (
-      <Card
-        thumbnail='https://s3-media3.fl.yelpcdn.com/bphoto/uweSiOf0XBB4BPk_ibHVyg/o.jpg'
-        heading={this.props.yelpData.yelpApiContent[this.state.index].name}
-        description={this.props.yelpData.yelpApiContent[this.state.index].price}
-        flex
-        reverse={false} />
+      <Article>
+        <Section
+          pad='large'
+          justify='center'
+          align='center'>
+          <Headline margin='none'>
+            {this.props.name}
+          </Headline>
+        </Section>
+        <Section>
+          <Image
+            src={this.props.yelpData.yelpApiContent[this.state.index].image_url}
+            fit='cover'
+            full
+            size='medium'
+           />
+        </Section>
+        <Section>
+          {this.props.yelpData.yelpApiContent[this.state.index].name}
+        </Section>
+        {/* // heading=
+        // description={this.props.yelpData.yelpApiContent[this.state.index].price}
+        // flex> */}*/}
+      </Article>
     )
   }
 }

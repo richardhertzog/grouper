@@ -10,6 +10,9 @@ import FormField from 'grommet/components/FormField'
 import Button from 'grommet/components/Button'
 import RadioButton from 'grommet/components/RadioButton'
 import NumberInput from 'grommet/components/NumberInput'
+import Box from 'grommet/components/Box'
+// import Button from 'grommet/components/Button'
+import BarIcon from 'grommet/components/icons/base/Bar'
 
 class MakeGroup extends Component {
   constructor (props) {
@@ -78,47 +81,62 @@ class MakeGroup extends Component {
     }
 
     return (
-      <Form>
-        <Header>
-          <Heading>
+      <Box
+        align='center'
+        full
+        pad='medium'
+        margin='small'>
+        <Form>
+          <Header>
+            <Heading>
             Create A Group
           </Heading>
-        </Header>
-        <FormField>
-          <TextInput
-            name='groupName'
-            placeHolder='Super Awesome Group Name'
-            onDOMChange={this.handleChange} />
-        </FormField>
-        <FormField>
-          <TextInput
-            name='location'
-            placeHolder='Nob Hill, San Francisco, CA'
-            onDOMChange={this.handleChange} />
-        </FormField>
-        <FormField>
-          <RadioButton id='choice1-1'
-            name='restaurant'
-            label='Food'
-            checked={this.state.restaurant}
-            onChange={this.selectType} />
-          <RadioButton id='choice1-2'
-            name='bar'
-            label='Drinks'
-            checked={this.state.bar}
-            onChange={this.selectType} />
-        </FormField>
-        <NumberInput defaultValue={3}
-          step={1}
-          min={1}
-          onChange={this.changeTime} />
-        <Footer pad={{'vertical': 'medium'}}>
-          <Button label='Submit'
-            type='submit'
-            primary
-            onClick={this.handleSubmit} />
-        </Footer>
-      </Form>
+          </Header>
+          <FormField>
+            <TextInput
+              name='groupName'
+              placeHolder='Super Awesome Group Name'
+              onDOMChange={this.handleChange} />
+          </FormField>
+          <FormField>
+            <TextInput
+              name='location'
+              placeHolder='Nob Hill, San Francisco, CA'
+              onDOMChange={this.handleChange} />
+          </FormField>
+          <FormField>
+            <RadioButton id='choice1-1'
+              name='restaurant'
+              label='Food'
+              checked={this.state.restaurant}
+              onChange={this.selectType} />
+            <Button icon={<BarIcon />}
+              label='Bars'
+              href='#' />
+            <RadioButton id='choice1-2'
+              name='bar'
+              label='Drinks'
+              checked={this.state.bar}
+              onChange={this.selectType} />
+          </FormField>
+          <NumberInput defaultValue={3}
+            step={1}
+            min={1}
+            onChange={this.changeTime} />
+          <Footer pad={{'vertical': 'medium'}}>
+            <Box justify='start'
+              align='center'
+              wrap
+              pad='medium'
+              margin='small'>
+              <Button label='Submit'
+                type='submit'
+                primary
+                onClick={this.handleSubmit} />
+            </Box>
+          </Footer>
+        </Form>
+      </Box>
     )
   }
 }
