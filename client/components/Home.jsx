@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Nav from './Nav.jsx'
-import App from 'grommet/components/App'
+import Box from 'grommet/components/Box'
 import Button from 'grommet/components/Button'
 import AddIcon from 'grommet/components/icons/base/Add'
 
@@ -12,7 +12,11 @@ class Home extends Component {
 
   render () {
     return (
-      <App>
+      <Box direction='row'
+        align='center'
+        wrap
+        pad='medium'
+        margin='small'>
         <Nav />
         <Link to='/makeGroup'>
           <Button icon={<AddIcon />}
@@ -20,7 +24,7 @@ class Home extends Component {
             href='#'
             primary />
         </Link>
-      </App>
+      </Box>
     )
   }
 }

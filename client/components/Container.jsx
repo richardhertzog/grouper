@@ -1,18 +1,12 @@
 import React, { Component } from 'react'
-import Box from 'grommet/components/Box'
+import App from 'grommet/components/App'
 
 class Container extends Component {
   render () {
     return (
-      <Box justify='start'
-        align='center'
-        wrap
-        full
-        pad='medium'
-        margin='small'
-        colorIndex='light-2'>
+      <App>
         {this.props.children}
-      </Box>
+      </App>
     )
   }
 }
