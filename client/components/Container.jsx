@@ -7,6 +7,7 @@ class Container extends Component {
       <Box justify='start'
         align='center'
         wrap
+        full
         pad='medium'
         margin='small'
         colorIndex='light-2'>

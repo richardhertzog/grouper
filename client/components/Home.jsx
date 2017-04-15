@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Nav from './Nav.jsx'
+import App from 'grommet/components/App'
+import Button from 'grommet/components/Button'
+import AddIcon from 'grommet/components/icons/base/Add'
 
 class Home extends Component {
   constructor (props) {
@@ -9,18 +12,15 @@ class Home extends Component {
 
   render () {
     return (
-      <div className='card'>
-        <div className='card-block mx-auto'>
-          <div className='form-group row mx-auto'>
-            <div className='btn-group btn-group-md'>
-              <Nav />
-            </div>
-            <div className='btn-group btn-group-md mr-2'>
-              <Link to='/makeGroup' className='btn btn-primary'>New Group</Link>
-            </div>
-          </div>
-        </div>
-      </div>
+      <App>
+        <Nav />
+        <Link to='/makeGroup'>
+          <Button icon={<AddIcon />}
+            label='Create Group'
+            href='#'
+            primary />
+        </Link>
+      </App>
     )
   }
 }

@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import checkAuth from './service/checkAuth.js'
+import Button from 'grommet/components/Button'
+import Box from 'grommet/components/Box'
+import LoginIcon from 'grommet/components/icons/base/Login'
+import LogoutIcon from 'grommet/components/icons/base/Logout'
 
 class Nav extends Component {
   constructor (props) {
@@ -17,15 +21,44 @@ class Nav extends Component {
   }
 
   signin () {
-    return (<Link to='/signin' className='btn btn-primary mr-2'>signin</Link>)
+    return (
+      <Link to='/signin'>
+        <Box pad='medium'
+          colorIndex='light-2'>
+          <Button icon={<LoginIcon />}
+            label='Sign In'
+            href='#'
+            secondary />
+        </Box>
+      </Link>
+    )
   }
 
   signup () {
-    return (<Link to='/signup' className='btn btn-primary mr-2'>signup</Link>)
+    return (
+      <Link to='/signup'>
+        <Box pad='medium'
+          colorIndex='light-2'>
+          <Button icon={<LoginIcon />}
+            label='Sign Up'
+            href='#'
+            secondary />
+        </Box>
+      </Link>
+    )
   }
 
   logout () {
-    return (<div onClick={this.logsout} className='btn btn-primary mr-2'>logout</div>)
+    return (
+      <Box pad='medium'
+        colorIndex='light-2'>
+        <Button icon={<LogoutIcon />}
+          label='Logout'
+          href='#'
+          onClick={this.logsout}
+          secondary />
+      </Box>
+    )
   }
 
   logsout () {
