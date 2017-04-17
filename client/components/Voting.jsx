@@ -107,23 +107,23 @@ class Voting extends Component {
         </Section>
         <Section>
           <Box justify='start'
-              align='center'
-              wrap
-              direction='row'
-              pad='medium'
-              margin='small'>
-              <Button 
-                icon={<CheckmarkIcon />}
-                type='submit'
-                secondary
-                onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(1, this.props.yelpData.yelpApiContent[this.state.index].id) }} />
-              <Button 
-                icon={<CloseIcon />}
-                type='submit'
-                secondary
-                id={this.pro}
-                onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(1, this.props.yelpData.yelpApiContent[this.state.index].id) }} />
-            </Box>
+            align='center'
+            wrap
+            direction='row'
+            pad='medium'
+            margin='small'>
+            <Button
+              icon={<CheckmarkIcon />}
+              type='submit'
+              secondary
+              onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(1, this.props.yelpData.yelpApiContent[this.state.index].id) }} />
+            <Button
+              icon={<CloseIcon />}
+              type='submit'
+              secondary
+              id={this.pro}
+              onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(1, this.props.yelpData.yelpApiContent[this.state.index].id) }} />
+          </Box>
         </Section>
         {/* // heading=
         // description={this.props.yelpData.yelpApiContent[this.state.index].price}

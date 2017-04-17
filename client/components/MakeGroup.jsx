@@ -11,27 +11,28 @@ import Button from 'grommet/components/Button'
 import RadioButton from 'grommet/components/RadioButton'
 import NumberInput from 'grommet/components/NumberInput'
 import Box from 'grommet/components/Box'
-// import Button from 'grommet/components/Button'
+import CafeteriaIcon from 'grommet/components/icons/base/Cafeteria'
 import BarIcon from 'grommet/components/icons/base/Bar'
+import AddCircleIcon from 'grommet/components/icons/base/AddCircle'
+import SubtractCircleIcon from 'grommet/components/icons/base/SubtractCircle'
 
 class MakeGroup extends Component {
   constructor (props) {
     super(props)
     this.state = {
       groupName: '',
-      businessType: '',
+      businessType: null,
       location: '',
-      endTime: 2,
-      renderVote: false,
-      restaurant: false,
-      bar: false
+      endTime: 1,
+      renderVote: false
     }
 
-    this.selectType = this.selectType.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.businessClick = this.businessClick.bind(this)
-    this.changeTime = this.changeTime.bind(this)
+    this.barClick = this.barClick.bind(this)
+    this.restaurantClick = this.restaurantClick.bind(this)
+    this.addTime = this.addTime.bind(this)
+    this.reduceTime = this.reduceTime.bind(this)
   }
 
   handleSubmit (event) {
@@ -56,23 +57,20 @@ class MakeGroup extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  businessClick (event) {
+  barClick (event) {
     event.preventDefault()
-    this.setState({ businessType: event.target.id })
+    this.setState({ businessType: 'bar' })
+  }
+  restaurantClick (event) {
+    event.preventDefault()
+    this.setState({ businessType: 'restaurant' })
   }
 
-  changeTime (event) {
-    let time = event.target.value
-    this.setState({endTime: time})
-    console.log('state', this.state)
+  addTime (event) {
+    this.setState({endTime: this.state.endTime + 1})
   }
-
-  selectType (event) {
-    if (event.target.name === 'restaurant') {
-      this.setState({businessType: 'restaurants', restaurant: true, bar: false})
-    } else if (event.target.name === 'bar') {
-      this.setState({businessType: 'bars', restaurant: false, bar: true})
-    }
+  reduceTime (event) {
+    this.state.endTime > 1 ? this.setState({endTime: this.state.endTime - 1}) : console.log('poop')
   }
 
   render () {
@@ -83,13 +81,15 @@ class MakeGroup extends Component {
     return (
       <Box
         align='center'
-        full
-        pad='medium'
-        margin='small'>
+        textAlign='center'
+        pad={{'vertical': 'large',
+          'horizontal': 'small'}}
+        margin='medium'>
         <Form>
           <Header>
-            <Heading>
-            Create A Group
+            <Heading align='center'
+              margin='small'>
+            Create Group
           </Heading>
           </Header>
           <FormField>
@@ -104,36 +104,44 @@ class MakeGroup extends Component {
               placeHolder='Nob Hill, San Francisco, CA'
               onDOMChange={this.handleChange} />
           </FormField>
-          <FormField>
-            <RadioButton id='choice1-1'
-              name='restaurant'
-              label='Food'
-              checked={this.state.restaurant}
-              onChange={this.selectType} />
-            <Button icon={<BarIcon />}
-              label='Bars'
-              href='#' />
-            <RadioButton id='choice1-2'
+          <Box
+            justify='between'
+            direction='row'
+            pad={{'between': 'medium',
+              'vertical': 'small'}}
+            margin='small'
+            wrap>
+            <Button label='Drinks'
+              icon={<BarIcon />}
               name='bar'
-              label='Drinks'
-              checked={this.state.bar}
-              onChange={this.selectType} />
-          </FormField>
-          <NumberInput defaultValue={3}
-            step={1}
-            min={1}
-            onChange={this.changeTime} />
-          <Footer pad={{'vertical': 'medium'}}>
-            <Box justify='start'
-              align='center'
-              wrap
-              pad='medium'
-              margin='small'>
-              <Button label='Submit'
-                type='submit'
-                primary
-                onClick={this.handleSubmit} />
-            </Box>
+              type='submit'
+              secondary
+              onClick={this.barClick} />
+            <Button icon={<CafeteriaIcon />}
+              name='restaurant'
+              type='submit'
+              label='Food'
+              secondary
+              onClick={this.restaurantClick} />
+          </Box>
+          <Box direction='row'
+            align='start'
+            justify='between'
+            basis='large'
+            wrap={false}>
+            <Button icon={<SubtractCircleIcon size='large' />}
+              onClick={this.reduceTime} />
+            <h1>{this.state.endTime}</h1>
+            <Button icon={<AddCircleIcon size='large' />}
+              onClick={this.addTime} />
+          </Box>
+
+          <Footer pad={{'vertical': 'medium',
+            'between': 'medium'}}>
+            <Button label='Submit'
+              primary
+              fill
+              onClick={this.handleSubmit} />
           </Footer>
         </Form>
       </Box>
@@ -142,7 +150,3 @@ class MakeGroup extends Component {
 }
 
 export default MakeGroup
-
-// <button className='btn btn-primary rounded-circle btn-circle2' value={-1} id='minus' onClick={this.changeTime}>-</button>
-// <h3>{this.state.endTime}</h3>
-// <button className='btn btn-primary rounded-circle btn-circle2' value={1} id='plus' onClick={this.changeTime}>+</button>
