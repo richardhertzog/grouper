@@ -11,7 +11,7 @@ import Button from 'grommet/components/Button'
 import RadioButton from 'grommet/components/RadioButton'
 import NumberInput from 'grommet/components/NumberInput'
 import Box from 'grommet/components/Box'
-// import Button from 'grommet/components/Button'
+import CafeteriaIcon from 'grommet/components/icons/base/Cafeteria'
 import BarIcon from 'grommet/components/icons/base/Bar'
 
 class MakeGroup extends Component {
@@ -19,15 +19,15 @@ class MakeGroup extends Component {
     super(props)
     this.state = {
       groupName: '',
-      businessType: '',
+      businessType: null,
       location: '',
-      endTime: 2,
-      renderVote: false,
-      restaurant: false,
-      bar: false
+      endTime: 1,
+      renderVote: false
+      // restaurant: false,
+      // bar: false
     }
 
-    this.selectType = this.selectType.bind(this)
+    // this.selectType = this.selectType.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.businessClick = this.businessClick.bind(this)
@@ -57,22 +57,13 @@ class MakeGroup extends Component {
   }
 
   businessClick (event) {
-    event.preventDefault()
-    this.setState({ businessType: event.target.id })
+    this.setState({ businessType: event.target.name })
+    console.log(this.state)
   }
 
   changeTime (event) {
     let time = event.target.value
     this.setState({endTime: time})
-    console.log('state', this.state)
-  }
-
-  selectType (event) {
-    if (event.target.name === 'restaurant') {
-      this.setState({businessType: 'restaurants', restaurant: true, bar: false})
-    } else if (event.target.name === 'bar') {
-      this.setState({businessType: 'bars', restaurant: false, bar: true})
-    }
   }
 
   render () {
@@ -83,7 +74,6 @@ class MakeGroup extends Component {
     return (
       <Box
         align='center'
-        full
         pad='medium'
         margin='small'>
         <Form>
@@ -104,22 +94,15 @@ class MakeGroup extends Component {
               placeHolder='Nob Hill, San Francisco, CA'
               onDOMChange={this.handleChange} />
           </FormField>
-          <FormField>
-            <RadioButton id='choice1-1'
-              name='restaurant'
-              label='Food'
-              checked={this.state.restaurant}
-              onChange={this.selectType} />
-            <Button icon={<BarIcon />}
-              label='Bars'
-              href='#' />
-            <RadioButton id='choice1-2'
-              name='bar'
-              label='Drinks'
-              checked={this.state.bar}
-              onChange={this.selectType} />
-          </FormField>
-          <NumberInput defaultValue={3}
+          <Button icon={<BarIcon />}
+            name='bar'
+            label='Drinks'
+            onClick={this.businessClick} />
+          <Button icon={<CafeteriaIcon />}
+            name='restaurant'
+            label='Food'
+            onClick={this.businessClick} />
+          <NumberInput defaultValue={1}
             step={1}
             min={1}
             onChange={this.changeTime} />
@@ -142,7 +125,3 @@ class MakeGroup extends Component {
 }
 
 export default MakeGroup
-
-// <button className='btn btn-primary rounded-circle btn-circle2' value={-1} id='minus' onClick={this.changeTime}>-</button>
-// <h3>{this.state.endTime}</h3>
-// <button className='btn btn-primary rounded-circle btn-circle2' value={1} id='plus' onClick={this.changeTime}>+</button>
