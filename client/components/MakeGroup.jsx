@@ -13,6 +13,8 @@ import NumberInput from 'grommet/components/NumberInput'
 import Box from 'grommet/components/Box'
 import CafeteriaIcon from 'grommet/components/icons/base/Cafeteria'
 import BarIcon from 'grommet/components/icons/base/Bar'
+import AddCircleIcon from 'grommet/components/icons/base/AddCircle'
+import SubtractCircleIcon from 'grommet/components/icons/base/SubtractCircle'
 
 class MakeGroup extends Component {
   constructor (props) {
@@ -23,15 +25,14 @@ class MakeGroup extends Component {
       location: '',
       endTime: 1,
       renderVote: false
-      // restaurant: false,
-      // bar: false
     }
 
-    // this.selectType = this.selectType.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.businessClick = this.businessClick.bind(this)
-    this.changeTime = this.changeTime.bind(this)
+    this.barClick = this.barClick.bind(this)
+    this.restaurantClick = this.restaurantClick.bind(this)
+    this.addTime = this.addTime.bind(this)
+    this.reduceTime = this.reduceTime.bind(this)
   }
 
   handleSubmit (event) {
@@ -56,14 +57,20 @@ class MakeGroup extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  businessClick (event) {
-    this.setState({ businessType: event.target.name })
-    console.log(this.state)
+  barClick (event) {
+    event.preventDefault()
+    this.setState({ businessType: 'bar' })
+  }
+  restaurantClick (event) {
+    event.preventDefault()
+    this.setState({ businessType: 'restaurant' })
   }
 
-  changeTime (event) {
-    let time = event.target.value
-    this.setState({endTime: time})
+  addTime (event) {
+    this.setState({endTime: this.state.endTime + 1})
+  }
+  reduceTime (event) {
+    this.state.endTime > 1 ? this.setState({endTime: this.state.endTime - 1}) : console.log('poop')
   }
 
   render () {
@@ -74,12 +81,15 @@ class MakeGroup extends Component {
     return (
       <Box
         align='center'
-        pad='medium'
-        margin='small'>
+        textAlign='center'
+        pad={{'vertical': 'large',
+          'horizontal': 'small'}}
+        margin='medium'>
         <Form>
           <Header>
-            <Heading>
-            Create A Group
+            <Heading align='center'
+              margin='small'>
+            Create Group
           </Heading>
           </Header>
           <FormField>
@@ -94,29 +104,44 @@ class MakeGroup extends Component {
               placeHolder='Nob Hill, San Francisco, CA'
               onDOMChange={this.handleChange} />
           </FormField>
-          <Button icon={<BarIcon />}
-            name='bar'
-            label='Drinks'
-            onClick={this.businessClick} />
-          <Button icon={<CafeteriaIcon />}
-            name='restaurant'
-            label='Food'
-            onClick={this.businessClick} />
-          <NumberInput defaultValue={1}
-            step={1}
-            min={1}
-            onChange={this.changeTime} />
-          <Footer pad={{'vertical': 'medium'}}>
-            <Box justify='start'
-              align='center'
-              wrap
-              pad='medium'
-              margin='small'>
-              <Button label='Submit'
-                type='submit'
-                primary
-                onClick={this.handleSubmit} />
-            </Box>
+          <Box
+            justify='between'
+            direction='row'
+            pad={{'between': 'medium',
+              'vertical': 'small'}}
+            margin='small'
+            wrap>
+            <Button label='Drinks'
+              icon={<BarIcon />}
+              name='bar'
+              type='submit'
+              secondary
+              onClick={this.barClick} />
+            <Button icon={<CafeteriaIcon />}
+              name='restaurant'
+              type='submit'
+              label='Food'
+              secondary
+              onClick={this.restaurantClick} />
+          </Box>
+          <Box direction='row'
+            align='start'
+            justify='between'
+            basis='large'
+            wrap={false}>
+            <Button icon={<SubtractCircleIcon size='large' />}
+              onClick={this.reduceTime} />
+            <h1>{this.state.endTime}</h1>
+            <Button icon={<AddCircleIcon size='large' />}
+              onClick={this.addTime} />
+          </Box>
+
+          <Footer pad={{'vertical': 'medium',
+            'between': 'medium'}}>
+            <Button label='Submit'
+              primary
+              fill
+              onClick={this.handleSubmit} />
           </Footer>
         </Form>
       </Box>
