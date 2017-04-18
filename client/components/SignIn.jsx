@@ -5,7 +5,6 @@ import LoginForm from 'grommet/components/LoginForm'
 import Box from 'grommet/components/Box'
 import Heading from 'grommet/components/Heading'
 import Anchor from 'grommet/components/Anchor'
-import Paragraph from 'grommet/components/Paragraph'
 
 // Icons
 import LoginIcon from 'grommet/components/icons/base/Login'

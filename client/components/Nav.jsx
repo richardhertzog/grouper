@@ -8,6 +8,7 @@ import Header from 'grommet/components/Header'
 import Anchor from 'grommet/components/Anchor'
 import Title from 'grommet/components/Title'
 import Menu from 'grommet/components/Menu'
+import Label from 'grommet/components/Label'
 
 // Icons
 import MenuIcon from 'grommet/components/icons/base/Menu';
@@ -31,11 +32,9 @@ class Nav extends Component {
     return (
       <Anchor 
         path='/signin'
-        className='active'
         icon={<LoginIcon />}
-      >
-        Sign-In
-      </Anchor>
+        label='Sign-In'
+      />
     )
   }
 
@@ -44,9 +43,8 @@ class Nav extends Component {
       <Anchor 
         path='/signup'
         icon={<LoginIcon />}
-      >
-        Sign-Up
-      </Anchor>
+        label='Sign-Up'
+      />
     )
   }
 
@@ -55,9 +53,8 @@ class Nav extends Component {
       <Anchor 
         path='/Logout'
         icon={<LogoutIcon />}
-      >
-        Log-Out
-      </Anchor>
+        label='Log-Out'
+      />
     )
   }
 
@@ -81,9 +78,9 @@ class Nav extends Component {
           >
             <Anchor 
               path='/'
-            >
-              <Title>Grüper</Title>
-            </Anchor>
+              size='medium'
+              label={<Label>{<Title>Grüper</Title>}</Label>}
+            />
           </Box>
           <Box 
             flex={true}
