@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import checkAuth from './service/checkAuth.js'
-import Button from 'grommet/components/Button'
+
+// grommet
 import Box from 'grommet/components/Box'
 import Header from 'grommet/components/Header'
 import Anchor from 'grommet/components/Anchor'
@@ -28,39 +29,35 @@ class Nav extends Component {
 
   signin () {
     return (
-      <Link to='/signin'>
-        <Box pad='medium'
-          colorIndex='light-2'>
-          <Button icon={<LoginIcon />}
-            label='Sign In'
-            href='#'
-            secondary />
-        </Box>
-      </Link>
+      <Anchor 
+        path='/signin'
+        className='active'
+        icon={<LoginIcon />}
+      >
+        Sign-In
+      </Anchor>
     )
   }
 
   signup () {
     return (
-      <Link to='/signup'>
-        <Box pad='medium'
-          colorIndex='light-2'>
-          <Button icon={<LoginIcon />}
-            label='Sign Up'
-            href='#'
-            secondary />
-        </Box>
-      </Link>
+      <Anchor 
+        path='/signup'
+        icon={<LoginIcon />}
+      >
+        Sign-Up
+      </Anchor>
     )
   }
 
   logout () {
     return (
-      <Button icon={<LogoutIcon />}
-        label='Logout'
-        href='#'
-        onClick={this.logsout}
-        secondary />
+      <Anchor 
+        path='/Logout'
+        icon={<LogoutIcon />}
+      >
+        Log-Out
+      </Anchor>
     )
   }
 
@@ -82,9 +79,7 @@ class Nav extends Component {
             pad='small'
             responsive={true}
           >
-            <Title>
-              Grüper
-            </Title>
+            <Title>Grüper</Title>
           </Box>
           <Box 
             flex={true}
@@ -95,16 +90,9 @@ class Nav extends Component {
           >
             <Menu icon={<MenuIcon />}
               dropAlign={{"right": "right"}}>
-              <Anchor href='#'
-                className='active'>
-                {!this.state.signedIn && this.signin()}
-              </Anchor>
-              <Anchor href='#'>
-                {!this.state.signedIn && this.signup()}
-              </Anchor>
-              <Anchor href='#'>
-                {!!this.state.signedIn && this.logout()}
-              </Anchor>
+              {!this.state.signedIn && this.signin()}
+              {!this.state.signedIn && this.signup()}
+              {!!this.state.signedIn && this.logout()}
             </Menu>
           </Box>
       </Header>
