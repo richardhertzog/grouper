@@ -2,16 +2,14 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import axios from 'axios'
-import Card from 'grommet/components/Card'
 import Image from 'grommet/components/Image'
 import Box from 'grommet/components/Box'
 import Article from 'grommet/components/Article'
-import Headline from 'grommet/components/Headline'
 import Section from 'grommet/components/Section'
 import Paragraph from 'grommet/components/Paragraph'
 import Button from 'grommet/components/Button'
-import CheckmarkIcon from 'grommet/components/icons/base/Checkmark'
-import CloseIcon from 'grommet/components/icons/base/Close'
+import LikeIcon from 'grommet/components/icons/base/Like'
+import DislikeIcon from 'grommet/components/icons/base/Dislike'
 
 class Voting extends Component {
   constructor (props) {
@@ -57,7 +55,7 @@ class Voting extends Component {
     let temp = this.props.yelpData.yelpApiContent[this.state.index].categories
     for (var i = 0; i < 3; i++) {
       if (temp[i] === undefined) {
-        catogs.push(<div key={Math.random()}>Gibberish</div>)
+        catogs.push(<div key={Math.random()} />)
       } else {
         let line = <div key={temp[i].title}>{temp[i].title}</div>
         catogs.push(line)
@@ -75,53 +73,89 @@ class Voting extends Component {
       return (<Redirect to={`/voting/waiting/` + this.props.name} />)
     }
     return (
-      <Article>
+      <Article
+        pad={{}}
+        margin={{
+          'left': 'large',
+          'right': 'large',
+          'top': 'small',
+          'bottom': 'small'}}>
         <Section
-          pad='large'
+          pad='small'
           justify='center'
-          align='center'>
-          <Headline margin='none'>
+          align='center'
+          margin={{
+            'left': 'large',
+            'right': 'large',
+            'top': 'small',
+            'bottom': 'none'}}>
+          <h3>
             {this.props.name}
-          </Headline>
+          </h3>
         </Section>
-        <Section>
+        <Section
+          pad='small'
+          justify='center'
+          margin={{
+            'left': 'large',
+            'right': 'large',
+            'top': 'small',
+            'bottom': 'small'}}>
           <Image
             src={this.props.yelpData.yelpApiContent[this.state.index].image_url}
-            fit='cover'
-            full
+            full='horizontal'
             size='small'
            />
         </Section>
-        <Section>
-          {this.props.yelpData.yelpApiContent[this.state.index].name}
+        <Section
+          pad='small'
+          justify='center'
+          align='center'
+          margin={{
+            'top': 'small',
+            'bottom': 'small'}}>
+          <h2>
+            {this.props.yelpData.yelpApiContent[this.state.index].name}
+          </h2>
         </Section>
-        <Section>
-          <Paragraph size='medium'>
+        <Section
+          margin={{
+            'top': 'none',
+            'bottom': 'none'}}
+          justify='center'
+          align='center'
+          textAlign='center'>
+          <Paragraph size='small'
+            margin='small'>
             {this.props.yelpData.yelpApiContent[this.state.index].price}
-            <div>
+            <h4>
               {this.state.categories.map((cats) => {
                 return cats
               })}
-            </div>
+            </h4>
           </Paragraph>
         </Section>
         <Section>
-          <Box justify='start'
+          <Box justify='between'
             align='center'
-            wrap
+            responsive={false}
             direction='row'
-            pad='medium'
-            margin='small'>
+            pad={{'between': 'small'}}
+            margin={{
+              'left': 'large',
+              'right': 'large',
+              'top': 'small',
+              'bottom': 'large'}}>
             <Button
-              icon={<CheckmarkIcon />}
-              type='submit'
-              secondary
-              onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(1, this.props.yelpData.yelpApiContent[this.state.index].id) }} />
-            <Button
-              icon={<CloseIcon />}
+              icon={<DislikeIcon size='large' />}
               type='submit'
               secondary
               id={this.pro}
+              onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(1, this.props.yelpData.yelpApiContent[this.state.index].id) }} />
+            <Button
+              icon={<LikeIcon size='large' />}
+              type='submit'
+              secondary
               onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(1, this.props.yelpData.yelpApiContent[this.state.index].id) }} />
           </Box>
         </Section>
