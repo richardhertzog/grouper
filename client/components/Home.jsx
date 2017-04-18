@@ -22,39 +22,38 @@ class Home extends Component {
     return (
       <Box direction='row'
         align='center'
-        wrap={true}
+        wrap
         pad='small'
         margin='small'>
         <Article colorIndex='light-2'>
-          
+
           <Section pad='small'
             justify='center'
             align='stretch'>
-              <Headline margin='none'>
-                <Hero background={<Image src='img/hero.jpg'
-                  fit='cover'
-                  full={true} />}
-                  backgroundColorIndex='dark'
-                >
-                </Hero>
-              </Headline>
+            <Headline margin='none'>
+              <Hero background={<Image src='img/hero.jpg'
+                fit='cover'
+                full />}
+                backgroundColorIndex='dark'
+                 />
+            </Headline>
           </Section>
 
-          <Section 
+          <Section
             pad='small'
             justify='center'
             align='stretch'>
-            <Box 
+            <Box
               basis='full'
               align='start'
               pad='small'
               colorIndex='light-2'>
-              <Card 
+              <Card
                 description='Find your next meal with Grüper!'
                 label='Start Eating Now!'
                 link={<Anchor path='/makeGroup'
-                primary={true}
-                label='Create Group' />} 
+                  primary
+                  label='Create Group' />}
               />
             </Box>
           </Section>
@@ -62,17 +61,17 @@ class Home extends Component {
           <Section pad='small'
             justify='center'
             align='stretch'>
-            <Box  
+            <Box
               basis='full'
               align='end'
               pad='small'
               colorIndex='light-2'>
-              <Card 
-                description="Create an account for more amazing experiences!"
+              <Card
+                description='Create an account for more amazing experiences!'
                 label='SignUp Now!'
                 link={<Anchor path='/signup'
-                primary={true}
-                label='Join Us!' />} 
+                  primary
+                  label='Join Us!' />}
               />
             </Box>
           </Section>
@@ -80,21 +79,20 @@ class Home extends Component {
           <Section pad='small'
             justify='center'
             align='stretch'>
-            <Box  
+            <Box
               basis='full'
               align='start'
               pad='small'
               colorIndex='light-2'>
-              <Card 
+              <Card
                 description="Meet Grüper's Amazing team!"
                 label='About Us'
                 link={<Anchor path='#'
-                primary={true}
-                label='Learn More!' />} 
+                  primary
+                  label='Learn More!' />}
               />
             </Box>
           </Section>
-
 
         </Article>
       </Box>

@@ -25,7 +25,9 @@ class MakeGroup extends Component {
       location: '',
       endTime: 1,
       renderVote: false,
-      toast: false
+      toast: false,
+      barSelected: false,
+      restaurantSelected: false
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -64,11 +66,19 @@ class MakeGroup extends Component {
 
   barClick (event) {
     event.preventDefault()
-    this.setState({ businessType: 'bar' })
+    this.setState({
+      businessType: 'bar',
+      barSelected: true,
+      restaurantSelected: false
+    })
   }
   restaurantClick (event) {
     event.preventDefault()
-    this.setState({ businessType: 'restaurant' })
+    this.setState({
+      businessType: 'restaurant',
+      barSelected: false,
+      restaurantSelected: true
+    })
   }
 
   addTime (event) {
@@ -133,13 +143,13 @@ class MakeGroup extends Component {
                 icon={<BarIcon />}
                 name='bar'
                 type='submit'
-                secondary
+                primary={this.state.barSelected}
                 onClick={this.barClick} />
               <Button icon={<CafeteriaIcon />}
                 name='restaurant'
                 type='submit'
                 label='Food'
-                secondary
+                primary={this.state.restaurantSelected}
                 onClick={this.restaurantClick} />
             </Box>
             <Label
