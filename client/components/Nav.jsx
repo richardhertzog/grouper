@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import checkAuth from './service/checkAuth.js'
 
 // grommet
@@ -79,7 +79,11 @@ class Nav extends Component {
             pad='small'
             responsive={true}
           >
-            <Title>Grüper</Title>
+            <Anchor 
+              path='/'
+            >
+              <Title>Grüper</Title>
+            </Anchor>
           </Box>
           <Box 
             flex={true}
