@@ -25,9 +25,6 @@ class Home extends Component {
         wrap={true}
         pad='small'
         margin='small'>
-        
-        <Nav />
-
         <Article colorIndex='light-2'>
           
           <Section pad='small'

@@ -74,33 +74,39 @@ class Nav extends Component {
     return (
       <Header float={false}
         fixed={true}>
-         <Box flex={true}
-          justify='start'
-          direction='row'
-          responsive={true}>
-          <Title>
-            Grüper
-          </Title>
-        </Box>
-        <Box flex={true}
-          align='end'
-          justify='end'
-          
-          responsive={true}>
-          <Menu icon={<MenuIcon />}
-            dropAlign={{"right": "right"}}>
-            <Anchor href='#'
-              className='active'>
-              {!this.state.signedIn && this.signin()}
-            </Anchor>
-            <Anchor href='#'>
-              {!this.state.signedIn && this.signup()}
-            </Anchor>
-            <Anchor href='#'>
-              {!!this.state.signedIn && this.logout()}
-            </Anchor>
-          </Menu>
-        </Box>
+          <Box 
+            flex={true}
+            align='start'
+            justify='start'
+            margin='medium'
+            pad='small'
+            responsive={true}
+          >
+            <Title>
+              Grüper
+            </Title>
+          </Box>
+          <Box 
+            flex={true}
+            align='end'
+            justify='end'
+            margin='medium'
+            responsive={true}
+          >
+            <Menu icon={<MenuIcon />}
+              dropAlign={{"right": "right"}}>
+              <Anchor href='#'
+                className='active'>
+                {!this.state.signedIn && this.signin()}
+              </Anchor>
+              <Anchor href='#'>
+                {!this.state.signedIn && this.signup()}
+              </Anchor>
+              <Anchor href='#'>
+                {!!this.state.signedIn && this.logout()}
+              </Anchor>
+            </Menu>
+          </Box>
       </Header>
     )
   }
