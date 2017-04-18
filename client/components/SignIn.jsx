@@ -9,6 +9,7 @@ import Paragraph from 'grommet/components/Paragraph'
 
 // Icons
 import LoginIcon from 'grommet/components/icons/base/Login'
+import PreviousIcon from 'grommet/components/icons/base/Previous'
 
 class SignIn extends Component {
   constructor (props) {
@@ -42,44 +43,28 @@ class SignIn extends Component {
         pad='medium'
         margin='medium'
       >
-        <Paragraph 
+        <Anchor 
           align='start'
-          size='medium'
-        >
-          <Anchor 
-            align='start'
-            path='/'
-            icon={<LoginIcon />}
-          >
-            Back
-          </Anchor>
-        </Paragraph>
+          path='/'
+          icon={<PreviousIcon />}
+          label='Back' 
+        />
         <Box 
           align='center'
           wrap={true}
           pad='none'
           margin='none'
         >
-          <Heading
-            align='center'
-          >
-            Sign In
-          </Heading>
+          <Heading align='center'> Sign In </Heading>
           <LoginForm 
             onSubmit={this.handleSubmit}
             usernameType='text' 
           />
-          <Paragraph 
-            size='medium'
-          >
-            Don't have an account?  
-            <Anchor 
-              path='/signup'
-              icon={<LoginIcon />}
-            >
-              Click here to Sign-Up!
-            </Anchor>
-          </Paragraph>
+          <Anchor 
+            path='/signup'
+            icon={<LoginIcon />}
+            label="Don't have an account? Click here to Sign-Up!"
+          />
         </Box>
       </Box>
     )
