@@ -74,13 +74,19 @@ class Nav extends Component {
     return (
       <Header float={false}
         fixed={true}>
-        <Title>
-          Sample Title
-        </Title>
-        <Box flex={true}
-          justify='end'
+         <Box flex={true}
+          justify='start'
           direction='row'
-          responsive={false}>
+          responsive={true}>
+          <Title>
+            Grüper
+          </Title>
+        </Box>
+        <Box flex={true}
+          align='end'
+          justify='end'
+          
+          responsive={true}>
           <Menu icon={<MenuIcon />}
             dropAlign={{"right": "right"}}>
             <Anchor href='#'
