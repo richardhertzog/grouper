@@ -3,6 +3,8 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import LoginForm from 'grommet/components/LoginForm'
 import Box from 'grommet/components/Box'
+import Heading from 'grommet/components/Heading'
+
 class SignIn extends Component {
   constructor (props) {
     super(props)
@@ -36,6 +38,10 @@ class SignIn extends Component {
         full
         pad='medium'
         margin='small'>
+        <Heading
+          align='center'>
+          Sign In
+        </Heading>
         <LoginForm onSubmit={this.handleSubmit}
           usernameType='text' />
       </Box>
