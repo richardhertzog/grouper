@@ -8,6 +8,7 @@ import SignUp from './components/SignUp.jsx'
 import SignIn from './components/SignIn.jsx'
 import Chat from './components/Chat.jsx'
 import Container from './components/Container.jsx'
+import Nav from './components/Nav.jsx'
 
 class App extends Component {
   constructor (props) {
@@ -19,6 +20,7 @@ class App extends Component {
     return (
       <Router>
         <Container>
+          <Nav />
           <Route exact path='/' component={Home} />
           <Route path='/makeGroup' component={MakeGroup} />
           <Route path='/voting' component={RootVoting} />
