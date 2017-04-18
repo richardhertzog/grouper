@@ -13,6 +13,7 @@ import CafeteriaIcon from 'grommet/components/icons/base/Cafeteria'
 import BarIcon from 'grommet/components/icons/base/Bar'
 import AddCircleIcon from 'grommet/components/icons/base/AddCircle'
 import SubtractCircleIcon from 'grommet/components/icons/base/SubtractCircle'
+import Toast from 'grommet/components/Toast'
 
 class MakeGroup extends Component {
   constructor (props) {
@@ -22,7 +23,8 @@ class MakeGroup extends Component {
       businessType: null,
       location: '',
       endTime: 1,
-      renderVote: false
+      renderVote: false,
+      toast: false
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -34,21 +36,25 @@ class MakeGroup extends Component {
   }
 
   handleSubmit (event) {
-    event.preventDefault()
-    let time = this.state.endTime
-    time = time * 60 * 1000 + Date.now()
-    axios.post('/api/groups',
-      { groupName: this.state.groupName,
-        location: this.state.location,
-        eventType: this.state.businessType,
-        endTime: time
-      })
+    if (this.state.groupName.includes(' ')) {
+      this.setState({toast: true})
+    } else {
+      event.preventDefault()
+      let time = this.state.endTime
+      time = time * 60 * 1000 + Date.now()
+      axios.post('/api/groups',
+        { groupName: this.state.groupName,
+          location: this.state.location,
+          eventType: this.state.businessType,
+          endTime: time
+        })
     .then(() => {
       this.setState({ renderVote: true })
     })
     .catch((err) => {
       console.error(err)
     })
+    }
   }
 
   handleChange (event) {
@@ -67,8 +73,18 @@ class MakeGroup extends Component {
   addTime (event) {
     this.setState({endTime: this.state.endTime + 1})
   }
+
   reduceTime (event) {
     this.state.endTime > 1 ? this.setState({endTime: this.state.endTime - 1}) : console.log('poop')
+  }
+
+  spaceWarning () {
+    return (
+      <Toast status='ok'
+        status='warning'>
+        A group name cannot contain spaces.
+      </Toast>
+    )
   }
 
   render () {
@@ -77,72 +93,74 @@ class MakeGroup extends Component {
     }
 
     return (
-      <Box
-        align='center'
-        textAlign='center'
-        pad={{'vertical': 'large',
-          'horizontal': 'small'}}
-        margin='medium'>
-        <Form>
-          <Header>
-            <Heading align='center'
-              margin='small'>
+      <div>
+        {this.state.toast && this.spaceWarning()}
+        <Box
+          align='center'
+          textAlign='center'
+          pad={{'vertical': 'large',
+            'horizontal': 'small'}}
+          margin='medium'>
+          <Form>
+            <Header>
+              <Heading align='center'
+                margin='small'>
             Create Group
           </Heading>
-          </Header>
-          <FormField>
-            <TextInput
-              name='groupName'
-              placeHolder='Super Awesome Group Name'
-              onDOMChange={this.handleChange} />
-          </FormField>
-          <FormField>
-            <TextInput
-              name='location'
-              placeHolder='Nob Hill, San Francisco, CA'
-              onDOMChange={this.handleChange} />
-          </FormField>
-          <Box
-            justify='between'
-            direction='row'
-            pad={{'between': 'small',
-              'vertical': 'small'}}
-            margin='small'
-            wrap>
-            <Button label='Drinks'
-              icon={<BarIcon />}
-              name='bar'
-              type='submit'
-              secondary
-              onClick={this.barClick} />
-            <Button icon={<CafeteriaIcon />}
-              name='restaurant'
-              type='submit'
-              label='Food'
-              secondary
-              onClick={this.restaurantClick} />
-          </Box>
-          <Box direction='row'
-            align='start'
-            justify='between'
-            basis='large'
-            wrap={false}>
-            <Button icon={<SubtractCircleIcon size='large' />}
-              onClick={this.reduceTime} />
-            <h1>{this.state.endTime}</h1>
-            <Button icon={<AddCircleIcon size='large' />}
-              onClick={this.addTime} />
-          </Box>
-
-          <Footer pad={{'vertical': 'medium',
-            'between': 'medium'}}>
-            <Button label='Submit'
-              primary
-              fill
-              onClick={this.handleSubmit} />
-          </Footer>
-        </Form>
-      </Box>
+            </Header>
+            <FormField>
+              <TextInput
+                name='groupName'
+                placeHolder='Super Awesome Group Name'
+                onDOMChange={this.handleChange} />
+            </FormField>
+            <FormField>
+              <TextInput
+                name='location'
+                placeHolder='Nob Hill, San Francisco, CA'
+                onDOMChange={this.handleChange} />
+            </FormField>
+            <Box
+              justify='between'
+              direction='row'
+              pad={{'between': 'small',
+                'vertical': 'small'}}
+              margin='small'
+              wrap>
+              <Button label='Drinks'
+                icon={<BarIcon />}
+                name='bar'
+                type='submit'
+                secondary
+                onClick={this.barClick} />
+              <Button icon={<CafeteriaIcon />}
+                name='restaurant'
+                type='submit'
+                label='Food'
+                secondary
+                onClick={this.restaurantClick} />
+            </Box>
+            <Box direction='row'
+              align='start'
+              justify='between'
+              basis='large'
+              wrap={false}>
+              <Button icon={<SubtractCircleIcon size='large' />}
+                onClick={this.reduceTime} />
+              <h1>{this.state.endTime}</h1>
+              <Button icon={<AddCircleIcon size='large' />}
+                onClick={this.addTime} />
+            </Box>
+            <Footer pad={{'vertical': 'medium',
+              'between': 'medium'}}>
+              <Button label='Submit'
+                primary
+                fill
+                onClick={this.handleSubmit} />
+            </Footer>
+          </Form>
+        </Box>
+      </div>
     )
   }
 }
