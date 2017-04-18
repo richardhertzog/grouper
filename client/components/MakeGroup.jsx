@@ -14,6 +14,7 @@ import BarIcon from 'grommet/components/icons/base/Bar'
 import AddCircleIcon from 'grommet/components/icons/base/AddCircle'
 import SubtractCircleIcon from 'grommet/components/icons/base/SubtractCircle'
 import Toast from 'grommet/components/Toast'
+import Label from 'grommet/components/Label'
 
 class MakeGroup extends Component {
   constructor (props) {
@@ -103,7 +104,8 @@ class MakeGroup extends Component {
           margin='medium'>
           <Form>
             <Header>
-              <Heading align='center'
+              <Heading
+                align='center'
                 margin='small'>
             Create Group
           </Heading>
@@ -140,6 +142,11 @@ class MakeGroup extends Component {
                 secondary
                 onClick={this.restaurantClick} />
             </Box>
+            <Label
+              size='large'
+              align='center'>
+              Set Timer
+            </Label>
             <Box direction='row'
               align='start'
               justify='between'
@@ -147,7 +154,7 @@ class MakeGroup extends Component {
               wrap={false}>
               <Button icon={<SubtractCircleIcon size='large' />}
                 onClick={this.reduceTime} />
-              <h1>{this.state.endTime}</h1>
+              <h1>{this.state.endTime} min</h1>
               <Button icon={<AddCircleIcon size='large' />}
                 onClick={this.addTime} />
             </Box>
