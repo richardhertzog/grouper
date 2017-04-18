@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import checkAuth from './service/checkAuth.js'
-import Button from 'grommet/components/Button'
+
+// grommet
 import Box from 'grommet/components/Box'
 import Header from 'grommet/components/Header'
 import Anchor from 'grommet/components/Anchor'
 import Title from 'grommet/components/Title'
 import Menu from 'grommet/components/Menu'
+import Label from 'grommet/components/Label'
 
 // Icons
 import MenuIcon from 'grommet/components/icons/base/Menu';
@@ -28,39 +30,31 @@ class Nav extends Component {
 
   signin () {
     return (
-      <Link to='/signin'>
-        <Box pad='medium'
-          colorIndex='light-2'>
-          <Button icon={<LoginIcon />}
-            label='Sign In'
-            href='#'
-            secondary />
-        </Box>
-      </Link>
+      <Anchor 
+        path='/signin'
+        icon={<LoginIcon />}
+        label='Sign-In'
+      />
     )
   }
 
   signup () {
     return (
-      <Link to='/signup'>
-        <Box pad='medium'
-          colorIndex='light-2'>
-          <Button icon={<LoginIcon />}
-            label='Sign Up'
-            href='#'
-            secondary />
-        </Box>
-      </Link>
+      <Anchor 
+        path='/signup'
+        icon={<LoginIcon />}
+        label='Sign-Up'
+      />
     )
   }
 
   logout () {
     return (
-      <Button icon={<LogoutIcon />}
-        label='Logout'
-        href='#'
-        onClick={this.logsout}
-        secondary />
+      <Anchor 
+        path='/Logout'
+        icon={<LogoutIcon />}
+        label='Log-Out'
+      />
     )
   }
 
@@ -82,9 +76,11 @@ class Nav extends Component {
             pad='small'
             responsive={true}
           >
-            <Title>
-              Grüper
-            </Title>
+            <Anchor 
+              path='/'
+              size='medium'
+              label={<Label>{<Title>Grüper</Title>}</Label>}
+            />
           </Box>
           <Box 
             flex={true}
@@ -95,16 +91,9 @@ class Nav extends Component {
           >
             <Menu icon={<MenuIcon />}
               dropAlign={{"right": "right"}}>
-              <Anchor href='#'
-                className='active'>
-                {!this.state.signedIn && this.signin()}
-              </Anchor>
-              <Anchor href='#'>
-                {!this.state.signedIn && this.signup()}
-              </Anchor>
-              <Anchor href='#'>
-                {!!this.state.signedIn && this.logout()}
-              </Anchor>
+              {!this.state.signedIn && this.signin()}
+              {!this.state.signedIn && this.signup()}
+              {!!this.state.signedIn && this.logout()}
             </Menu>
           </Box>
       </Header>

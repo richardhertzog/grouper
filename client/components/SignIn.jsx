@@ -4,6 +4,11 @@ import { Redirect } from 'react-router-dom'
 import LoginForm from 'grommet/components/LoginForm'
 import Box from 'grommet/components/Box'
 import Heading from 'grommet/components/Heading'
+import Anchor from 'grommet/components/Anchor'
+
+// Icons
+import LoginIcon from 'grommet/components/icons/base/Login'
+import PreviousIcon from 'grommet/components/icons/base/Previous'
 
 class SignIn extends Component {
   constructor (props) {
@@ -33,17 +38,33 @@ class SignIn extends Component {
     }
 
     return (
-      <Box justify='center'
-        align='center'
-        full
+      <Box justify='center'  
         pad='medium'
-        margin='small'>
-        <Heading
-          align='center'>
-          Sign In
-        </Heading>
-        <LoginForm onSubmit={this.handleSubmit}
-          usernameType='text' />
+        margin='medium'
+      >
+        <Anchor 
+          align='start'
+          path='/'
+          icon={<PreviousIcon />}
+          label='Back' 
+        />
+        <Box 
+          align='center'
+          wrap={true}
+          pad='none'
+          margin='none'
+        >
+          <Heading align='center'> Sign In </Heading>
+          <LoginForm 
+            onSubmit={this.handleSubmit}
+            usernameType='text' 
+          />
+          <Anchor 
+            path='/signup'
+            icon={<LoginIcon />}
+            label="Don't have an account? Click here to Sign-Up!"
+          />
+        </Box>
       </Box>
     )
   }
