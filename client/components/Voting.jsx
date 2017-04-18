@@ -73,7 +73,13 @@ class Voting extends Component {
       return (<Redirect to={`/voting/waiting/` + this.props.name} />)
     }
     return (
-      <Article>
+      <Article
+        pad={{}}
+        margin={{
+          'left': 'large',
+          'right': 'large',
+          'top': 'small',
+          'bottom': 'small'}}>
         <Section
           pad='small'
           justify='center'
@@ -82,7 +88,7 @@ class Voting extends Component {
             'left': 'large',
             'right': 'large',
             'top': 'small',
-            'bottom': 'small'}}>
+            'bottom': 'none'}}>
           <h3>
             {this.props.name}
           </h3>
@@ -114,16 +120,19 @@ class Voting extends Component {
         </Section>
         <Section
           margin={{
-            'top': 'small',
-            'bottom': 'small'}}>
+            'top': 'none',
+            'bottom': 'none'}}
+          justify='center'
+          align='center'
+          textAlign='center'>
           <Paragraph size='small'
             margin='small'>
             {this.props.yelpData.yelpApiContent[this.state.index].price}
-            <div>
+            <h4>
               {this.state.categories.map((cats) => {
                 return cats
               })}
-            </div>
+            </h4>
           </Paragraph>
         </Section>
         <Section>
