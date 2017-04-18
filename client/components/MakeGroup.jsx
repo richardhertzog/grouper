@@ -8,8 +8,6 @@ import Heading from 'grommet/components/Heading'
 import Footer from 'grommet/components/Footer'
 import FormField from 'grommet/components/FormField'
 import Button from 'grommet/components/Button'
-import RadioButton from 'grommet/components/RadioButton'
-import NumberInput from 'grommet/components/NumberInput'
 import Box from 'grommet/components/Box'
 import CafeteriaIcon from 'grommet/components/icons/base/Cafeteria'
 import BarIcon from 'grommet/components/icons/base/Bar'
@@ -107,7 +105,7 @@ class MakeGroup extends Component {
           <Box
             justify='between'
             direction='row'
-            pad={{'between': 'medium',
+            pad={{'between': 'small',
               'vertical': 'small'}}
             margin='small'
             wrap>
