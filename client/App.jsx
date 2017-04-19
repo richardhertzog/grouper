@@ -26,7 +26,7 @@ class App extends Component {
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
           <Route path='/chat' component={Chat} />
-          <route path='/profile' component={Profile} />
+          <Route path='/profile' component={Profile} />
         </Container>
       </Router>
     )
