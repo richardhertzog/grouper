@@ -9,6 +9,7 @@ import SignIn from './components/SignIn.jsx'
 import Chat from './components/Chat.jsx'
 import Container from './components/Container.jsx'
 import Profile from './components/Profile.jsx'
+import About from './components/About/About.jsx'
 
 class App extends Component {
   constructor (props) {
@@ -27,6 +28,7 @@ class App extends Component {
           <Route path='/signup' component={SignUp} />
           <Route path='/chat' component={Chat} />
           <Route path='/profile' component={Profile} />
+          <Route path='/about' component={About} />
         </Container>
       </Router>
     )
