@@ -71,13 +71,17 @@ class Winner extends Component {
               {this.state.winBusiness.categories ? this.state.winBusiness.categories.map((catogs) => {
                 return <div key={catogs.title}>{catogs.title}</div>
               }) : null }
+              <br />
+              <hr />
               <div onClick={this.toggleMap}>
                 {this.state.winBusiness.location ? this.state.winBusiness.location.display_address.map((add) => {
                   return <div key={add}>{add}</div>
                 }) : null}
+                <br />
+                <hr />
               </div>
-              <p className='card-text'>{this.state.winBusiness.display_phone ? this.state.winBusiness.display_phone : 'Number Not Available'}</p>
-              <p className='card-text'>{this.state.winBusiness.price}</p>
+              <p>{this.state.winBusiness.display_phone ? this.state.winBusiness.display_phone : 'Number Not Available'}</p>
+              <p>{this.state.winBusiness.price}</p>
             </Paragraph>
           </Section>
         </Article>
