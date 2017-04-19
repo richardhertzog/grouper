@@ -51,9 +51,10 @@ class Nav extends Component {
   logout () {
     return (
       <Anchor 
-        path='/Logout'
+        path='/'
         icon={<LogoutIcon />}
         label='Log-Out'
+        onClick={this.logsout}
       />
     )
   }
@@ -91,9 +92,9 @@ class Nav extends Component {
           >
             <Menu icon={<MenuIcon />}
               dropAlign={{"right": "right"}}>
-              {!this.state.signedIn && this.signin()}
-              {!this.state.signedIn && this.signup()}
-              {!!this.state.signedIn && this.logout()}
+              {!localStorage.getItem('token') && this.signin()}
+              {!localStorage.getItem('token') && this.signup()}
+              {!!localStorage.getItem('token') && this.logout()}
             </Menu>
           </Box>
       </Header>
