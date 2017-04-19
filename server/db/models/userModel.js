@@ -8,7 +8,9 @@ const userSchema = mongoose.Schema({
     unique: true,
     require: true
   },
-  password: String
+  password: String,
+  groups: Array,
+  businesses: Array
 })
 
 var User = mongoose.model('User', userSchema)
