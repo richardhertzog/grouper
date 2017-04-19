@@ -18,7 +18,7 @@ app.use('/dist', express.static(path.join(__dirname, '../dist')))
 // Routers
 app.use('/api', apiRouter)
 app.use('/auth', authRouter)
-app.user('/user', userRouter)
+app.use('/user', userRouter)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
