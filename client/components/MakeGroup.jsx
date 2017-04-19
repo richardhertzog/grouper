@@ -40,8 +40,26 @@ class MakeGroup extends Component {
 
   handleSubmit (event) {
     if (localStorage.getItem('username')) {
+      let username = localStorage.getItem('username')
+      let group = {
+        groupName: this.state.groupName,
+        location: this.state.location,
+        eventType: this.state.businessType
+      }
 
+      axios.post('/user/addGroup',
+        {
+          username: username,
+          group: group
+        })
+      .then(() => {
+        console.log('updated group')
+      })
+      .catch((err) => {
+        console.error(err)
+      })
     }
+
     if (this.state.groupName.includes(' ')) {
       this.setState({toast: true})
     } else {
