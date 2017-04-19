@@ -33,10 +33,27 @@ class Winner extends Component {
         }
       })
     })
+    .then(() => {
+      if (localStorage.getItem('username')) {
+        let username = localStorage.getItem('username')
+        let business = this.state.winBusiness
+
+        axios.post('/user/addBusiness',
+          {
+            username: username,
+            business: business
+          })
+        .then(() => {
+          console.log('updated business')
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+      }
+    })
   }
 
   toggleMap (event) {
-    // event.preventDefault()
     this.setState({isMapShowing: !this.state.isMapShowing})
   }
 
