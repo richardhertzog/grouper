@@ -12,3 +12,14 @@ exports.addGroup = (req, res) => {
     console.log(doc);
   }
 }
+
+exports.addBusiness = (req, res) => {
+  const { username, business } = req.body
+  User.findOneAndUpdate({ username }, { '$push': { 'businesses': business } }, function(err, doc) {
+    if(err){
+        console.log("Something wrong when updating data!");
+    }
+
+    console.log(doc);
+  }
+}
