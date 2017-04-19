@@ -60,7 +60,8 @@ class Winner extends Component {
           </Section>
           <Image src={this.state.winBusiness.image_url} alt='Business Image' />
           <Section
-            pad='none'
+            pad={{'top': 'none',
+              'bottom': 'none'}}
             margin={{
               'top': 'none',
               'bottom': 'none'}}
