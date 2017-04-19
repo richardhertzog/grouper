@@ -39,6 +39,9 @@ class MakeGroup extends Component {
   }
 
   handleSubmit (event) {
+    if (localStorage.getItem('username')) {
+
+    }
     if (this.state.groupName.includes(' ')) {
       this.setState({toast: true})
     } else {
