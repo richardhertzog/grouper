@@ -88,7 +88,7 @@ class Home extends Component {
               <Card
                 description="Meet Grüper's Amazing team!"
                 label='About Us'
-                link={<Anchor path='#'
+                link={<Anchor path='/about'
                   primary
                   label='Learn More!' />}
               />
