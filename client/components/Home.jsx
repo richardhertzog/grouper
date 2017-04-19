@@ -37,6 +37,7 @@ class Home extends Component {
                 backgroundColorIndex='dark'
                  />
             </Headline>
+
           </Section>
 
           <Section

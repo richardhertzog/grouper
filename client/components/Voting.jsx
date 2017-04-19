@@ -151,7 +151,7 @@ class Voting extends Component {
               type='submit'
               secondary
               id={this.pro}
-              onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(1, this.props.yelpData.yelpApiContent[this.state.index].id) }} />
+              onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(0, this.props.yelpData.yelpApiContent[this.state.index].id) }} />
             <Button
               icon={<LikeIcon size='large' />}
               type='submit'
