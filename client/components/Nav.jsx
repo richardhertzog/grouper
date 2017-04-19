@@ -11,16 +11,14 @@ import Menu from 'grommet/components/Menu'
 import Label from 'grommet/components/Label'
 
 // Icons
-import MenuIcon from 'grommet/components/icons/base/Menu';
+import MenuIcon from 'grommet/components/icons/base/Menu'
 import LoginIcon from 'grommet/components/icons/base/Login'
 import LogoutIcon from 'grommet/components/icons/base/Logout'
+import TrophyIcon from 'grommet/components/icons/base/Trophy'
 
 class Nav extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      signedIn: false
-    }
     this.logsout = this.logsout.bind(this)
   }
 
@@ -30,7 +28,7 @@ class Nav extends Component {
 
   signin () {
     return (
-      <Anchor 
+      <Anchor
         path='/signin'
         icon={<LoginIcon />}
         label='Sign-In'
@@ -40,7 +38,7 @@ class Nav extends Component {
 
   signup () {
     return (
-      <Anchor 
+      <Anchor
         path='/signup'
         icon={<LoginIcon />}
         label='Sign-Up'
@@ -50,7 +48,7 @@ class Nav extends Component {
 
   logout () {
     return (
-      <Anchor 
+      <Anchor
         path='/'
         icon={<LogoutIcon />}
         label='Log-Out'
@@ -60,43 +58,53 @@ class Nav extends Component {
   }
 
   logsout () {
-    this.setState({signedIn: false})
     localStorage.removeItem('token')
     localStorage.removeItem('username')
+  }
+
+  profile () {
+    return (
+      <Anchor
+        path='/profile'
+        icon={<TrophyIcon />}
+        label="Places You've Been"
+      />
+    )
   }
 
   render () {
     return (
       <Header float={false}
-        fixed={true}>
-          <Box 
-            flex={true}
-            align='start'
-            justify='start'
-            margin='medium'
-            pad='small'
-            responsive={true}
+        fixed>
+        <Box
+          flex
+          align='start'
+          justify='start'
+          margin='medium'
+          pad='small'
+          responsive
           >
-            <Anchor 
-              path='/'
-              size='medium'
-              label={<Label>{<Title>Grüper</Title>}</Label>}
+          <Anchor
+            path='/'
+            size='medium'
+            label={<Label>{<Title>Grüper</Title>}</Label>}
             />
-          </Box>
-          <Box 
-            flex={true}
-            align='end'
-            justify='end'
-            margin='medium'
-            responsive={true}
+        </Box>
+        <Box
+          flex
+          align='end'
+          justify='end'
+          margin='medium'
+          responsive
           >
-            <Menu icon={<MenuIcon />}
-              dropAlign={{"right": "right"}}>
-              {!localStorage.getItem('token') && this.signin()}
-              {!localStorage.getItem('token') && this.signup()}
-              {!!localStorage.getItem('token') && this.logout()}
-            </Menu>
-          </Box>
+          <Menu icon={<MenuIcon />}
+            dropAlign={{'right': 'right'}}>
+            {!localStorage.getItem('token') && this.signin()}
+            {!localStorage.getItem('token') && this.signup()}
+            {!!localStorage.getItem('token') && this.logout()}
+            {!!localStorage.getItem('token') && this.profile()}
+          </Menu>
+        </Box>
       </Header>
     )
   }

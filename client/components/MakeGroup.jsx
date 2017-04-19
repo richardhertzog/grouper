@@ -86,7 +86,9 @@ class MakeGroup extends Component {
   }
 
   reduceTime (event) {
-    this.state.endTime > 1 ? this.setState({endTime: this.state.endTime - 1}) : console.log('poop')
+    if (this.state.endTime > 1) {
+      this.setState({endTime: this.state.endTime - 1})
+    }
   }
 
   spaceWarning () {
