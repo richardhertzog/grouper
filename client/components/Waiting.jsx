@@ -66,20 +66,21 @@ class Waiting extends Component {
             direction='row'
             align='center'
             textAlign='left'
-            pad={{'vertical': 'small',
-              'horizontal': 'large'}}
             margin='small'>
-          
-            <CopyToClipboard text={this.props.link}
-              onCopy={() => this.setState({copied: true})}>
-              <button>{this.props.name}</button>
-            </CopyToClipboard>
-            {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
-            <ReactCountdownClock seconds={(this.props.endTime - Date.now() + 1000) / 1000}
-              color='#000'
-              alpha={0.9}
-              size={100}
-              onComplete={this.populateState} />
+            <Section>
+              <CopyToClipboard text={this.props.link}
+                onCopy={() => this.setState({copied: true})}>
+                <button>{this.props.name}</button>
+              </CopyToClipboard>
+              {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
+            </Section>
+            <Section>
+              <ReactCountdownClock seconds={(this.props.endTime - Date.now() + 1000) / 1000}
+                color='#000'
+                alpha={0.9}
+                size={100}
+                onComplete={this.populateState} />
+            </Section>
           </Box>
         </Section>
         {/*<p>Waiting.jsx Waiting for other users etc ......</p>
@@ -88,7 +89,7 @@ class Waiting extends Component {
           margin={{
             'left': 'none',
             'right': 'none',
-            'top': 'medium',
+            'top': 'small',
             'bottom': 'small'}}>
           <Chat />
         </Section>

@@ -8,7 +8,8 @@ class Chat extends Component {
     this.state = {
       text: '',
       messages: [],
-      groupName: localStorage.getItem('groupName')
+      groupName: localStorage.getItem('groupName'),
+      me: this.randomName()
     }
 
     this.pubnub = new PubNub({
@@ -36,6 +37,7 @@ class Chat extends Component {
     this.sendMessage = this.sendMessage.bind(this)
   }
 
+
   sendMessage () {
     this.pubnub.publish({
       channel: [this.state.groupName],
@@ -59,13 +61,19 @@ class Chat extends Component {
     this.setState({text: ''})
   }
 
+  randomName () {
+    var emotions = ['Content', 'Elated', 'Confident', 'Lusty', 'Tender', 'Concerned', 'Hot', 'Interested', 'Confused', 'Overwhelmed', 'Bitter', 'Disillusioned'];
+    var furniture = ['ottoman', 'couch', 'futon', 'recliner', 'Chaise lounge', 'hutch', 'wardrobe', 'nightstand', 'shelf', 'cabinetry', 'hammock', 'daybed'];
+    return emotions[Math.floor(Math.random() * emotions.length)] + '_' + furniture[Math.floor(Math.random() * furniture.length)];
+  }
+
   messages () {
-    return (<ul>{this.state.messages.map((message, idx) => { return <li key={idx}>{message.user}: {message.text}</li> })}</ul>)
+    return (<ul>{this.state.messages.map((message, idx) => { return <li key={idx}>{this.state.me}: {message.text}</li> })}</ul>)
   }
 
   render () {
     return (
-      <div>
+      <div className='chatBox'>
         {this.messages()}
         <form onSubmit={this.handleSubmit}>
           <fieldset>
@@ -74,7 +82,8 @@ class Chat extends Component {
           </fieldset>
           <button action='submit'>Send!</button>
         </form>
-      </div>)
+      </div>
+    )
   }
 }
 
