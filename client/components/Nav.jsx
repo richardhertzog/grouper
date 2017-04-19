@@ -19,9 +19,6 @@ import TrophyIcon from 'grommet/components/icons/base/Trophy'
 class Nav extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      signedIn: false
-    }
     this.logsout = this.logsout.bind(this)
   }
 
@@ -61,7 +58,6 @@ class Nav extends Component {
   }
 
   logsout () {
-    this.setState({signedIn: false})
     localStorage.removeItem('token')
     localStorage.removeItem('username')
   }
@@ -106,7 +102,7 @@ class Nav extends Component {
             {!localStorage.getItem('token') && this.signin()}
             {!localStorage.getItem('token') && this.signup()}
             {!!localStorage.getItem('token') && this.logout()}
-            {!!this.state.signedIn && this.profile()}
+            {!!localStorage.getItem('token') && this.profile()}
           </Menu>
         </Box>
       </Header>
