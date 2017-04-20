@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 
+// app components
+import ProfileList from './ProfileList.jsx'
+
 // grommet components
 import Box from 'grommet/components/Box'
 import Anchor from 'grommet/components/Anchor'
-import Heading from 'grommet/components/Heading'
 
 // icons
 import PreviousIcon from 'grommet/components/icons/base/Previous'
@@ -23,13 +25,11 @@ class About extends Component {
           path='/'
           icon={<PreviousIcon />}
           label='Back' />
-          <Box 
-            align='center'
+          <Box align='center'
             wrap={true}
             pad='none'
-            margin='none'
-          >
-            <Heading align='center'> About Us </Heading>
+            margin='none'>
+            <ProfileList />
         </Box>
       </Box>
     )
