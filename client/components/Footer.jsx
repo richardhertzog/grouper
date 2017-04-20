@@ -34,13 +34,13 @@ class Footer extends Component {
           <Menu direction='row'
             size='small'
             dropAlign={{"right": "right"}}>
-            <Anchor href='#'>
-              Support
+            <Anchor href='https://github.com/commandQ/grouper'>
+              Github
             </Anchor>
             <Anchor href='#'>
               Contact
             </Anchor>
-            <Anchor href='#'>
+            <Anchor path='/about'>
               About
             </Anchor>
           </Menu>
