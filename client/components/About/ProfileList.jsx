@@ -10,7 +10,7 @@ import Section from 'grommet/components/Section'
 
 const team = [
     { 
-      name: 'Aidan', 
+      name: 'Aidan Bane', 
       key:'0',
       profilePhoto: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAelAAAAJGU4ZmYxN2M4LWQ2NmUtNDYzMy04MThlLWFhYzZkNTU2MDc1YQ.jpg',
       description: 'Aidan is Awesome!',
@@ -22,24 +22,24 @@ const team = [
       key:'1',
       profilePhoto: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAQgAAAAJDU3MWRjNGQ1LTVmYmItNDg1MS1hYjNkLTIxOWZkMzA0NjM0Yg.jpg',
       description: 'Anirvan is Awesome!',
-      githubUrl: '',
-      linkedinUrl: ''
+      githubUrl: 'https://github.com/anirvan90',
+      linkedinUrl: 'https://www.linkedin.com/in/anirvanawatramani/'
     }, 
     { 
-      name: 'Erik', 
+      name: 'Erik Thompson', 
       key:'2',
-      profilePhoto: 'https://c1.staticflickr.com/3/2355/2104039823_b47da37172_b.jpg',
+      profilePhoto: 'https://avatars0.githubusercontent.com/u/20330256?v=3&s=400',
       description: 'Erik is Bread!',
-      githubUrl: '',
-      linkedinUrl: ''
+      githubUrl: 'https://github.com/ErikJamesThompson',
+      linkedinUrl: 'https://www.linkedin.com/in/erikjamesthompson/'
     }, 
     { 
-      name: 'Richard', 
+      name: 'Richard Hertzog', 
       key:'3',
       profilePhoto: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAnOAAAAJGJhMGExODEwLTYzM2EtNDgzNi1iMDYyLTkzMDA5MjMxYzg4Yg.jpg',
       description: 'Richard is Awesome!',
-      githubUrl: '',
-      linkedinUrl: ''
+      githubUrl: 'https://github.com/richardhertzog',
+      linkedinUrl: 'https://www.linkedin.com/in/richard-hertzog/'
     },
   ]
   
