@@ -23,3 +23,11 @@ exports.addBusiness = (req, res) => {
     console.log(doc)
   })
 }
+
+exports.showGroups = () => {
+
+}
+
+exports.showBusinesses = () => {
+
+}
