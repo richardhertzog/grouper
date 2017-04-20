@@ -1,5 +1,4 @@
 const path = require('path')
-
 const User = require(path.join(__dirname, '../db/models/userModel.js'))
 
 exports.addGroup = (req, res) => {
@@ -24,10 +23,20 @@ exports.addBusiness = (req, res) => {
   })
 }
 
-exports.showGroups = () => {
-
+exports.showGroups = (req, res) => {
+  console.log(req.body, 'in groups')
+  const { username } = req.body
+  User.findOne({ username }, function (err, doc) {
+    if (err) { console.error(err) }
+    return doc
+  })
 }
 
-exports.showBusinesses = () => {
-
+exports.showBusinesses = (req, res) => {
+  console.log(req.body, 'in businesses')
+  const { username } = req.body
+  User.findOne({ username }, function (err, doc) {
+    if (err) { console.error(err) }
+    return doc
+  })
 }
