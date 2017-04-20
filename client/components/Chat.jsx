@@ -16,7 +16,7 @@ class Chat extends Component {
       subscribeKey: config.subscribeKey,
       publishKey: config.publishKey,
       ssl: true,
-      uuid: String(Math.random() * 1000)
+      uuid: this.state.me
     })
 
     this.pubnub.subscribe({
@@ -27,7 +27,7 @@ class Chat extends Component {
     this.pubnub.addListener({
       message: (e) => {
         this.setState({
-          messages: [...this.state.messages, {text: e.message.text, user: this.pubnub.getUUID()}]
+          messages: [...this.state.messages, {text: e.message.text, user: e.message.user}]
         })
       }
     })
@@ -42,7 +42,7 @@ class Chat extends Component {
     this.pubnub.publish({
       channel: [this.state.groupName],
       message: {
-        user: this.state.user,
+        user: this.state.me,
         text: this.state.text
       }
     })
@@ -68,7 +68,7 @@ class Chat extends Component {
   }
 
   messages () {
-    return (<ul>{this.state.messages.map((message, idx) => { return <li key={idx}>{this.state.me}: {message.text}</li> })}</ul>)
+    return (<ul>{this.state.messages.map((message, idx) => { return <li key={idx}>{message.user}: {message.text}</li> })}</ul>)
   }
 
   render () {
