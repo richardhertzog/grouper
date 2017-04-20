@@ -9,7 +9,8 @@
     "build:watch": "webpack --watch",
     "start_dev": "nodemon ./server/index.js",
     "back_test": "mocha server/spec.js",
-    "front_test": "jest client"
+    "front_test": "jest client",
+    "test": "npm run back_test ; npm run front_test"
   },
   "keywords": [],
   "license": "ISC",

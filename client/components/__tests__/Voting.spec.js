@@ -7,14 +7,6 @@ import App from '../../App'
 import Jest from 'jest'
 import Waiting from '../Waiting'
 
-// test('Home should render the Hero background image', () => {
-//   const Home = shallow(
-//     <Home />
-//   )
-
-//   expect()
-// })
-
 describe('App', () => {
   let app;
 
@@ -27,7 +19,7 @@ describe('App', () => {
   })
 
   it('App contains the correct amount of Routes to components', () => {
-    expect(app.find('Route').length).toEqual(6)
+    expect(app.find('Route').length).toEqual(8)
   })
 })
 
@@ -46,19 +38,3 @@ describe('Home', () => {
     expect(waiting.find('ReactCountdownClock').length).toEqual(1)
   })
 })
-
-// describe('Home', () => {
-//   let home;
-
-//   beforeAll(() => {
-//     home = shallow(<Home />);
-//   })
-
-//   it('App contains a container around components', () => {
-//     expect(home.find('Container').length).toEqual(1)
-//   })
-
-//   it('App contains the correct amount of Routes to components', () => {
-//     expect(home.find('Route').length).toEqual(6)
-//   })
-// })
