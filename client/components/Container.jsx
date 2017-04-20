@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import App from 'grommet/components/App'
 import Nav from './Nav.jsx'
+import Footer from './Footer.jsx'
 
 class Container extends Component {
   render () {
@@ -8,6 +9,7 @@ class Container extends Component {
       <App>
         <Nav />
         {this.props.children}
+        <Footer />
       </App>
     )
   }
