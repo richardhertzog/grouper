@@ -15,15 +15,18 @@ class Profile extends Component {
     .then(axios.spread(function (groups, businesses) {
       this.setState({ groups: groups, businesses: businesses })
     }))
+    .then((res) => { console.log('works?', res) })
     console.log('this.state in profile before mount', this.state)
   }
 
   getGroups () {
-    return axios.get('/user/showGroups')
+    let username = localStorage.getItem('username')
+    return axios.post('/user/showGroups', { username })
   }
 
   getBusinesses () {
-    return axios.get('/user/showBusinesses')
+    let username = localStorage.getItem('username')
+    return axios.post('/user/showBusinesses', { username })
   }
 
   render () {

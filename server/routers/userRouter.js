@@ -4,7 +4,7 @@ const userController = require(path.join(__dirname, '../controllers/userControll
 
 router.post('/addGroup', userController.addGroup)
 router.post('/addBusiness', userController.addBusiness)
-router.get('/showGroups', userController.showGroups)
-router.get('/showBusinesses', userController.showBusinesses)
+router.post('/showGroups', userController.showGroups)
+router.post('/showBusinesses', userController.showBusinesses)
 
 module.exports = router
