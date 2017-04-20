@@ -4,6 +4,7 @@ import axios from 'axios'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import ReactCountdownClock from 'react-countdown-clock'
 import Chat from './Chat.jsx'
+import Timer from './Timer.jsx'
 
 import Box from 'grommet/components/Box'
 import Section from 'grommet/components/Section'
@@ -75,11 +76,12 @@ class Waiting extends Component {
               {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
             </Section>
             <Section>
-              <ReactCountdownClock seconds={(this.props.endTime - Date.now() + 1000) / 1000}
+              {/*<ReactCountdownClock seconds={(this.props.endTime - Date.now() + 1000) / 1000}
                 color='#000'
                 alpha={0.9}
                 size={100}
-                onComplete={this.populateState} />
+                onComplete={this.populateState} />*/}
+                <Timer time={(this.props.endTime - Date.now() + 1000) / 1000}/>
             </Section>
           </Box>
         </Section>
