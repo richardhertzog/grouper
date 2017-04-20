@@ -75,14 +75,14 @@ class Nav extends Component {
   render () {
     return (
       <Header float={false}
-        fixed>
+        fixed={true}>
         <Box
-          flex
+          flex={true}
           align='start'
           justify='start'
           margin='medium'
           pad='small'
-          responsive
+          responsive={true}
           >
           <Anchor
             path='/'
@@ -91,11 +91,11 @@ class Nav extends Component {
             />
         </Box>
         <Box
-          flex
+          flex={true}
           align='end'
           justify='end'
           margin='medium'
-          responsive
+          responsive={true}
           >
           <Menu icon={<MenuIcon />}
             dropAlign={{'right': 'right'}}>
