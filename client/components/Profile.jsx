@@ -8,15 +8,20 @@ class Profile extends Component {
       groups: [],
       businesses: []
     }
+
+    this.updateInfo = this.updateInfo.bind(this)
+    this.updateInfo()
   }
 
-  componentWillMount () {
+  updateInfo () {
     axios.all([this.getGroups(), this.getBusinesses()])
-    .then(axios.spread(function (groups, businesses) {
-      this.setState({ groups: groups, businesses: businesses })
+    .then(axios.spread((groups, businesses) => {
+      console.log(businesses)
+      this.setState({
+        groups: groups.data.groups,
+        businesses: businesses.data.businesses
+      })
     }))
-    .then((res) => { console.log('works?', res) })
-    console.log('this.state in profile before mount', this.state)
   }
 
   getGroups () {
@@ -33,10 +38,10 @@ class Profile extends Component {
     return (
       <div>
         <div>
-          {this.state.groups}
+          {this.state.groups.map((group, idx) => (<div key={idx}>{group.location}</div>))}
         </div>
         <div>
-          {this.state.businesses}
+          {this.state.businesses.map((business, idx) => (<div key={idx}>{business.name}</div>))}
         </div>
       </div>
     )
