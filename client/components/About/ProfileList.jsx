@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import Profile from './Profile.jsx'
 
 // grommet components
-import Article from 'grommet/components/Article'
+import Columns from 'grommet/components/Columns'
 import Headline from 'grommet/components/Headline'
 import Section from 'grommet/components/Section'
 
@@ -24,16 +24,11 @@ class ProfileList extends Component {
 
   render () {
     return (
-      <Article>
-        <Section pad='large'
-          justify='center'
-          align='center'>
-          <Headline margin='none'>
-            About Us
-          </Headline>
-        </Section>
+      <Columns masonry={false}
+        size='small'
+        justify='betcween'>
         {TeamMembers}
-      </Article>
+      </Columns>
     )
   }
 }
