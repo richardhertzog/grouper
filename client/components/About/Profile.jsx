@@ -6,7 +6,7 @@ import Headline from 'grommet/components/Headline'
 import Section from 'grommet/components/Section'
 import Card from 'grommet/components/Card'
 import Box from 'grommet/components/Box'
-import Anchor from 'grommet/csomponents/Anchor'
+import Anchor from 'grommet/components/Anchor'
 
 class Profile extends Component {
   constructor(props) {

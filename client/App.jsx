@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { HashRouter as Router, Route } from 'react-router-dom'
 
+import Container from './components/Container.jsx'
 import Home from './components/Home.jsx'
 import MakeGroup from './components/MakeGroup.jsx'
 import RootVoting from './components/RootVoting.jsx'
 import SignUp from './components/SignUp.jsx'
 import SignIn from './components/SignIn.jsx'
 import Chat from './components/Chat.jsx'
-import Container from './components/Container.jsx'
 import Profile from './components/Profile.jsx'
 import About from './components/About/About.jsx'
 
