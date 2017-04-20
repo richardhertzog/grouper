@@ -16,7 +16,8 @@ class Profile extends Component {
   updateInfo () {
     axios.all([this.getGroups(), this.getBusinesses()])
     .then(axios.spread((groups, businesses) => {
-      console.log(businesses)
+      console.log('businesses', businesses.data.businesses)
+      console.log('groups', groups.data.groups)
       this.setState({
         groups: groups.data.groups,
         businesses: businesses.data.businesses
