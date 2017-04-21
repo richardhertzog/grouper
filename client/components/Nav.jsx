@@ -21,7 +21,7 @@ class Nav extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      mounted: false
+      // mounted: false
     }
     this.logsout = this.logsout.bind(this)
   }
@@ -30,9 +30,9 @@ class Nav extends Component {
     checkAuth().then(signedIn => this.setState({signedIn}))
   }
 
-  componentDidMount() {
-    this.setState({'mounted': true})
-  }
+  // componentDidMount() {
+  //   this.setState({'mounted': true})
+  // }
 
   signin () {
     return (
@@ -99,11 +99,11 @@ class Nav extends Component {
             />
             {/*{console.log(this.state.mounted, localStorage.getItem(localStorage.getItem('groupName')), this.state.mounted && localStorage.getItem(localStorage.getItem('groupName')))}
             {console.log(this.state.mounted)}*/}
-        {this.state.mounted && localStorage.getItem(localStorage.getItem('groupName')) && 
+        {/*{this.state.mounted && localStorage.getItem(localStorage.getItem('groupName')) && 
           <Timer 
           time={((JSON.parse(localStorage.getItem(localStorage.getItem('groupName')))).endTime - Date.now() + 1000) / 1000}
           />
-        }
+        }*/}
         </Box>
         <Box
           flex={true}
