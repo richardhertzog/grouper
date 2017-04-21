@@ -23,6 +23,8 @@ class Profile extends Component {
         pad='medium'
         colorIndex='light-2'>
         <Card label={this.props.name}
+          contentPad='large'
+          textSize='small'
           thumbnail={<Image src={this.props.profilePhoto} fit='cover' full />}
           description={this.props.description} />
         <Box direction='row'

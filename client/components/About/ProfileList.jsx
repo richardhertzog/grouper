@@ -13,7 +13,7 @@ const team = [
     name: 'Aidan Bane',
     key: '0',
     profilePhoto: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAelAAAAJGU4ZmYxN2M4LWQ2NmUtNDYzMy04MThlLWFhYzZkNTU2MDc1YQ.jpg',
-    description: 'After his 15th severe concussion from underground fights in Thailand he retired to run an illegal gambling ring in Columbia. Fast forward being extradited to Ecuador and a long series of trials, he now resides in San Francisco where he makes fun, responsive web apps with a small team of developers!',
+    description: 'After his 15th severe concussion from underground fights in Thailand he retired to run an illegal gambling ring in Columbia. Fast forward being extradited to Ecuador and a lengthy legal battle on UNFOUNDED accusations, he now resides in San Francisco where he makes fun, responsive web apps with a small team of developers!',
     githubUrl: 'https://github.com/BlindBane',
     linkedinUrl: 'https://www.linkedin.com/in/aidanbane/'
   },
@@ -21,7 +21,7 @@ const team = [
     name: 'Anirvan',
     key: '1',
     profilePhoto: 'https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAQgAAAAJDU3MWRjNGQ1LTVmYmItNDg1MS1hYjNkLTIxOWZkMzA0NjM0Yg.jpg',
-    description: 'At the age of 8 he won his first bird calling competition, specializing in warblers. After 14 years of riding his celebrity status he decided to join a bootcamp called Hack Reactor and start a new exciting life as a software engineer!',
+    description: 'At the age of 8 he won his first bird calling competition, specializing in warblers. After 14 years of riding his celebrity status and a Guiness World Record in most drugs ingested by a pre-teen, he decided to join a bootcamp called Hack Reactor and start a new exciting life as a software engineer!',
     githubUrl: 'https://github.com/anirvan90',
     linkedinUrl: 'https://www.linkedin.com/in/anirvanawatramani/'
   },
@@ -29,7 +29,7 @@ const team = [
     name: 'Erik Thompson',
     key: '2',
     profilePhoto: 'https://avatars0.githubusercontent.com/u/20330256?v=3&s=400',
-    description: 'A Hypotenuse\nIs on the opposite side\nOf the right angle',
+    description: 'A Hypotenuse<br>Is on the opposite side<br>Of the right angle',
     githubUrl: 'https://github.com/ErikJamesThompson',
     linkedinUrl: 'https://www.linkedin.com/in/erikjamesthompson/'
   },

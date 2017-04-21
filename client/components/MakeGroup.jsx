@@ -67,7 +67,8 @@ class MakeGroup extends Component {
       let time = this.state.endTime
       time = time * 60 * 1000 + Date.now()
       axios.post('/api/groups',
-        { groupName: this.state.groupName,
+        {
+          groupName: this.state.groupName,
           location: this.state.location,
           eventType: this.state.businessType,
           endTime: time
