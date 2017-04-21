@@ -25,13 +25,9 @@ class Winner extends Component {
   }
 
   populateState () {
-    axios.get('/api/groups/' + this.props.name)
+    axios.get('/api/groups/' + this.props.name + '/winner')
     .then((res) => {
-      res.data.yelpApiContent.filter((biz) => {
-        if (biz.id === res.data.winner) {
-          this.setState({winBusiness: biz})
-        }
-      })
+      this.setState({winBusiness: res.data.winBusiness})
     })
     .then(() => {
       if (localStorage.getItem('username')) {
