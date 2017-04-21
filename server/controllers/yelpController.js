@@ -6,7 +6,9 @@ module.exports = (req, res) => {
 
   const searchRequest = {
     term: req.body.eventType,
-    location: req.body.location
+    location: req.body.location,
+    limit: 10,
+    open_now: true
   }
 
   return yelp.accessToken(clientId, clientSecret)
