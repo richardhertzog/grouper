@@ -98,8 +98,8 @@ class Nav extends Component {
             label={<Label>{<Title>Grüper</Title>}</Label>}
             />
             {/*{console.log(this.state.mounted, localStorage.getItem(localStorage.getItem('groupName')), this.state.mounted && localStorage.getItem(localStorage.getItem('groupName')))}
-            {console.log(this.state.mounted)}
-        {this.state.mounted && localStorage.getItem(localStorage.getItem('groupName')) && 
+            {console.log(this.state.mounted)}*/}
+        {/*{this.state.mounted && localStorage.getItem(localStorage.getItem('groupName')) && 
           <Timer 
           time={((JSON.parse(localStorage.getItem(localStorage.getItem('groupName')))).endTime - Date.now() + 1000) / 1000}
           />
