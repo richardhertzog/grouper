@@ -67,15 +67,21 @@ function addVote (req, res) {
   let groupName = req.params.groupName
   Group.findOne({ groupName: groupName })
   .then((group) => {
-    group.votes.push({
-      yelpApiId: req.body.yelpApiId,
-      vote: req.body.vote
+    req.body.key.map((vote) => {
+      group.votes.push({
+        yelpApiId: vote.yelpApiId,
+        vote: vote.vote
+      })
     })
     return group
-  }).then((group) => {
+  })
+  .then((group) => {
     group.save()
     .then(() => {
       res.status(201).send('Votes saved to db')
+    }).catch((err) => {
+      console.error('Error Saving to DB')
+      res.status(501).send(err)
     })
   })
   .catch((err) => {

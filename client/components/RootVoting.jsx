@@ -26,6 +26,7 @@ class componentName extends Component {
     if (localStorage.getItem('groupName') !== groupName) {
       localStorage.setItem('voted', false)
       localStorage.removeItem(localStorage.getItem('groupName'))
+      localStorage.removeItem('votes')
       localStorage.setItem('groupName', groupName)
       this.setState({ groupName: groupName })
       axios.get('/api/groups/' + groupName)

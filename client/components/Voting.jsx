@@ -26,10 +26,23 @@ class Voting extends Component {
   }
 
   nextBusinessStateChange (vote, id) {
+    let stringifiedVote = {'yelpApiId': id, 'vote': vote}
+    if (localStorage.getItem('votes') === null) {
+      let arr = []
+      arr.push(stringifiedVote)
+      localStorage.setItem('votes', JSON.stringify(arr))
+    } else {
+      let temp = JSON.parse(localStorage.getItem('votes'))
+      temp.push(stringifiedVote)
+      localStorage.setItem('votes', JSON.stringify(temp))
+      this.createCategories()
+    }
     this.setState((prevState, props) => ({
       index: prevState.index + 1
     }))
-    this.sendVotesServer(vote, id)
+    if ((JSON.parse(localStorage.getItem('votes'))).length === this.props.yelpData.yelpApiContent.length) {
+      this.sendVotesServer()
+    }
     this.checkClientVotingStatus()
   }
 
@@ -39,14 +52,13 @@ class Voting extends Component {
     }
   }
 
-  sendVotesServer (vote, id) {
-    axios.post('/api/groups/' + this.props.name + '/votes', {
-      yelpApiId: id,
-      vote: vote
-    })
+  sendVotesServer () {
+    let sendArr = JSON.parse(localStorage.getItem('votes'))
+    axios.post('/api/groups/' + this.props.name + '/votes', {key: sendArr})
     .then((response) => {
       this.checkClientVotingStatus()
-      this.createCategories()
+    }).catch((err) => {
+      console.error('ErrorSendingVotes', err)
     })
   }
 
@@ -63,6 +75,7 @@ class Voting extends Component {
     }
     this.setState({categories: catogs})
   }
+
   componentDidMount () {
     this.createCategories()
   }
@@ -159,9 +172,6 @@ class Voting extends Component {
               onClick={(event) => { event.preventDefault(); this.nextBusinessStateChange(1, this.props.yelpData.yelpApiContent[this.state.index].id) }} />
           </Box>
         </Section>
-        {/* // heading=
-        // description={this.props.yelpData.yelpApiContent[this.state.index].price}
-        // flex> */}
       </Article>
     )
   }
