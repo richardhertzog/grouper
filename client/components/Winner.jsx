@@ -8,6 +8,7 @@ import Section from 'grommet/components/Section'
 import Image from 'grommet/components/Image'
 import Paragraph from 'grommet/components/Paragraph'
 import Quote from 'grommet/components/Quote'
+import Carousel from 'grommet/components/Carousel'
 
 class Winner extends Component {
   constructor (props) {
@@ -71,7 +72,22 @@ class Winner extends Component {
           <Section>
             <h3>{this.state.winBusiness.name}</h3>
           </Section>
-          <Image src={this.state.winBusiness.image_url} alt='Business Image' />
+          <Section>
+            <Carousel autoplay={false}>
+              {this.state.winBusiness.photos ? this.state.winBusiness.photos.map((photo, index) => {
+                return <img src={photo} key={index} />
+              }) : null }
+              {/*<Image src={this.state.winBusiness.photos[0]} alt='Business Image' />
+              <Image src={this.state.winBusiness.photos[1]} />
+              <Image src={this.state.winBusiness.photos[2]} />*/}
+              <Box pad='large'
+                colorIndex='neutral-3'>
+                <Box pad='medium'
+                  colorIndex='neutral-2'>
+                </Box>
+              </Box>
+            </Carousel>
+          </Section>
           <Section
             pad={{'top': 'none',
               'bottom': 'none'}}
