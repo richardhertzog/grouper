@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 
 // grommet components
-import Article from 'grommet/components/Article'
-import Headline from 'grommet/components/Headline'
-import Section from 'grommet/components/Section'
+
 import Card from 'grommet/components/Card'
 import Box from 'grommet/components/Box'
-import Anchor from 'grommet/components/Anchor'
 import Image from 'grommet/components/Image'
 import SocialLinkedinIcon from 'grommet/components/icons/base/SocialLinkedin'
 import SocialGithubIcon from 'grommet/components/icons/base/SocialGithub'
