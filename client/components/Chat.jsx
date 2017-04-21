@@ -37,7 +37,6 @@ class Chat extends Component {
     this.sendMessage = this.sendMessage.bind(this)
   }
 
-
   sendMessage () {
     this.pubnub.publish({
       channel: [this.state.groupName],
@@ -62,9 +61,9 @@ class Chat extends Component {
   }
 
   randomName () {
-    var emotions = ['Content', 'Elated', 'Confident', 'Lusty', 'Tender', 'Concerned', 'Hot', 'Interested', 'Confused', 'Overwhelmed', 'Bitter', 'Disillusioned'];
-    var furniture = ['ottoman', 'couch', 'futon', 'recliner', 'Chaise lounge', 'hutch', 'wardrobe', 'nightstand', 'shelf', 'cabinetry', 'hammock', 'daybed'];
-    return emotions[Math.floor(Math.random() * emotions.length)] + '_' + furniture[Math.floor(Math.random() * furniture.length)];
+    var emotions = ['Content', 'Elated', 'Confident', 'Tender', 'Concerned', 'Hot', 'Interested', 'Confused', 'Overwhelmed', 'Bitter', 'Disillusioned', 'Frisky', 'Yearning', 'Piercing', 'Primal', 'Repressed', 'Sentimental', 'Virulent']
+    var furniture = ['ottoman', 'couch', 'futon', 'recliner', 'Chaise lounge', 'hutch', 'wardrobe', 'nightstand', 'shelf', 'davenport', 'hammock', 'daybed', 'settee', 'armoire', 'murphy bed', 'lawn chair', 'loveseat', 'crib', 'sofa', 'chesterfield']
+    return emotions[Math.floor(Math.random() * emotions.length)] + '_' + furniture[Math.floor(Math.random() * furniture.length)]
   }
 
   messages () {
