@@ -54,6 +54,25 @@ class Winner extends Component {
     this.setState({isMapShowing: !this.state.isMapShowing})
   }
 
+  carouselShow () {
+    const imgs = this.state.winBusiness.photos.map((photo, index) => {
+      return (<Box basis='full'
+              justify='center'
+              flex='shrink'
+              align='center'
+              pad='small'
+              colorIndex='light-2'>
+      <Image key={index} src={photo} />
+      </Box>)
+    })
+
+    return (
+      <Carousel>
+        {imgs}
+      </Carousel>
+    )
+  }
+
   render () {
     if (this.state.isMapShowing === false) {
       return (
@@ -73,20 +92,7 @@ class Winner extends Component {
             <h3>{this.state.winBusiness.name}</h3>
           </Section>
           <Section>
-            <Carousel autoplay={false}>
-              {this.state.winBusiness.photos ? this.state.winBusiness.photos.map((photo, index) => {
-                return <img src={photo} key={index} />
-              }) : null }
-              {/*<Image src={this.state.winBusiness.photos[0]} alt='Business Image' />
-              <Image src={this.state.winBusiness.photos[1]} />
-              <Image src={this.state.winBusiness.photos[2]} />*/}
-              <Box pad='large'
-                colorIndex='neutral-3'>
-                <Box pad='medium'
-                  colorIndex='neutral-2'>
-                </Box>
-              </Box>
-            </Carousel>
+              { this.state.winBusiness.photos &&  this.carouselShow() }
           </Section>
           <Section
             pad={{'top': 'none',
