@@ -85,7 +85,7 @@ class Winner extends Component {
             justify='center'
             align='center'
             textAlign='center'>
-            <Paragraph>
+            <Section>
               {this.state.winBusiness.categories ? this.state.winBusiness.categories.map((catogs) => {
                 return <div key={catogs.title}>{catogs.title}</div>
               }) : null }
@@ -100,7 +100,7 @@ class Winner extends Component {
               </div>
               <p>{this.state.winBusiness.display_phone ? this.state.winBusiness.display_phone : 'Number Not Available'}</p>
               <p>{this.state.winBusiness.price}</p>
-            </Paragraph>
+            </Section>
           </Section>
         </Article>
       )

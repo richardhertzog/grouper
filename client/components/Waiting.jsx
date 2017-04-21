@@ -76,11 +76,6 @@ class Waiting extends Component {
               {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
             </Section>
             <Section>
-              {/*<ReactCountdownClock seconds={(this.props.endTime - Date.now() + 1000) / 1000}
-                color='#000'
-                alpha={0.9}
-                size={100}
-                onComplete={this.populateState} />*/}
                 <Timer time={(this.props.endTime - Date.now() + 1000) / 1000}/>
             </Section>
           </Box>
