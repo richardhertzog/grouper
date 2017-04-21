@@ -5,6 +5,7 @@ import Footer from './Footer.jsx'
 
 class Container extends Component {
   render () {
+    console.log(this.props.children)
     return (
       <App>
         <Nav />

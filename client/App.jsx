@@ -14,16 +14,26 @@ import About from './components/About/About.jsx'
 class App extends Component {
   constructor (props) {
     super(props)
-    this.state = {}
+    this.state = {
+      yelpItems: {}
+    }
+
+    this.updateState = this.updateState.bind(this);
+  }
+
+  updateState() {
+    this.setState({})
   }
 
   render () {
     return (
       <Router>
-        <Container>
+        <Container someOtherProp={} >
           <Route exact path='/' component={Home} />
           <Route path='/makeGroup' component={MakeGroup} />
-          <Route path='/voting' component={RootVoting} />
+          <Route path='/voting' render={() => {
+            return <RootVoting someProp={} />
+          }} />
           <Route path='/signin' component={SignIn} />
           <Route path='/signup' component={SignUp} />
           <Route path='/chat' component={Chat} />
