@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect, Link } from 'react-router-dom'
 import checkAuth from './service/checkAuth.js'
+import Timer from './Timer.jsx'
 
 // grommet
 import Box from 'grommet/components/Box'
@@ -19,12 +20,19 @@ import TrophyIcon from 'grommet/components/icons/base/Trophy'
 class Nav extends Component {
   constructor (props) {
     super(props)
+    this.state = {
+      // mounted: false
+    }
     this.logsout = this.logsout.bind(this)
   }
 
   componentWillMount () {
     checkAuth().then(signedIn => this.setState({signedIn}))
   }
+
+  // componentDidMount() {
+  //   this.setState({'mounted': true})
+  // }
 
   signin () {
     return (
@@ -89,6 +97,13 @@ class Nav extends Component {
             size='medium'
             label={<Label>{<Title>Grüper</Title>}</Label>}
             />
+            {/*{console.log(this.state.mounted, localStorage.getItem(localStorage.getItem('groupName')), this.state.mounted && localStorage.getItem(localStorage.getItem('groupName')))}
+            {console.log(this.state.mounted)}
+        {this.state.mounted && localStorage.getItem(localStorage.getItem('groupName')) && 
+          <Timer 
+          time={((JSON.parse(localStorage.getItem(localStorage.getItem('groupName')))).endTime - Date.now() + 1000) / 1000}
+          />
+        }*/}
         </Box>
         <Box
           flex={true}
