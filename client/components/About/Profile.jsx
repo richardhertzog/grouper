@@ -8,9 +8,12 @@ import Card from 'grommet/components/Card'
 import Box from 'grommet/components/Box'
 import Anchor from 'grommet/components/Anchor'
 import Image from 'grommet/components/Image'
+import SocialLinkedinIcon from 'grommet/components/icons/base/SocialLinkedin'
+import SocialGithubIcon from 'grommet/components/icons/base/SocialGithub'
+import Button from 'grommet/components/Button'
 
 class Profile extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
@@ -25,16 +28,14 @@ class Profile extends Component {
         <Card label={this.props.name}
           thumbnail={<Image src={this.props.profilePhoto} fit='cover' full />}
           description={this.props.description} />
-          <Box>
-            <Anchor href={this.props.githubUrl}
-            primary
-            label='GitHub!' />
-          </Box>
-          <Box>
-            <Anchor href={this.props.linkedinUrl}
-            primary
-            label='linked In!' />
-          </Box>
+        <Box direction='row'
+          wrap>
+          <Button icon={<SocialGithubIcon />}
+            href={this.props.githubUrl} />
+
+          <Button icon={<SocialLinkedinIcon />}
+            href={this.props.linkedinUrl} />
+        </Box>
       </Box>
     )
   }
