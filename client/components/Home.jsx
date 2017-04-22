@@ -31,8 +31,7 @@ class Home extends Component {
               <Hero background={<Image src='img/hero.jpg'
                 fit='cover'
                 full />}
-                backgroundColorIndex='dark'
-                 />
+                backgroundColorIndex='dark' />
             </Headline>
 
           </Section>

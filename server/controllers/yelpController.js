@@ -29,7 +29,7 @@ function getAll (req, res) {
       }
     })
     .catch(err => {
-    console.error(err)
+      console.error(err)
     })
 }
 
@@ -41,14 +41,13 @@ function getWinner (req, res) {
 
   return yelp.accessToken(clientId, clientSecret)
     .then(response => {
-    const client = yelp.client(response.jsonBody.access_token)
-    return client.business(searchRequest.id)
+      const client = yelp.client(response.jsonBody.access_token)
+      return client.business(searchRequest.id)
       .then(response => {
-        console.log(response)
         return response.jsonBody
       })
       .catch(err => {
-      console.error(err)
+        console.error(err)
       })
   })
 }
