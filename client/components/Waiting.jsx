@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import CopyToClipboard from 'react-copy-to-clipboard'
-import ReactCountdownClock from 'react-countdown-clock'
 import Chat from './Chat.jsx'
 import Timer from './Timer.jsx'
 
@@ -63,7 +62,7 @@ class Waiting extends Component {
     return (
       <div>
         <Section>
-          <Box 
+          <Box
             direction='row'
             align='center'
             textAlign='left'
@@ -76,12 +75,10 @@ class Waiting extends Component {
               {this.state.copied ? <span style={{color: 'red'}}>Copied.</span> : null}
             </Section>
             <Section>
-                <Timer time={(this.props.endTime - Date.now() + 1000) / 1000}/>
+              <Timer time={(this.props.endTime - Date.now() + 1000) / 1000} />
             </Section>
           </Box>
         </Section>
-        {/*<p>Waiting.jsx Waiting for other users etc ......</p>
-        {this.props.name}*/}
         <Section pad='small'
           margin={{
             'left': 'none',

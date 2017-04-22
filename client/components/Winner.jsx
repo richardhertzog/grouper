@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-import Map from './Map.jsx'
 import axios from 'axios'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+
+import Map from './Map.jsx'
+
 import Box from 'grommet/components/Box'
 import Article from 'grommet/components/Article'
 import Section from 'grommet/components/Section'
 import Image from 'grommet/components/Image'
-import Paragraph from 'grommet/components/Paragraph'
-import Quote from 'grommet/components/Quote'
+import Button from 'grommet/components/Button'
 import Carousel from 'grommet/components/Carousel'
 
 class Winner extends Component {
@@ -57,12 +58,12 @@ class Winner extends Component {
   carouselShow () {
     const imgs = this.state.winBusiness.photos.map((photo, index) => {
       return (<Box basis='full'
-              justify='center'
-              flex='shrink'
-              align='center'
-              pad='small'
-              colorIndex='light-2'>
-      <Image key={index} src={photo} />
+        justify='center'
+        flex='shrink'
+        align='center'
+        pad='small'
+        colorIndex='light-2'>
+        <Image key={index} src={photo} />
       </Box>)
     })
 
@@ -92,7 +93,7 @@ class Winner extends Component {
             <h3>{this.state.winBusiness.name}</h3>
           </Section>
           <Section>
-              { this.state.winBusiness.photos &&  this.carouselShow() }
+            { this.state.winBusiness.photos && this.carouselShow() }
           </Section>
           <Section
             pad={{'top': 'none',
@@ -124,16 +125,31 @@ class Winner extends Component {
       )
     } else {
       return (
-        <div className='card'>
-          <div className='card-block'>
-            { this.state.winBusiness.coordinates ? <Map lat={this.state.winBusiness.coordinates.latitude} long={this.state.winBusiness.coordinates.longitude} />
+        <Box margin={{
+          'left': 'large',
+          'right': 'large',
+          'top': 'small',
+          'bottom': 'small'}}
+          pad={{'top': 'none',
+            'right': 'none',
+            'left': 'none',
+            'bottom': 'none'}}
+          justify='center'
+          align='center'>
+          <div>
+            { this.state.winBusiness.coordinates ? <Map lat={this.state.winBusiness.coordinates.latitude}
+              long={this.state.winBusiness.coordinates.longitude} />
               : null
             }
           </div>
           <div>
-            <button className='btn btn-primary rounded-circle btn-circle' onClick={this.toggleMap}>Back</button>
+            <Button
+              label='Back'
+              secondary
+              accent
+              onClick={this.toggleMap} />
           </div>
-        </div>
+        </Box>
       )
     }
   }

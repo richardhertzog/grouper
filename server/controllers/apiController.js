@@ -95,15 +95,14 @@ function getWinner (req, res) {
   console.log(groupName)
   Group.findOne({ groupName: groupName })
   .then((group) => {
-    console.log(group.yelpApiContent)
-      group.yelpApiContent.filter((biz) => {
-        if (biz.id === group.winner) {
-          req.body.id = biz.id
-        }
-      })
+    group.yelpApiContent.filter((biz) => {
+      if (biz.id === group.winner) {
+        req.body.id = biz.id
+      }
+    })
   })
   .then(() => {
-  yelpAPI.getWinner(req, res)
+    yelpAPI.getWinner(req, res)
   .then(
     (data) => {
       res.status(201).json({winBusiness: data})

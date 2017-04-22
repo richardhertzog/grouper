@@ -27,13 +27,13 @@ class Footer extends Component {
         </Box>
         <Box direction='row'
           align='center'
-          pad={{"between": "medium"}}>
+          pad={{'between': 'medium'}}>
           <Paragraph margin='none'>
             2016 Grommet Labs
           </Paragraph>
           <Menu direction='row'
             size='small'
-            dropAlign={{"right": "right"}}>
+            dropAlign={{'right': 'right'}}>
             <Anchor href='https://github.com/commandQ/grouper'>
               Github
             </Anchor>
