@@ -3,15 +3,12 @@ import { Link } from 'react-router-dom'
 
 import Box from 'grommet/components/Box'
 import Button from 'grommet/components/Button'
-import AddIcon from 'grommet/components/icons/base/Add'
 import Article from 'grommet/components/Article'
 import Section from 'grommet/components/Section'
 import Headline from 'grommet/components/Headline'
 import Hero from 'grommet/components/Hero'
 import Card from 'grommet/components/Card'
-import Anchor from 'grommet/components/Anchor'
 import Image from 'grommet/components/Image'
-import Columns from 'grommet/components/Columns'
 
 class Home extends Component {
   constructor (props) {
@@ -52,7 +49,7 @@ class Home extends Component {
               <Card
                 description='Find your next meal with Grüper!'
                 label='Start Eating Now!'
-                link={<Anchor path='/makeGroup'
+                link={<Button href='/#/makeGroup'
                   primary
                   label='Create Group' />}
               />
@@ -70,7 +67,7 @@ class Home extends Component {
               <Card
                 description='Create an account for more amazing experiences!'
                 label='SignUp Now!'
-                link={<Anchor path='/signup'
+                link={<Button href='/#/signup'
                   primary
                   label='Join Us!' />}
               />
@@ -88,7 +85,7 @@ class Home extends Component {
               <Card
                 description="Meet Grüper's Amazing team!"
                 label='About Us'
-                link={<Anchor path='/about'
+                link={<Button href='/#/about'
                   primary
                   label='Learn More!' />}
               />
