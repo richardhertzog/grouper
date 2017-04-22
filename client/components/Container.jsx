@@ -5,6 +5,14 @@ import Footer from './Footer.jsx'
 
 class Container extends Component {
   render () {
+    if (window.innerWidth < 450) {
+      return (
+        <App>
+          <Nav />
+          {this.props.children}
+      </App>
+      )
+    }
     return (
       <App>
         <Nav />
