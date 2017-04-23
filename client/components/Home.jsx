@@ -23,7 +23,6 @@ class Home extends Component {
         pad='small'
         margin='small'>
         <Article colorIndex='light-2'>
-
           <Section pad='small'
             justify='center'
             align='stretch'>
@@ -33,9 +32,7 @@ class Home extends Component {
                 full />}
                 backgroundColorIndex='dark' />
             </Headline>
-
           </Section>
-
           <Section
             pad='small'
             justify='center'
@@ -50,11 +47,9 @@ class Home extends Component {
                 label='Start Eating Now!'
                 link={<Button href='/#/makeGroup'
                   primary
-                  label='Create Group' />}
-              />
+                  label='Create Group' />} />
             </Box>
           </Section>
-
           <Section pad='small'
             justify='center'
             align='stretch'>
@@ -72,7 +67,6 @@ class Home extends Component {
               />
             </Box>
           </Section>
-
           <Section pad='small'
             justify='center'
             align='stretch'>
@@ -86,11 +80,9 @@ class Home extends Component {
                 label='About Us'
                 link={<Button href='/#/about'
                   primary
-                  label='Learn More!' />}
-              />
+                  label='Learn More!' />} />
             </Box>
           </Section>
-
         </Article>
       </Box>
     )

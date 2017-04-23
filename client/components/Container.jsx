@@ -10,7 +10,7 @@ class Container extends Component {
         <App>
           <Nav />
           {this.props.children}
-      </App>
+        </App>
       )
     }
     return (
