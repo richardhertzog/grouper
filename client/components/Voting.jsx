@@ -87,12 +87,12 @@ class Voting extends Component {
     }
     return (
       <Article
-        pad={{}}
         margin={{
           'left': 'large',
           'right': 'large',
           'top': 'small',
-          'bottom': 'small'}}>
+          'bottom': 'small'}}
+        justify='center'>
         <Section
           pad='small'
           justify='center'
@@ -106,20 +106,15 @@ class Voting extends Component {
             {this.props.name}
           </h3>
         </Section>
-        <Section
-          pad='small'
-          justify='center'
-          margin={{
-            'left': 'large',
-            'right': 'large',
-            'top': 'small',
-            'bottom': 'small'}}>
+        <div
+          style={{width: window.innerWidth * 0.75,
+            height: window.innerHeight * 0.75,
+            alignContent: 'center',
+            display: 'flex'}}>
           <Image
             src={this.props.yelpData.yelpApiContent[this.state.index].image_url}
-            full='horizontal'
-            size='small'
-           />
-        </Section>
+            fit='cover' />
+        </div>
         <Section
           pad='small'
           justify='center'

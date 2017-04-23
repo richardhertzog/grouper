@@ -12,7 +12,7 @@ class componentName extends Component {
     this.state = {
       groupName: '',
       group: undefined,
-      link: window.location.href
+      link: window.location.href.slice(0, 37)
     }
   }
 
@@ -58,7 +58,7 @@ class componentName extends Component {
       return (
         <div>
           <Route path='/voting/welcome' render={() => { return <VoterLanding name={this.state.groupName} /> }} />
-          <Route path='/voting/waiting' render={() => { return <Waiting name={this.state.groupName} link={this.state.link} endTime={this.state.group.endTime} /> }} />
+          <Route path='/voting/waiting' render={() => { return <Waiting name={this.state.groupName} link={this.state.link + this.state.groupName} endTime={this.state.group.endTime} /> }} />
           <Route path='/voting/winner' render={() => { return <Winner name={this.state.groupName} /> }} />
           <Route path='/voting/group/' render={() => { return <Voting name={this.state.groupName} yelpData={this.state.group} /> }} />
         </div>
