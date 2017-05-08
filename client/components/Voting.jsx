@@ -94,7 +94,7 @@ class Voting extends Component {
           'bottom': 'small'}}
         justify='center'>
         <Section
-          pad='small'
+          pad={{'vertical': 'none'}}
           justify='center'
           align='center'
           margin={{
@@ -110,18 +110,19 @@ class Voting extends Component {
           style={{width: window.innerWidth * 0.90,
             height: window.innerHeight * 0.50,
             alignContent: 'center',
+            justifyContent: 'center',
             display: 'flex'}}>
           <Image
             src={this.props.yelpData.yelpApiContent[this.state.index].image_url}
             fit='cover' />
         </div>
         <Section
-          pad='small'
+          pad='none'
           justify='center'
           align='center'
           margin={{
-            'top': 'small',
-            'bottom': 'small'}}>
+            'top': 'none',
+            'bottom': 'none'}}>
           <h2>
             {this.props.yelpData.yelpApiContent[this.state.index].name}
           </h2>
@@ -130,6 +131,7 @@ class Voting extends Component {
           margin={{
             'top': 'none',
             'bottom': 'none'}}
+          pad={{'vertical': 'none'}}
           justify='center'
           align='center'
           textAlign='center'>
@@ -137,9 +139,7 @@ class Voting extends Component {
             margin='small'>
             {this.props.yelpData.yelpApiContent[this.state.index].price}
             <h4>
-              {this.state.categories.map((cats) => {
-                return cats
-              })}
+              {this.state.categories[0]}{this.state.categories[1]}
             </h4>
           </Paragraph>
         </Section>
@@ -148,11 +148,12 @@ class Voting extends Component {
             align='center'
             responsive={false}
             direction='row'
-            pad={{'between': 'small'}}
+            pad={{'between': 'small',
+              'vertical': 'none'}}
             margin={{
               'left': 'large',
               'right': 'large',
-              'top': 'small',
+              'top': 'none',
               'bottom': 'large'}}>
             <Button
               icon={<DislikeIcon size='large' />}
