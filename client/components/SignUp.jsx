@@ -1,34 +1,31 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import LoginForm from 'grommet/components/LoginForm'
+import Box from 'grommet/components/Box'
+import Heading from 'grommet/components/Heading'
+import Anchor from 'grommet/components/Anchor'
+
+// Icons
+import LoginIcon from 'grommet/components/icons/base/Login'
+import PreviousIcon from 'grommet/components/icons/base/Previous'
 
 class SignUp extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      username: '',
-      password: '',
       signedIn: false
     }
-    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange (event) {
-    let { name, value } = event.target
-    let newState = {}
-    newState[name] = value
-    this.setState(newState)
-  }
-
   handleSubmit (event) {
-    event.preventDefault()
-    axios.post('/auth/signup', this.state)
+    delete event.rememberMe
+    axios.post('/auth/signup', event)
     .then((res) => {
       localStorage.setItem('token', res.data.token)
       localStorage.setItem('username', res.data.username)
       this.setState({ signedIn: true })
-      console.log(localStorage)
     })
     .catch((err) => {
       console.error('error submitting signup:', err)
@@ -41,20 +38,34 @@ class SignUp extends Component {
     }
 
     return (
-      <div>
-        <p>Sign Up</p>
-        <form onSubmit={this.handleSubmit}>
-          <fieldset>
-            <label>Username: </label>
-            <input name='username' type='text' value={this.state.username} onChange={this.handleChange} required />
-          </fieldset>
-          <fieldset>
-            <label>Password: </label>
-            <input name='password' type='password' value={this.state.password} onChange={this.handleChange} required />
-          </fieldset>
-          <button action='submit'>Sign Up!</button>
-        </form>
-      </div>
+      <Box justify='center'  
+        pad='medium'
+        margin='medium'
+      >
+        <Anchor 
+          align='start'
+          path='/'
+          icon={<PreviousIcon />}
+          label='Back' 
+        />
+        <Box 
+          align='center'
+          wrap={true}
+          pad='none'
+          margin='none'
+        >
+          <Heading align='center'> Sign Up </Heading>
+          <LoginForm 
+            onSubmit={this.handleSubmit}
+            usernameType='text' 
+          />
+          <Anchor 
+            path='/signin'
+            icon={<LoginIcon />}
+            label="Already have an account? Click here to Sign-In!"
+          />
+        </Box>
+      </Box>
     )
   }
 }

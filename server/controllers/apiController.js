@@ -14,7 +14,7 @@ function getGroups (req, res) {
 }
 
 function createGroup (req, res) {
-  yelpAPI(req, res)
+  yelpAPI.getAll(req, res)
   .then((group) => {
     new Group(group)
     .save()
@@ -67,15 +67,21 @@ function addVote (req, res) {
   let groupName = req.params.groupName
   Group.findOne({ groupName: groupName })
   .then((group) => {
-    group.votes.push({
-      yelpApiId: req.body.yelpApiId,
-      vote: req.body.vote
+    req.body.key.map((vote) => {
+      group.votes.push({
+        yelpApiId: vote.yelpApiId,
+        vote: vote.vote
+      })
     })
     return group
-  }).then((group) => {
+  })
+  .then((group) => {
     group.save()
     .then(() => {
       res.status(201).send('Votes saved to db')
+    }).catch((err) => {
+      console.error('Error Saving to DB')
+      res.status(501).send(err)
     })
   })
   .catch((err) => {
@@ -84,7 +90,37 @@ function addVote (req, res) {
   })
 }
 
+function getWinner (req, res) {
+  let groupName = req.params.groupName
+  console.log(groupName)
+  Group.findOne({ groupName: groupName })
+  .then((group) => {
+    group.yelpApiContent.filter((biz) => {
+      if (biz.id === group.winner) {
+        req.body.id = biz.id
+      }
+    })
+  })
+  .then(() => {
+    yelpAPI.getWinner(req, res)
+  .then(
+    (data) => {
+      res.status(201).json({winBusiness: data})
+    },
+    (err) => {
+      console.error('Error GETting win business')
+      res.status(501).send(err)
+    }
+  )
+  .catch((err) => {
+    console.log(err)
+    res.status(400).send(err)
+  })
+  })
+}
+
 module.exports.getGroups = getGroups
 module.exports.createGroup = createGroup
 module.exports.getOneGroup = getOneGroup
 module.exports.addVote = addVote
+module.exports.getWinner = getWinner

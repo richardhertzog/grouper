@@ -38,7 +38,6 @@ exports.signIn = (req, res) => {
       bcrypt.compare(password, user.password, (err, match) => {
         if (err) { console.error(err) }
         if (match) {
-          console.log('user', user)
           res.status(200).json({ token: createToken(user), username: username })
         } else {
           res.status(404).send('invalid credentials')
@@ -53,16 +52,33 @@ exports.signIn = (req, res) => {
   })
 }
 
+exports.checkAuth = (req, res) => {
+  let { token, user } = req.body
+  var validUser = false
+  if (token && user) {
+    validUser = compareToken(token, user)
+  }
+  if (validUser) {
+    res.json({'validUser': true})
+  } else {
+    res.json({'validUser': false})
+  }
+}
+
 function createToken (user) {
   const timeStamp = new Date().getTime()
   const payload = {
     jti: 'onetime',
     iat: timeStamp,
     exp: timeStamp + 10000000,
-    userId: user._id,
+    username: user.username,
     admin: false
   }
 
-  console.log(jwt.encode(payload, process.env.AUTH_SECRET))
   return jwt.encode(payload, process.env.AUTH_SECRET)
+}
+
+function compareToken (token, username) {
+  let decoded = jwt.decode(token, process.env.AUTH_SECRET)
+  return decoded.username === username
 }

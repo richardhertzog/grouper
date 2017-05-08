@@ -1,55 +1,125 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+import Form from 'grommet/components/Form'
+import TextInput from 'grommet/components/TextInput'
+import Header from 'grommet/components/Header'
+import Heading from 'grommet/components/Heading'
+import Footer from 'grommet/components/Footer'
+import FormField from 'grommet/components/FormField'
+import Button from 'grommet/components/Button'
+import Box from 'grommet/components/Box'
+import CafeteriaIcon from 'grommet/components/icons/base/Cafeteria'
+import BarIcon from 'grommet/components/icons/base/Bar'
+import AddCircleIcon from 'grommet/components/icons/base/AddCircle'
+import SubtractCircleIcon from 'grommet/components/icons/base/SubtractCircle'
+import Toast from 'grommet/components/Toast'
+import Label from 'grommet/components/Label'
 
 class MakeGroup extends Component {
   constructor (props) {
     super(props)
     this.state = {
       groupName: '',
-      businessType: '',
+      businessType: null,
       location: '',
-      endTime: 2,
-      renderVote: false
+      endTime: 1,
+      renderVote: false,
+      toast: false,
+      barSelected: false,
+      restaurantSelected: false
     }
 
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.businessClick = this.businessClick.bind(this)
-    this.changeTime = this.changeTime.bind(this)
+    this.barClick = this.barClick.bind(this)
+    this.restaurantClick = this.restaurantClick.bind(this)
+    this.addTime = this.addTime.bind(this)
+    this.reduceTime = this.reduceTime.bind(this)
   }
 
   handleSubmit (event) {
-    event.preventDefault()
-    let time = this.state.endTime
-    time = time * 60 * 1000 + Date.now()
-    axios.post('/api/groups',
-      { groupName: this.state.groupName,
+    if (localStorage.getItem('username')) {
+      let username = localStorage.getItem('username')
+      let group = {
+        groupName: this.state.groupName,
         location: this.state.location,
-        eventType: this.state.businessType,
-        endTime: time
+        eventType: this.state.businessType
+      }
+
+      axios.post('/user/addGroup',
+        {
+          username: username,
+          group: group
+        })
+      .then(() => {
+        console.log('updated group')
       })
+      .catch((err) => {
+        console.error(err)
+      })
+    }
+
+    if (this.state.groupName.includes(' ')) {
+      this.setState({toast: true})
+    } else {
+      event.preventDefault()
+      let time = this.state.endTime
+      time = time * 60 * 1000 + Date.now()
+      axios.post('/api/groups',
+        {
+          groupName: this.state.groupName,
+          location: this.state.location,
+          eventType: this.state.businessType,
+          endTime: time
+        })
     .then(() => {
       this.setState({ renderVote: true })
     })
     .catch((err) => {
       console.error(err)
     })
+    }
   }
 
   handleChange (event) {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-  businessClick (event) {
+  barClick (event) {
     event.preventDefault()
-    this.setState({ businessType: event.target.id })
+    this.setState({
+      businessType: 'bar',
+      barSelected: true,
+      restaurantSelected: false
+    })
+  }
+  restaurantClick (event) {
+    event.preventDefault()
+    this.setState({
+      businessType: 'restaurant',
+      barSelected: false,
+      restaurantSelected: true
+    })
   }
 
-  changeTime (event) {
-    event.preventDefault()
-    let time = Number(event.target.value) + this.state.endTime
-    this.setState({endTime: time})
+  addTime (event) {
+    this.setState({endTime: this.state.endTime + 1})
+  }
+
+  reduceTime (event) {
+    if (this.state.endTime > 1) {
+      this.setState({endTime: this.state.endTime - 1})
+    }
+  }
+
+  spaceWarning () {
+    return (
+      <Toast status='ok'
+        status='warning'>
+        A group name cannot contain spaces.
+      </Toast>
+    )
   }
 
   render () {
@@ -58,39 +128,79 @@ class MakeGroup extends Component {
     }
 
     return (
-      <div className='card'>
-        <div className='card-block mx-auto'>
-          <h4 className='card-title'>Create a group!</h4>
-          <form>
-            <div className='form-group'>
-              <input className='form-control' placeholder='Group Name' name='groupName' type='text' value={this.state.groupName} onChange={this.handleChange} required />
-            </div>
-            <div className='form-group'>
-              <input className='form-control' placeholder='Neighborhood' name='location' type='text' value={this.state.location} onChange={this.handleChange} required />
-            </div>
-            <div className='form-group row mx-auto'>
-              <div className='btn-group btn-group-md mr-2'>
-                <button className='btn btn-primary' id='bars' onClick={this.businessClick}>Booze</button>
-              </div>
-              <div className='btn-group btn-group-md mr-2'>
-                <button className='btn btn-primary' id='restaurants' onClick={this.businessClick}>Foods</button>
-              </div>
-              <div className='btn-group btn-group-md'>
-                <button className='btn btn-primary' id='parks' onClick={this.businessClick}>Parks</button>
-              </div>
-            </div>
-              <div className='btn-group btn-group-md'>
-                <button className='btn btn-primary' value={1} id='plus' onClick={this.changeTime}>+</button>
-                <h3>{this.state.endTime}</h3>
-                <button className='btn btn-primary' value={-1} id='minus' onClick={this.changeTime}>-</button>
-              </div>
-            <div className='form-group row mx-auto'>
-              <div className='btn-block btn-md'>
-                <button className='btn btn-primary btn-md btn-block' id='submit' onClick={this.handleSubmit}>Submit</button>
-              </div>
-            </div>
-          </form>
-        </div>
+      <div>
+        {this.state.toast && this.spaceWarning()}
+        <Box
+          align='center'
+          textAlign='center'
+          pad={{'vertical': 'large',
+            'horizontal': 'small'}}
+          margin='medium'>
+          <Form>
+            <Header>
+              <Heading
+                align='center'
+                margin='small'>
+            Create Group
+          </Heading>
+            </Header>
+            <FormField>
+              <TextInput
+                name='groupName'
+                placeHolder='Super Awesome Group Name'
+                onDOMChange={this.handleChange} />
+            </FormField>
+            <FormField>
+              <TextInput
+                name='location'
+                placeHolder='Nob Hill, San Francisco, CA'
+                onDOMChange={this.handleChange} />
+            </FormField>
+            <Box
+              justify='between'
+              direction='row'
+              pad={{'between': 'small',
+                'vertical': 'small'}}
+              margin='small'
+              wrap>
+              <Button label='Drinks'
+                icon={<BarIcon />}
+                name='bar'
+                type='submit'
+                primary={this.state.barSelected}
+                onClick={this.barClick} />
+              <Button icon={<CafeteriaIcon />}
+                name='restaurant'
+                type='submit'
+                label='Food'
+                primary={this.state.restaurantSelected}
+                onClick={this.restaurantClick} />
+            </Box>
+            <Label
+              size='large'
+              align='center'>
+              Set Timer
+            </Label>
+            <Box direction='row'
+              align='start'
+              justify='between'
+              basis='large'
+              wrap={false}>
+              <Button icon={<SubtractCircleIcon size='large' />}
+                onClick={this.reduceTime} />
+              <h1>{this.state.endTime} min</h1>
+              <Button icon={<AddCircleIcon size='large' />}
+                onClick={this.addTime} />
+            </Box>
+            <Footer pad={{'vertical': 'medium',
+              'between': 'medium'}}>
+              <Button label='Submit'
+                primary
+                fill
+                onClick={this.handleSubmit} />
+            </Footer>
+          </Form>
+        </Box>
       </div>
     )
   }
