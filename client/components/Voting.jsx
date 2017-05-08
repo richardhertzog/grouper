@@ -107,8 +107,8 @@ class Voting extends Component {
           </h3>
         </Section>
         <div
-          style={{width: window.innerWidth * 0.75,
-            height: window.innerHeight * 0.75,
+          style={{width: window.innerWidth * 0.90,
+            height: window.innerHeight * 0.50,
             alignContent: 'center',
             display: 'flex'}}>
           <Image
