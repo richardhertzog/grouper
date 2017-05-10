@@ -63,7 +63,7 @@ class Winner extends Component {
         align='center'
         pad='small'
         colorIndex='light-2'>
-        <Image key={index} src={photo} />
+        <Image key={photo} src={photo} />
       </Box>)
     })
 

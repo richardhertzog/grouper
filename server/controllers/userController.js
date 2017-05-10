@@ -7,8 +7,6 @@ exports.addGroup = (req, res) => {
     if (err) {
       console.log('Something wrong when updating addBusiness!')
     }
-
-    console.log(doc)
   })
 }
 
@@ -18,8 +16,6 @@ exports.addBusiness = (req, res) => {
     if (err) {
       console.log('Something wrong when updating addBusiness!')
     }
-
-    console.log(doc)
   })
 }
 

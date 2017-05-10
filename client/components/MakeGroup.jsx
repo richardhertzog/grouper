@@ -162,7 +162,7 @@ class MakeGroup extends Component {
               pad={{'between': 'small',
                 'vertical': 'small'}}
               margin='small'
-              wrap>
+              responsive='false'>
               <Button label='Drinks'
                 icon={<BarIcon />}
                 name='bar'
@@ -185,7 +185,7 @@ class MakeGroup extends Component {
               align='start'
               justify='between'
               basis='large'
-              wrap={false}>
+              responsive='false'>
               <Button icon={<SubtractCircleIcon size='large' />}
                 onClick={this.reduceTime} />
               <h1>{this.state.endTime} min</h1>

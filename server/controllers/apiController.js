@@ -21,12 +21,10 @@ function createGroup (req, res) {
     .then(
       (data) => {
         res.status(201).json({groupName: group.groupName})
-      },
-      (err) => {
+      }).catch((err) => {
         console.error('Error POSTing new client group')
         res.status(501).send(err)
-      }
-    )
+      })
   })
   .catch((err) => {
     console.log(err)
@@ -113,7 +111,7 @@ function getWinner (req, res) {
     }
   )
   .catch((err) => {
-    console.log(err)
+    console.error(err)
     res.status(400).send(err)
   })
   })

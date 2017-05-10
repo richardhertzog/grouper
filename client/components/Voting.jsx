@@ -109,9 +109,10 @@ class Voting extends Component {
         <div
           style={{width: window.innerWidth * 0.90,
             height: window.innerHeight * 0.50,
+            display: 'flex',
             alignContent: 'center',
-            justifyContent: 'center',
-            display: 'flex'}}>
+            justifyContent: 'center'
+          }}>
           <Image
             src={this.props.yelpData.yelpApiContent[this.state.index].image_url}
             fit='cover' />

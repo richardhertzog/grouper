@@ -17,7 +17,7 @@ class Container extends Component {
       <App>
         <Nav />
         {this.props.children}
-        <Footer />
+        {/* <Footer /> */}
       </App>
     )
   }
