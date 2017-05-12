@@ -92,7 +92,8 @@ class Voting extends Component {
           'right': 'large',
           'top': 'small',
           'bottom': 'small'}}
-        justify='center'>
+        justify='center'
+        alignSelf=''>
         <Section
           pad={{'vertical': 'none'}}
           justify='center'
@@ -110,7 +111,6 @@ class Voting extends Component {
           style={{width: window.innerWidth * 0.90,
             height: window.innerHeight * 0.50,
             display: 'flex',
-            alignContent: 'center',
             justifyContent: 'center'
           }}>
           <Image
