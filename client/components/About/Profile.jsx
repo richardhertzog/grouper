@@ -8,6 +8,8 @@ import Image from 'grommet/components/Image'
 import SocialLinkedinIcon from 'grommet/components/icons/base/SocialLinkedin'
 import SocialGithubIcon from 'grommet/components/icons/base/SocialGithub'
 import Button from 'grommet/components/Button'
+import Heading from 'grommet/components/Heading'
+import Paragraph from 'grommet/components/Paragraph'
 
 class Profile extends Component {
   constructor (props) {
@@ -22,13 +24,13 @@ class Profile extends Component {
         margin='small'
         pad='medium'
         colorIndex='light-2'>
-        <Card label={this.props.name}
-          contentPad='large'
-          textSize='small'
-          thumbnail={<Image src={this.props.profilePhoto} fit='cover' full />}
-          description={this.props.description} />
+        <Heading
+          tag='h6'>
+          {this.props.name}</Heading>
+        <Image src={this.props.profilePhoto} fit='contain' />
+        <Paragraph>{this.props.description} </Paragraph>
         <Box direction='row'
-          wrap>
+          responsive={false}>
           <Button icon={<SocialGithubIcon />}
             href={this.props.githubUrl} />
 

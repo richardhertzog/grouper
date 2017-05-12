@@ -11,25 +11,25 @@ import Anchor from 'grommet/components/Anchor'
 import PreviousIcon from 'grommet/components/icons/base/Previous'
 
 class About extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
   render () {
     return (
-      <Box justify='center'  
+      <Box justify='center'
         pad='medium'
         margin='medium'>
-        <Anchor 
+        <Anchor
           align='start'
           path='/'
           icon={<PreviousIcon />}
           label='Back' />
-          <Box align='center'
-            wrap={true}
-            pad='none'
-            margin='none'>
-            <ProfileList />
+        <Box align='center'
+          wrap
+          pad='none'
+          margin='none'>
+          <ProfileList />
         </Box>
       </Box>
     )
