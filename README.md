@@ -2,15 +2,15 @@
 
 > Makes choosing a restaurant with a group of people easy.
 
-<img src="https://user-images.githubusercontent.com/18472576/27521685-79aa928c-59d4-11e7-8d4c-cde6539c2714.png" width="500">
+<img src="https://user-images.githubusercontent.com/18472576/27521685-79aa928c-59d4-11e7-8d4c-cde6539c2714.png" width="300">
 
 Sign up to track where you go, or simply create group!
 
-<img src="https://user-images.githubusercontent.com/18472576/27521687-79be9e44-59d4-11e7-8c23-a17ec372dd51.png" width="500">
+<img src="https://user-images.githubusercontent.com/18472576/27521687-79be9e44-59d4-11e7-8c23-a17ec372dd51.png" width="300">
 
 Choose where you want to go and what you're interested in.
 
-<img src="https://user-images.githubusercontent.com/18472576/27521686-79ab515e-59d4-11e7-9f8c-94351beee949.png" width="500">
+<img src="https://user-images.githubusercontent.com/18472576/27521686-79ab515e-59d4-11e7-9f8c-94351beee949.png" width="300">
 
 Vote on places with your friends and Grüper will tell you where you're going!
 
